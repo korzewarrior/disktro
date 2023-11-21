@@ -1,0 +1,31 @@
+{
+    "name": "Ubuntu",
+    "version": "23.10",
+    "codeName": "Mantic Minotaur",
+    "releaseDate": "2023-10-12",
+    "homePage": "https://ubuntu.com",
+    "ARM": {
+        "NET": {
+            "size": "114M",
+            "sha256": "d08ed84f1f949753b2b360534d663b405c730346a8797a346d76cb5ae2558df7",
+            "downloadLink": "https://cdimage.ubuntu.com/ubuntu/releases/23.10/release/ubuntu-23.10-netboot-arm64.tar.gz"
+        },
+        "FULL": {
+            "size": "2.2G",
+            "sha256": "5ea4c792a0cc5462a975d2f253182e9678cc70172ebd444d730f2c4fd7678e43",
+            "downloadLink": "https://cdimage.ubuntu.com/ubuntu/releases/23.10/release/ubuntu-23.10-live-server-arm64.iso"
+        }
+    },
+    "x86": {
+        "NET": {
+            "size": "112M",
+            "sha256": "d08ed84f1f949753b2b360534d663b405c730346a8797a346d76cb5ae2558df7",
+            "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-netboot-amd64.tar.gz"
+        },
+        "FULL": {
+            "size": "2.5G",
+            "sha256": "d2fb80d9ce77511ed500bcc1f813e6f676d4a3577009dfebce24269ca23346a5",
+            "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso"
+        }
+    }
+}

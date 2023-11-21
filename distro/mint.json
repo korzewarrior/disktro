@@ -1,0 +1,31 @@
+{
+    "name": "Mint",
+    "version": "21.2",
+    "codeName": "Victoria",
+    "releaseDate": "2023-07-16",
+    "homePage": "https://linuxmint.com/",
+    "ARM": {
+        "NET": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": ""
+        },
+        "FULL": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": ""
+        }
+    },
+    "x86": {
+        "NET": {
+            "size": "2.8GB",
+            "sha256": "116578dda0e03f1421c214acdd66043b586e7afc7474e0796c150ac164a90a2a",
+            "downloadLink": "https://linuxmint.com/edition.php?id=307"
+        },
+        "FULL": {
+            "size": "2.8GB",
+            "sha256": "46b1e171d678d0eba7916ed2b4eecac8993c5e94d3d5a1231ca7d480314f1553",
+            "downloadLink": "https://linuxmint.com/edition.php?id=308"
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Slackware",
+    "version": "15.0",
+    "codeName": "N/A",
+    "releaseDate": "N/A",
+    "homePage": "https://www.slackware.com/",
+    "ARM": {
+        "NET": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        },
+        "FULL": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        }
+    },
+    "x86": {
+        "NET": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        },
+        "FULL": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        }
+    }
+}

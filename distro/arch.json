@@ -1,0 +1,31 @@
+{
+    "name": "Arch",
+    "version": "2023.10.14",
+    "codeName": "",
+    "releaseDate": "2023.10.14",
+    "homePage": "https://archlinux.org/",
+    "ARM": {
+        "NET": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": "https://archlinuxarm.org/about/downloads"
+        },
+        "FULL": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": "https://archlinuxarm.org/about/downloads"
+        }
+    },
+    "x86": {
+        "NET": {
+            "size": "808.3MB",
+            "sha256": "292269ba9bf8335b6a885921a00d311cdc1dcbe9a1375f297f7f3ecfe31c36a7",
+            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2023.10.14/archlinux-2023.10.14-x86_64.iso"
+        },
+        "FULL": {
+            "size": "808.3MB",
+            "sha256": "292269ba9bf8335b6a885921a00d311cdc1dcbe9a1375f297f7f3ecfe31c36a7",
+            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2023.10.14/archlinux-2023.10.14-x86_64.iso"
+        }
+    }
+}

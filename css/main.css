@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Raleway Medium';
+    src: url('/fonts/raleway-medium.ttf') format('truetype');
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Raleway Medium';
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway Medium';
+}
+
+body {
+    background-color: #0e0e0e;
+    color: #e0e0e0;
+    text-align: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+body header {
+    padding-bottom: 20px;
+}
+
+input {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    transition: border 0.3s;
+    font-family: 'Raleway Medium';
+}
+
+input:focus {
+    border: 1px solid #3498DB;
+    outline: none;
+}
+
+.container {
+    border-radius: 8px;
+    margin: auto;
+    margin-bottom: 120px;
+    padding: 20px 20px 20px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.title {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+.tagline {
+    margin: 0;
+    color: #7F8C8D;
+    font-size: 1em;
+}
+
+.os-sections {
+    margin-top: 20px;
+}
+
+.os-section {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.os-title {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #2C3E50;
+}
+
+.release-date {
+    margin: 0 0 20px;
+    color: #7F8C8D;
+}
+
+.checksum {
+    font-size: 14px;
+    color: #7F8C8D;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+h2 {
+    margin: 20px 0;
+    font-size: 1.5em;
+    color: #e0e0e0;
+}
+
+h3 {
+    margin: 10px 0;
+    color: #7F8C8D;
+}
+
+ul {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.container.roadmap {
+    background-color: #0e0e0e;
+    color: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: auto;
+    margin-bottom: 120px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.container.roadmap h1, .container.roadmap h2, .container.roadmap h3 {
+    color: #e0e0e0;
+}
+
+.container.roadmap ul {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.faq a {
+    color: #008CBA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.faq a:hover {
+    color: #005577;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
+}

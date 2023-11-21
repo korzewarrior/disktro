@@ -1,0 +1,31 @@
+{
+    "name": "PureOS",
+    "version": "10.3",
+    "codeName": "Byzantium",
+    "releaseDate": "2023-06-12",
+    "homePage": "https://www.pureos.net/",
+    "ARM": {
+        "NET": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        },
+        "FULL": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        }
+    },
+    "x86": {
+        "NET": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        },
+        "FULL": {
+            "size": "N/A",
+            "sha256": "N/A",
+            "downloadLink": "N/A"
+        }
+    }
+}

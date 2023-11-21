@@ -1,0 +1,31 @@
+{
+    "name": "Fedora",
+    "version": 38,
+    "codeName": "",
+    "releaseDate": "2023.04",
+    "homePage": "https://fedoraproject.org/",
+    "ARM": {
+        "NET": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/38/Workstation/aarch64/iso/Fedora-Workstation-Live-aarch64-38-1.6.iso"
+        },
+        "FULL": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": ""
+        }
+    },
+    "x86": {
+        "NET": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/38/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-38-1.6.iso"
+        },
+        "FULL": {
+            "size": "",
+            "sha256": "",
+            "downloadLink": ""
+        }
+    }
+}
