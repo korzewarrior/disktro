@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<!-- Mirrored from www.disktro.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Nov 2023 09:29:24 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Disktro | ISO Library</title>
+        <title>Disktro | Disks</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/toggle.css">
         <link rel="stylesheet" type="text/css" href="css/card.css">
+        <link rel="stylesheet" type="text/css" href="css/card-header.css">
         <link rel="stylesheet" type="text/css" href="css/card-os.css">
         <link rel="stylesheet" type="text/css" href="css/card-layout.css">
         <link rel="stylesheet" type="text/css" href="css/card-search.css">
         <link rel="stylesheet" type="text/css" href="css/card-responsive.css">
         <link rel="stylesheet" type="text/css" href="css/circles.css">
         <link rel="stylesheet" type="text/css" href="css/card-footer.css">
+        <link rel="stylesheet" type="text/css" href="css/card-nav.css">
         <script defer src="js/footer.js"></script>
+        <script defer src="js/header.js"></script>
+        <script defer src="js/navbar.js"></script>
         <script defer src="js/main.js"></script>
         <script defer src="js/circles.js"></script>
         <script defer src="js/distro-colors.js"></script>
     </head>
     <body>
         <div class="circlecontainer"></div>
-        <header>
-            <div class="header-brand">
-                <img src="img/disktro-logo.png" alt="Disktro Logo" class="header-logo">
-                <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
-            </div>
-            <p class="tagline">ISO Library — Find Your Perfect Linux</p>
-        </header>
+        
         <div class="container">
+            <div id="header"></div>
+            <div id="navbar"></div>
+            
             <div class="search-toggle-container">
                 <div class="control-bar">
                     <div class="search-bar-wrapper">
                         <input id="search-bar" type="text" placeholder="Search for a distro..." autocomplete="off">
-                        <div class="search-icon">🔍</div>
+                        <div class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
                     </div>
                     
                     <div class="controls-right">
@@ -63,94 +66,5 @@
             </div>
         </div>
         <div id="footer"></div>
-
-        <style>
-            /* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
-            .content-page,
-            div.content-page,
-            body .container .content-page,
-            .os-sections,
-            .os-sections.grid-layout,
-            .os-sections.column-layout {
-                background-color: transparent !important;
-                background: transparent !important;
-                background-image: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                box-shadow: none !important;
-                border: none !important;
-                opacity: 1 !important;
-                position: relative !important; 
-                z-index: 1 !important;
-            }
-            
-            /* Force distro-cards to have solid backgrounds */
-            .distro-card, .comparison-section, .comparison-results, .content-section {
-                background-color: #0e0e0e !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-                border: 1px solid rgba(255, 255, 255, 0.192) !important;
-                opacity: 1 !important;
-                position: relative !important;
-                z-index: 2 !important;
-            }
-            
-            /* SUPER CRITICAL - FORCE FOOTER TO BE VISIBLE */
-            #disktro-card.footer-card {
-                display: flex !important;
-                flex-direction: column !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                background-color: #0e0e0e !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                padding: 0 !important;
-                margin-top: 40px !important;
-                margin-bottom: 60px !important;
-                border: 1px solid rgba(255, 255, 255, 0.192) !important;
-            }
-            
-            #disktro-card.footer-card .card-header,
-            #disktro-card.footer-card .card-content,
-            #disktro-card.footer-card .version-subtitle,
-            #disktro-card.footer-card .footer-info,
-            #disktro-card.footer-card .footer-nav,
-            #disktro-card.footer-card .footer-copyright,
-            #disktro-card.footer-card .footer-column,
-            #disktro-card.footer-card .footer-column p {
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-            }
-            
-            #disktro-card.footer-card .card-content {
-                padding: 20px !important;
-            }
-            
-            #disktro-card.footer-card .footer-nav {
-                display: flex !important;
-                flex-wrap: wrap !important;
-                justify-content: center !important;
-                gap: 20px !important;
-                border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-                padding-top: 15px !important;
-                margin: 15px 0 !important;
-            }
-            
-            #disktro-card.footer-card .footer-info {
-                display: flex !important;
-                flex-wrap: wrap !important;
-                gap: 30px !important;
-                justify-content: space-between !important;
-            }
-            
-            /* Remove any overflow or transform properties that might interfere */
-            html, body, .container {
-                overflow-x: visible !important;
-            }
-        </style>
     </body>
-
-<!-- Mirrored from www.disktro.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Nov 2023 09:29:32 GMT -->
 </html>
