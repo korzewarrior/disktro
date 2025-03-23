@@ -138,13 +138,17 @@ function initializeCircles() {
 
 // Function to place a bomb on a circle
 function placeBomb(circle) {
+    // Check if this circle already has a bomb - if so, remove it (toggle functionality)
+    if (circle.classList.contains('bomb')) {
+        removeBomb(circle);
+        return;
+    }
+    
     // Check if we've reached the max number of bombs
     if (bombCircles.length >= PERFORMANCE.MAX_BOMBS) {
         // Remove the oldest bomb
         const oldestBomb = bombCircles.shift();
-        oldestBomb.classList.remove('bomb');
-        oldestBomb.style.backgroundColor = 'transparent';
-        oldestBomb.style.borderColor = 'rgba(170, 170, 170, 0.1)';
+        removeBomb(oldestBomb);
     }
     
     // Mark this circle as a bomb
@@ -165,6 +169,45 @@ function placeBomb(circle) {
     feedback.style.top = '20px';
     feedback.style.transform = 'translateX(-50%)';
     feedback.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.9)`;
+    feedback.style.color = 'white';
+    feedback.style.padding = '8px 15px';
+    feedback.style.borderRadius = '6px';
+    feedback.style.fontSize = '14px';
+    feedback.style.fontFamily = "'Raleway Medium', sans-serif";
+    feedback.style.zIndex = '9999';
+    feedback.style.transition = 'opacity 0.3s ease';
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(feedback);
+        }, 300);
+    }, 1500);
+}
+
+// Helper function to properly remove a bomb and reset styling
+function removeBomb(circle) {
+    // Remove from bomb list
+    bombCircles = bombCircles.filter(c => c !== circle);
+    
+    // Remove bomb class
+    circle.classList.remove('bomb');
+    
+    // Completely reset all styling
+    circle.style.backgroundColor = 'transparent';
+    circle.style.borderColor = 'rgba(170, 170, 170, 0.1)';
+    circle.style.boxShadow = 'none';
+    
+    // Show feedback for bomb removal
+    const rgbColor = getThemeColor();
+    const feedback = document.createElement('div');
+    feedback.textContent = `Bomb removed! (${bombCircles.length}/${PERFORMANCE.MAX_BOMBS})`;
+    feedback.style.position = 'fixed';
+    feedback.style.left = '50%';
+    feedback.style.top = '20px';
+    feedback.style.transform = 'translateX(-50%)';
+    feedback.style.backgroundColor = 'rgba(80, 80, 80, 0.9)';
     feedback.style.color = 'white';
     feedback.style.padding = '8px 15px';
     feedback.style.borderRadius = '6px';
@@ -211,9 +254,8 @@ function checkBombDetonation(sourceX, sourceY, maxDistance) {
     // Trigger the bombs with appropriate delays
     bombsToTrigger.forEach(bomb => {
         setTimeout(() => {
-            // Remove from bomb list
-            bombCircles = bombCircles.filter(c => c !== bomb.circle);
-            bomb.circle.classList.remove('bomb');
+            // Remove bomb completely using our helper function
+            removeBomb(bomb.circle);
             
             // Trigger the explosion
             propagateRipple(bomb.circle);
@@ -577,10 +619,8 @@ document.addEventListener('mousemove', handleMouseMove);
 // Add keydown event listener for bomb placement
 document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === PERFORMANCE.BOMB_KEY && hoveredCircle) {
-        // Prevent placing bomb on a circle that already has one
-        if (!hoveredCircle.classList.contains('bomb')) {
-            placeBomb(hoveredCircle);
-        }
+        // Toggle bomb - placeBomb now handles this logic
+        placeBomb(hoveredCircle);
     }
 });
 
