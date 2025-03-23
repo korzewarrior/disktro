@@ -66,9 +66,9 @@ const distroColors = {
     }
 };
 
-// Default color is a vibrant purple
+// Default color is a warm orange (Burnt Sienna)
 const defaultColor = {
-    primary: '#8E44AD',
+    primary: '#EB5E28',
     secondary: '#FFFFFF'
 };
 

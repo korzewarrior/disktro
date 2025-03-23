@@ -23,8 +23,8 @@ const distroColors = {
     elementary: { primary: "#64BAFF", rgb: "100, 186, 255" },
     rocky: { primary: "#10B981", rgb: "16, 185, 129" },
     
-    // Fallback color (vibrant purple)
-    default: { primary: "#8E44AD", rgb: "142, 68, 173" }
+    // Fallback color (warm orange)
+    default: { primary: "#EB5E28", rgb: "235, 94, 40" }
 };
 
 /**
