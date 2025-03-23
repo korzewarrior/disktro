@@ -211,6 +211,9 @@ function applyUIRippleEffect(sourceX, sourceY) {
         '#disktro-card'
     ];
     
+    // Wave propagation speed (pixels per millisecond)
+    const waveSpeed = 0.8; // Tuned to look natural
+    
     // Collect all elements
     const elements = [];
     uiElements.forEach(selector => {
@@ -218,7 +221,7 @@ function applyUIRippleEffect(sourceX, sourceY) {
         found.forEach(el => elements.push(el));
     });
     
-    // Apply effect to each element
+    // Setup wave propagation calculations for each element
     elements.forEach(element => {
         // Get element position relative to viewport
         const rect = element.getBoundingClientRect();
@@ -236,37 +239,43 @@ function applyUIRippleEffect(sourceX, sourceY) {
         const maxDistance = Math.max(window.innerWidth, window.innerHeight) * 0.7;
         if (distance > maxDistance) return;
         
-        // Calculate intensity based on distance (closer = stronger effect)
-        const intensity = Math.max(0.05, (1 - (distance / maxDistance)) * PERFORMANCE.UI_RIPPLE_INTENSITY);
+        // Calculate time for wave to reach this element
+        const waveArrivalTime = distance / waveSpeed;
         
-        // Normalize direction vector
-        const length = Math.max(0.1, Math.sqrt(dirX * dirX + dirY * dirY));
-        const normDirX = dirX / length;
-        const normDirY = dirY / length;
-        
-        // Calculate transform amount (move away from source)
-        const moveX = normDirX * intensity * 15; // max 15px movement
-        const moveY = normDirY * intensity * 15;
-        
-        // Calculate rotation (subtle twist based on position)
-        const rotateAmount = (Math.atan2(dirY, dirX) * intensity) / 2; // max 0.5deg rotation
-        
-        // Calculate scale (subtle pulse)
-        const scaleAmount = 1 + (intensity * 0.03); // max 3% scaling
-        
-        // Apply the animation through CSS custom properties
-        element.style.setProperty('--move-x', `${moveX}px`);
-        element.style.setProperty('--move-y', `${moveY}px`);
-        element.style.setProperty('--rotate', `${rotateAmount}deg`);
-        element.style.setProperty('--scale', scaleAmount);
-        
-        // Add the animation class
-        element.classList.add('ripple-animate');
-        
-        // Remove animation after it completes
+        // Schedule the animation to start when the wave reaches this element
         setTimeout(() => {
-            element.classList.remove('ripple-animate');
-        }, PERFORMANCE.UI_RIPPLE_DURATION);
+            // Calculate intensity based on distance (closer = stronger effect)
+            const intensity = Math.max(0.05, (1 - (distance / maxDistance)) * PERFORMANCE.UI_RIPPLE_INTENSITY);
+            
+            // Normalize direction vector
+            const length = Math.max(0.1, Math.sqrt(dirX * dirX + dirY * dirY));
+            const normDirX = dirX / length;
+            const normDirY = dirY / length;
+            
+            // Calculate transform amount (move away from source)
+            const moveX = normDirX * intensity * 20; // increased from 15 to 20px for more noticeable effect
+            const moveY = normDirY * intensity * 20;
+            
+            // Calculate rotation (subtle twist based on position)
+            const rotateAmount = (Math.atan2(dirY, dirX) * intensity) * 1.5; // increased for more visible effect
+            
+            // Calculate scale (subtle pulse)
+            const scaleAmount = 1 + (intensity * 0.05); // increased from 0.03 to 0.05
+            
+            // Apply the animation through CSS custom properties
+            element.style.setProperty('--move-x', `${moveX}px`);
+            element.style.setProperty('--move-y', `${moveY}px`);
+            element.style.setProperty('--rotate', `${rotateAmount}deg`);
+            element.style.setProperty('--scale', scaleAmount);
+            
+            // Add the animation class
+            element.classList.add('ripple-animate');
+            
+            // Remove animation after it completes
+            setTimeout(() => {
+                element.classList.remove('ripple-animate');
+            }, 600); // Animation duration
+        }, waveArrivalTime);
     });
 }
 
