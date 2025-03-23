@@ -1,0 +1,119 @@
+/* Responsive Styles */
+
+/* Medium devices (tablets) */
+@media (max-width: 768px) {
+    /* Control bar responsiveness */
+    .control-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .controls-right {
+        justify-content: space-between;
+    }
+    
+    .search-bar-wrapper {
+        width: 100%;
+    }
+    
+    .filter-group, .version-filter-wrapper, .reset-button-container {
+        margin: 10px;
+    }
+    
+    #layout-toggle .toggle-button {
+        padding: 6px 10px;
+        min-width: 36px;
+    }
+    
+    /* Layout adjustments */
+    .os-sections.grid-layout {
+        grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    }
+}
+
+/* Small devices (landscape phones) */
+@media (max-width: 600px) {
+    /* Layout and structure */
+    .os-sections.grid-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .title-size {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .raw-link p {
+        margin-bottom: 5px;
+    }
+    
+    .search-toggle-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    /* Button containers */
+    .button-container {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .toggle-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 5px 0;
+    }
+    
+    .toggle-button {
+        margin: 5px;
+    }
+    
+    .version-filter-wrapper {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    #version-filter {
+        width: 100%;
+    }
+    
+    .filter-group {
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 480px) {
+    .controls-right {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .version-filter-wrapper, 
+    .filter-group,
+    .reset-button-container {
+        justify-content: center;
+    }
+    
+    #reset-button {
+        width: 100%;
+        border-radius: 4px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+} 
