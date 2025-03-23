@@ -713,34 +713,122 @@ h2 {
     display: none; /* Hide "Direct Link" text */
 }
 
-/* ----- MOBILE ----- */
+/* MEDIA QUERIES - Consolidated */
+@media (max-width: 768px) {
+    .control-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .controls-right {
+        justify-content: space-between;
+    }
+    
+    .search-bar-wrapper {
+        width: 100%;
+    }
+    
+    .filter-group, .version-filter-wrapper, .reset-button-container {
+        margin: 10px;
+    }
+    
+    #layout-toggle .toggle-button {
+        padding: 6px 10px;
+        min-width: 36px;
+    }
+}
 
 @media (max-width: 600px) {
+    .os-sections {
+        grid-template-columns: 1fr;
+    }
+    
     .title-size {
         flex-direction: column;
         align-items: flex-start;
     }
     
-    .download-section {
+    .download-section,
+    .raw-link,
+    .card-content,
+    .os-link {
         width: 100%;
     }
     
     .os-link {
-        width: 100%;
         box-sizing: border-box;
         text-align: center;
-    }
-    
-    .raw-link {
-        width: 100%;
     }
     
     .raw-link p {
         margin-bottom: 5px;
     }
     
-    .card-content {
+    .search-toggle-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .button-container {
         width: 100%;
+        justify-content: center;
+        padding: 15px 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .toggle-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 5px 0;
+    }
+    
+    .toggle-button {
+        margin: 5px;
+    }
+    
+    .version-filter-wrapper {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    #version-filter {
+        width: 100%;
+    }
+    
+    .filter-group {
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .controls-right {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .version-filter-wrapper, 
+    .filter-group,
+    .reset-button-container {
+        justify-content: center;
+    }
+    
+    #reset-button {
+        width: 100%;
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 400px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
     }
 }
 
@@ -904,16 +992,7 @@ body .container .content-page,
 .os-sections.column-layout,
 .container,
 .content-container {
-    background-color: transparent !important;
-    background: transparent !important;
-    background-image: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    opacity: 1 !important;
-    position: relative !important; 
-    z-index: 1 !important;
+    /* All these styles are now consolidated in the OS-SECTIONS STYLING section above */
 }
 
 /* UNIFIED CARD STYLING - All cards across all pages */
@@ -956,109 +1035,152 @@ html, body, .container {
     overflow-x: visible !important;
 }
 
-/* CRITICAL HEADER FIXES */
-.header-brand {
-    display: flex !important;
-    flex-direction: row !important; 
-    align-items: center !important;
-    justify-content: center !important;
-    margin-bottom: 5px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* HEADER STYLING - Consolidated */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 10px;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 999;
 }
 
-header {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important; 
-    z-index: 999 !important;
+.header-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    visibility: visible;
+    opacity: 1;
 }
 
 .header-logo {
-    height: 70px !important;
-    width: 70px !important;
-    margin-right: 15px !important;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)) !important;
-    position: relative !important;
-    top: -3px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
+    height: 70px;
+    width: 70px;
+    margin-right: 15px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    position: relative;
+    top: -3px;
+    visibility: visible;
+    opacity: 1;
+    display: block;
 }
 
-/* Fix container CSS to not interfere with header */
-.container {
-    position: relative !important;
-    z-index: 5 !important;
+.title, .tagline {
+    visibility: visible;
+    opacity: 1;
+    display: block;
 }
 
-/* GRID LAYOUT FIX - ENSURE OS-SECTIONS IS COMPLETELY TRANSPARENT */
-.os-sections,
-.os-sections.grid-layout,
-.os-sections.column-layout {
-    background-color: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    opacity: 1 !important;
-    background: transparent !important;
-    background-image: none !important;
-}
-
-/* Make sure no container has a background */
+/* CONTAINER STYLING - Consolidated */
 .container, 
 .content-page {
-    background-color: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    background-image: none !important;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    position: relative;
+    z-index: 5;
 }
 
-/* ULTRA SPECIFIC TARGETING FOR CONTENT PAGES */
-/* Target FAQ page */
-body:has(header .tagline:contains("Frequently Asked Questions")) .content-page,
-/* Target Getting Started page */
-body:has(header .tagline:contains("Getting Started")) .content-page {
-    background-color: transparent !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 1 !important;
+body > .container,
+body > .footer-container {
+    width: 80%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
-/* Extra overrides for FAQ and Getting Started content sections */
+/* Ensure consistent widths for specific pages */
+body[class*="faq"] .container,
+body[class*="getting-started"] .container,
+body[class*="compare"] .container {
+    max-width: 1200px;
+    width: 80%;
+}
+
+.content-page {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Card styling - Consolidated */
+.distro-card, 
+.content-section, 
+.section-content, 
+.comparison-section, 
+.comparison-results, 
+.code-block {
+    background-color: #0e0e0e;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.192);
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
 .content-page .content-section {
-    background-color: #0e0e0e !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 8px !important;
-    margin-bottom: 20px !important;
-    padding: 20px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-    width: 100% !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 100%;
 }
 
-/* OS-SECTIONS STYLING - Moved from main.css */
+/* HEADER SPECIFIC STYLING */
+header, .header-brand {
+    /* All these styles are now consolidated in the HEADER STYLING section above */
+}
+
+.header-logo {
+    /* All these styles are now consolidated in the HEADER STYLING section above */
+}
+
+.title, .tagline {
+    /* All these styles are now consolidated in the HEADER STYLING section above */
+}
+
+/* STANDARDIZE CONTAINER WIDTHS ACROSS ALL PAGES */
+body > .container,
+body > .footer-container {
+    /* All these styles are now consolidated in the CONTAINER STYLING section above */
+}
+
+/* Ensure consistent widths for specific pages */
+body[class*="faq"] .container,
+body[class*="getting-started"] .container,
+body[class*="compare"] .container {
+    /* All these styles are now consolidated in the CONTAINER STYLING section above */
+}
+
+/* OS-SECTIONS STYLING - Consolidated from multiple sections */
 .os-sections {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
     gap: 20px;
-    background-color: transparent !important;
-    background: transparent !important;
-    background-image: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 0 !important;
+    background-color: transparent;
+    background: transparent;
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Layout styles for grid and column views */
@@ -1077,6 +1199,8 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
 /* Make footer card (disktro-card) full width in both layouts */
 .os-sections.column-layout #disktro-card {
     width: 100%;
+    background-color: #0e0e0e;
+    opacity: 1;
 }
 
 /* Basic section styles */
@@ -1104,7 +1228,7 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
     color: #7F8C8D;
 }
 
-/* SEARCH CONTAINER AND CONTROLS STYLING - Moved from main.css */
+/* SEARCH CONTAINER AND CONTROLS STYLING - Consolidated */
 .search-toggle-container {
     position: sticky;
     top: 0;
@@ -1116,7 +1240,6 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100; /* Higher z-index to ensure it stays on top */
     display: block;
-    flex-direction: unset;
 }
 
 .control-bar {
@@ -1147,8 +1270,7 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
     border: 1px solid rgba(255, 255, 255, 0.192);
     border-radius: 4px;
     font-size: 14px;
-    flex-grow: unset;
-    transform: none;
+    transition: all 0.3s ease-in-out;
 }
 
 #search-bar:focus, #search-bar:hover {
@@ -1196,15 +1318,6 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
     padding-right: 30px;
 }
 
-/* Layout toggle styling */
-.filter-group {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin: 0;
-    padding: 0;
-}
-
 /* Reset button styling */
 .reset-button-container {
     display: flex;
@@ -1236,46 +1349,9 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
     transform: none;
 }
 
-/* Responsive adjustments for search controls */
-@media (max-width: 768px) {
-    .control-bar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-    
-    .controls-right {
-        justify-content: space-between;
-    }
-    
-    .search-bar-wrapper {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .controls-right {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-    
-    .version-filter-wrapper, 
-    .filter-group,
-    .reset-button-container {
-        justify-content: center;
-    }
-    
-    #reset-button {
-        width: 100%;
-        border-radius: 4px;
-    }
-}
-
-@media (max-width: 600px) {
-    .os-sections {
-        grid-template-columns: 1fr;
-    }
+/* Button container override */
+.button-container {
+    display: none;
 }
 
 /* CONTENT PAGE STYLING */
@@ -1285,46 +1361,24 @@ body:has(header .tagline:contains("Getting Started")) .content-page {
 .comparison-section, 
 .comparison-results, 
 .code-block {
-    background-color: #0e0e0e;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.192);
-    opacity: 1;
-    position: relative;
-    z-index: 2;
+    /* All these styles are now consolidated in the Card styling section above */
 }
 
 .content-page {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
+    /* All these styles are now consolidated in the CONTAINER STYLING section above */
 }
 
 /* HEADER SPECIFIC STYLING */
 header, .header-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    visibility: visible;
-    opacity: 1;
-    z-index: 10;
+    /* All these styles are now consolidated in the HEADER STYLING section above */
 }
 
 .header-logo {
-    height: 70px;
-    width: 70px;
-    margin-right: 15px;
-    visibility: visible;
-    opacity: 1;
-    display: block;
+    /* All these styles are now consolidated in the HEADER STYLING section above */
 }
 
 .title, .tagline {
-    visibility: visible;
-    opacity: 1;
-    display: block;
+    /* All these styles are now consolidated in the HEADER STYLING section above */
 }
 
 /* Ensure footer has same width as main content */
@@ -1336,28 +1390,17 @@ header, .header-brand {
     box-sizing: border-box;
 }
 
-/* Button container override */
-.button-container {
-    display: none;
-}
-
 /* STANDARDIZE CONTAINER WIDTHS ACROSS ALL PAGES */
 body > .container,
 body > .footer-container {
-    width: 80%;
-    max-width: 1200px;
-    min-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
+    /* All these styles are now consolidated in the CONTAINER STYLING section above */
 }
 
 /* Ensure consistent widths for specific pages */
 body[class*="faq"] .container,
 body[class*="getting-started"] .container,
 body[class*="compare"] .container {
-    max-width: 1200px;
-    width: 80%;
+    /* All these styles are now consolidated in the CONTAINER STYLING section above */
 }
 
 /* Force grid layout containers to be the same size */
