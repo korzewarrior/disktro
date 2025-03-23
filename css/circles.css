@@ -13,6 +13,8 @@
     align-content: space-around;
     position: fixed;        
     z-index: 1;
+    pointer-events: none; /* Allow clicks to pass through to elements below */
+    overflow: hidden; /* Prevent scrollbars due to circles */
 }
 
 .circle {
@@ -21,7 +23,10 @@
     border-radius: 50%;
     margin: 5px;
     border: 1px solid rgba(170, 170, 170, 0.1);
-    transition: border-color 0.3s, background-color 0.3s;
+    transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+    pointer-events: auto; /* Make circles clickable */
+    will-change: transform, opacity, background-color, border-color; /* Optimize for animations */
+    contain: layout paint style; /* Containment for performance */
 }
 
 @keyframes ripple {
@@ -36,5 +41,23 @@
 }
 
 .circle.clicked {
-    animation: ripple 0.5s forwards;
+    animation: ripple 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Performance optimizations for mobile devices */
+@media (max-width: 768px) {
+    .circle {
+        width: 40px;
+        height: 40px;
+        margin: 4px;
+    }
+}
+
+/* Further reduce size on very small screens */
+@media (max-width: 480px) {
+    .circle {
+        width: 30px;
+        height: 30px;
+        margin: 3px;
+    }
 }
