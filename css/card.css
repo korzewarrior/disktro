@@ -3,6 +3,22 @@ h2 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Version subtitle styling */
+.version-subtitle {
+    font-size: 14px;
+    color: #aaaaaa;
+    font-style: italic;
+    margin: 0;
+    padding: 0 0 8px 0; /* Increase bottom padding for more space */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: block;
+    min-height: 12px;
+}
+
 .distro-card {
     position: relative;
     display: flex;
@@ -10,8 +26,8 @@ h2 {
     align-items: start;
     background-color: #0e0e0e;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
     text-align: left;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -20,7 +36,7 @@ h2 {
 }
 
 .distro-card::before {
-    content: "";
+    content: none; /* Disable the background logo image */
     position: absolute;
     top: 0;
     left: 0;
@@ -30,15 +46,143 @@ h2 {
     background-repeat: no-repeat;
     opacity: .3;
     z-index: -1;
+    filter: blur(5px);
 }
 
+/* Selected card styling - these need to come BEFORE hover styles for cascade to work properly */
+.distro-card.selected {
+    box-shadow: 0 0 8px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
+    transform: translateY(-2px);
+    border-color: var(--circle-primary-color, #D4AF37);
+    position: relative;
+}
+
+/* Remove background color from all distro-specific selected styles */
+.distro-card.debian.selected,
+.distro-card.ubuntu.selected,
+.distro-card.fedora.selected,
+.distro-card.arch.selected,
+.distro-card.mint.selected,
+.distro-card.gentoo.selected,
+.distro-card.slackware.selected,
+.distro-card.pureos.selected,
+.distro-card.opensuse.selected,
+.distro-card.manjaro.selected,
+.distro-card.popos.selected,
+.distro-card.elementary.selected,
+.distro-card.zorin.selected,
+.distro-card.kali.selected,
+.distro-card.rocky.selected,
+.distro-card.endeavouros.selected,
+#disktro-card.selected {
+    background-color: #0e0e0e; /* Reset to default background */
+}
+
+/* Make sure selected hover has the most pronounced effect - KEEP THIS AFTER the general selected styles */
+.distro-card.selected:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 8px 16px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.6) !important;
+}
+
+/* Hover effects should come AFTER all selected styles to have higher priority in cascade */
 .distro-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7) !important;
+    border-color: var(--circle-primary-color, #D4AF37);
+    z-index: 3;
+    background-color: #0e0e0e !important; /* Reset to default background */
+}
+
+/* Remove background colors from distro-specific hover effects, but keep border colors */
+.distro-card.debian:hover { 
+    border-color: #D70A53; 
+    box-shadow: 0 6px 12px rgba(215, 10, 83, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.ubuntu:hover { 
+    border-color: #E95420; 
+    box-shadow: 0 6px 12px rgba(233, 84, 32, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.fedora:hover { 
+    border-color: #294172; 
+    box-shadow: 0 6px 12px rgba(41, 65, 114, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.arch:hover { 
+    border-color: #1793D1; 
+    box-shadow: 0 6px 12px rgba(23, 147, 209, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.mint:hover { 
+    border-color: #87CF3E; 
+    box-shadow: 0 6px 12px rgba(135, 207, 62, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.gentoo:hover { 
+    border-color: #54487A; 
+    box-shadow: 0 6px 12px rgba(84, 72, 122, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.slackware:hover { 
+    border-color: #7479A1; 
+    box-shadow: 0 6px 12px rgba(116, 121, 161, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.pureos:hover { 
+    border-color: #8F57B1; 
+    box-shadow: 0 6px 12px rgba(143, 87, 177, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.opensuse:hover { 
+    border-color: #73BA25; 
+    box-shadow: 0 6px 12px rgba(115, 186, 37, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.manjaro:hover { 
+    border-color: #35BF5C; 
+    box-shadow: 0 6px 12px rgba(53, 191, 92, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.popos:hover { 
+    border-color: #48B9C7; 
+    box-shadow: 0 6px 12px rgba(72, 185, 199, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.elementary:hover { 
+    border-color: #64BAFF; 
+    box-shadow: 0 6px 12px rgba(100, 186, 255, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.zorin:hover { 
+    border-color: #15A6F0; 
+    box-shadow: 0 6px 12px rgba(21, 166, 240, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.kali:hover { 
+    border-color: #4A66AC; 
+    box-shadow: 0 6px 12px rgba(74, 102, 172, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.rocky:hover { 
+    border-color: #10B981; 
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+.distro-card.endeavouros:hover { 
+    border-color: #7F3FBF; 
+    box-shadow: 0 6px 12px rgba(127, 63, 191, 0.5) !important;
+    background-color: #0e0e0e !important;
+}
+#disktro-card:hover { 
+    border-color: #D4AF37; 
+    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.5) !important;
+    background-color: #0e0e0e !important;
 }
 
 .info div {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 3px;
 }
 
 .download-button {
@@ -53,6 +197,7 @@ h2 {
 .raw-link {
     margin: 0px;
     padding: 0px;
+    width: 100%;
 }
 
 .raw-link div {
@@ -71,11 +216,27 @@ h2 {
     max-width: 100%;
     scrollbar-width: thin;
     scrollbar-color: rgba(200, 200, 200, 0.3) transparent;
+    position: relative;
+    /* Create masking for smooth scroll edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+}
+
+.raw-link div::before, .raw-link div::after {
+    content: none;
 }
 
 .raw-link div:hover {
     background-color: rgba(50, 50, 50, 0.4);
     color: #e0e0e0c0;
+}
+
+.raw-link div:hover::before {
+    background: linear-gradient(to right, rgba(14, 14, 14, 1), rgba(14, 14, 14, 0));
+}
+
+.raw-link div:hover::after {
+    background: linear-gradient(to left, rgba(14, 14, 14, 1), rgba(14, 14, 14, 0));
 }
 
 .raw-link div::-webkit-scrollbar {
@@ -99,7 +260,7 @@ h2 {
 
 .os-link {
     display: inline-block;
-    margin: 10px 0;
+    margin: 0; /* Reset all margins */
     font-size: 18px;
     text-decoration: none;
     background-color: #0e0e0e;
@@ -117,6 +278,160 @@ h2 {
     transform: scale(1.05);
 }
 
+/* OS-specific button tints */
+.debian .os-link { 
+    background-color: rgba(215, 10, 83, 0.25); 
+    border-color: rgba(215, 10, 83, 0.5);
+}
+.debian .os-link:hover { 
+    background-color: rgba(215, 10, 83, 0.35); 
+    color: #e0e0e0;
+}
+
+.ubuntu .os-link { 
+    background-color: rgba(233, 84, 32, 0.25); 
+    border-color: rgba(233, 84, 32, 0.5);
+}
+.ubuntu .os-link:hover { 
+    background-color: rgba(233, 84, 32, 0.35); 
+    color: #e0e0e0;
+}
+
+.fedora .os-link { 
+    background-color: rgba(41, 65, 114, 0.25); 
+    border-color: rgba(41, 65, 114, 0.5);
+}
+.fedora .os-link:hover { 
+    background-color: rgba(41, 65, 114, 0.35); 
+    color: #e0e0e0;
+}
+
+.arch .os-link { 
+    background-color: rgba(23, 147, 209, 0.25); 
+    border-color: rgba(23, 147, 209, 0.5);
+}
+.arch .os-link:hover { 
+    background-color: rgba(23, 147, 209, 0.35); 
+    color: #e0e0e0;
+}
+
+.mint .os-link { 
+    background-color: rgba(135, 207, 62, 0.25); 
+    border-color: rgba(135, 207, 62, 0.5);
+}
+.mint .os-link:hover { 
+    background-color: rgba(135, 207, 62, 0.35); 
+    color: #e0e0e0;
+}
+
+.gentoo .os-link { 
+    background-color: rgba(84, 72, 122, 0.25); 
+    border-color: rgba(84, 72, 122, 0.5);
+}
+.gentoo .os-link:hover { 
+    background-color: rgba(84, 72, 122, 0.35); 
+    color: #e0e0e0;
+}
+
+.slackware .os-link { 
+    background-color: rgba(116, 121, 161, 0.25); 
+    border-color: rgba(116, 121, 161, 0.5);
+}
+.slackware .os-link:hover { 
+    background-color: rgba(116, 121, 161, 0.35); 
+    color: #e0e0e0;
+}
+
+.pureos .os-link { 
+    background-color: rgba(143, 87, 177, 0.25); 
+    border-color: rgba(143, 87, 177, 0.5);
+}
+.pureos .os-link:hover { 
+    background-color: rgba(143, 87, 177, 0.35); 
+    color: #e0e0e0;
+}
+
+.opensuse .os-link { 
+    background-color: rgba(115, 186, 37, 0.25); 
+    border-color: rgba(115, 186, 37, 0.5);
+}
+.opensuse .os-link:hover { 
+    background-color: rgba(115, 186, 37, 0.35); 
+    color: #e0e0e0;
+}
+
+.manjaro .os-link { 
+    background-color: rgba(53, 191, 92, 0.25); 
+    border-color: rgba(53, 191, 92, 0.5);
+}
+.manjaro .os-link:hover { 
+    background-color: rgba(53, 191, 92, 0.35); 
+    color: #e0e0e0;
+}
+
+.popos .os-link { 
+    background-color: rgba(72, 185, 199, 0.25); 
+    border-color: rgba(72, 185, 199, 0.5);
+}
+.popos .os-link:hover { 
+    background-color: rgba(72, 185, 199, 0.35); 
+    color: #e0e0e0;
+}
+
+.elementary .os-link { 
+    background-color: rgba(100, 186, 255, 0.25); 
+    border-color: rgba(100, 186, 255, 0.5);
+}
+.elementary .os-link:hover { 
+    background-color: rgba(100, 186, 255, 0.35); 
+    color: #e0e0e0;
+}
+
+.zorin .os-link { 
+    background-color: rgba(21, 166, 240, 0.25); 
+    border-color: rgba(21, 166, 240, 0.5);
+}
+.zorin .os-link:hover { 
+    background-color: rgba(21, 166, 240, 0.35); 
+    color: #e0e0e0;
+}
+
+.kali .os-link { 
+    background-color: rgba(74, 102, 172, 0.25); 
+    border-color: rgba(74, 102, 172, 0.5);
+}
+.kali .os-link:hover { 
+    background-color: rgba(74, 102, 172, 0.35); 
+    color: #e0e0e0;
+}
+
+.rocky .os-link { 
+    background-color: rgba(16, 185, 129, 0.25); 
+    border-color: rgba(16, 185, 129, 0.5);
+}
+.rocky .os-link:hover { 
+    background-color: rgba(16, 185, 129, 0.35); 
+    color: #e0e0e0;
+}
+
+.endeavouros .os-link { 
+    background-color: rgba(127, 63, 191, 0.25); 
+    border-color: rgba(127, 63, 191, 0.5);
+}
+.endeavouros .os-link:hover { 
+    background-color: rgba(127, 63, 191, 0.35); 
+    color: #e0e0e0;
+}
+
+#disktro-card .os-link { 
+    background-color: rgba(212, 175, 55, 0.25); 
+    border-color: rgba(212, 175, 55, 0.5);
+}
+#disktro-card .os-link:hover { 
+    background-color: rgba(212, 175, 55, 0.35); 
+    color: #e0e0e0;
+}
+
 .info {
     width: 100%;
     padding: 0px;
@@ -124,20 +439,30 @@ h2 {
 }
 
 .hash {
-    color: #e0e0e0b6;
-    word-break: normal;
-    white-space: nowrap;
-    overflow-x: auto;
-    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
     padding: 6px 10px;
     background-color: rgba(30, 30, 30, 0.3);
+    color: #e0e0e0a0;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 15px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
     scrollbar-width: thin;
     scrollbar-color: rgba(200, 200, 200, 0.3) transparent;
-    margin: 10px 0;
+    margin: 8px 0 2px 0;
+    position: relative;
+    /* Create masking for smooth scroll edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+}
+
+.hash::before, .hash::after {
+    content: none;
 }
 
 .hash:hover {
@@ -145,24 +470,9 @@ h2 {
     color: #e0e0e0c0;
 }
 
-.hash::-webkit-scrollbar {
-    height: 6px;
-}
-
-.hash::-webkit-scrollbar-thumb {
-    background-color: rgba(200, 200, 200, 0.3);
-    border-radius: 3px;
-}
-
-.hash::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.code-name {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+.code-name, .date, .home-page {
+    margin: 2px 0;
+    padding: 0;
 }
 
 .home-page {
@@ -184,50 +494,205 @@ h2 {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-bottom: 15px;
-}
-
-.distro-logo {
-    max-width: 60px;
-    max-height: 60px;
-    margin-right: 15px;
-    object-fit: contain;
-}
-
-.card-content {
-    width: 100%;
-}
-
-.download-section {
-    margin-top: 15px;
-}
-
-.raw-link p {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    color: #888;
-}
-
-/* Selected card styling */
-.distro-card.selected {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-    border-color: var(--circle-primary-color);
+    margin-bottom: 6px;
     position: relative;
 }
 
-.distro-card.selected::after {
-    content: "Selected";
+.distro-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.distro-title {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: var(--circle-primary-color);
-    color: #FFFFFF;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.home-link {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 50%;
+    color: #d0d0d0;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.home-link:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+/* Distro-specific home link colors */
+.debian .home-link:hover {
+    background-color: rgba(215, 10, 83, 0.25);
+    border-color: rgba(215, 10, 83, 0.5);
+    color: rgba(215, 10, 83, 1);
+}
+
+.ubuntu .home-link:hover {
+    background-color: rgba(233, 84, 32, 0.25);
+    border-color: rgba(233, 84, 32, 0.5);
+    color: rgba(233, 84, 32, 1);
+}
+
+.fedora .home-link:hover {
+    background-color: rgba(41, 65, 114, 0.25);
+    border-color: rgba(41, 65, 114, 0.5);
+    color: rgba(41, 65, 114, 1);
+}
+
+.arch .home-link:hover {
+    background-color: rgba(23, 147, 209, 0.25);
+    border-color: rgba(23, 147, 209, 0.5);
+    color: rgba(23, 147, 209, 1);
+}
+
+.mint .home-link:hover {
+    background-color: rgba(135, 207, 62, 0.25);
+    border-color: rgba(135, 207, 62, 0.5);
+    color: rgba(135, 207, 62, 1);
+}
+
+.gentoo .home-link:hover {
+    background-color: rgba(84, 72, 122, 0.25);
+    border-color: rgba(84, 72, 122, 0.5);
+    color: rgba(84, 72, 122, 1);
+}
+
+.slackware .home-link:hover {
+    background-color: rgba(116, 121, 161, 0.25);
+    border-color: rgba(116, 121, 161, 0.5);
+    color: rgba(116, 121, 161, 1);
+}
+
+.pureos .home-link:hover {
+    background-color: rgba(143, 87, 177, 0.25);
+    border-color: rgba(143, 87, 177, 0.5);
+    color: rgba(143, 87, 177, 1);
+}
+
+.opensuse .home-link:hover {
+    background-color: rgba(115, 186, 37, 0.25);
+    border-color: rgba(115, 186, 37, 0.5);
+    color: rgba(115, 186, 37, 1);
+}
+
+.manjaro .home-link:hover {
+    background-color: rgba(53, 191, 92, 0.25);
+    border-color: rgba(53, 191, 92, 0.5);
+    color: rgba(53, 191, 92, 1);
+}
+
+.popos .home-link:hover {
+    background-color: rgba(72, 185, 199, 0.25);
+    border-color: rgba(72, 185, 199, 0.5);
+    color: rgba(72, 185, 199, 1);
+}
+
+.elementary .home-link:hover {
+    background-color: rgba(100, 186, 255, 0.25);
+    border-color: rgba(100, 186, 255, 0.5);
+    color: rgba(100, 186, 255, 1);
+}
+
+.zorin .home-link:hover {
+    background-color: rgba(21, 166, 240, 0.25);
+    border-color: rgba(21, 166, 240, 0.5);
+    color: rgba(21, 166, 240, 1);
+}
+
+.kali .home-link:hover {
+    background-color: rgba(74, 102, 172, 0.25);
+    border-color: rgba(74, 102, 172, 0.5);
+    color: rgba(74, 102, 172, 1);
+}
+
+.rocky .home-link:hover {
+    background-color: rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.5);
+    color: rgba(16, 185, 129, 1);
+}
+
+.endeavouros .home-link:hover {
+    background-color: rgba(127, 63, 191, 0.25);
+    border-color: rgba(127, 63, 191, 0.5);
+    color: rgba(127, 63, 191, 1);
+}
+
+#disktro-card .home-link:hover {
+    background-color: rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.5);
+    color: rgba(212, 175, 55, 1);
+}
+
+.info-bar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin: 4px 0;
+    padding-bottom: 4px;
+    border-bottom: none; /* Remove the border to eliminate duplicate spacer */
+    width: 100%;
+    min-height: 18px; /* Ensure consistent spacing even when empty */
+}
+
+.info-item {
+    font-size: 14px;
+    color: #cccccc;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.code-name {
     font-weight: bold;
-    opacity: 0.9;
+}
+
+.date {
+    color: #999999;
+    min-height: 14px; /* Maintain space even when empty */
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0px;
+    margin-top: 0;
+    padding-top: 10px; /* Add default padding */
+}
+
+.download-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+    margin-top: 0;
+}
+
+.raw-link p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 2px;
+    display: none; /* Hide "Direct Link" text */
 }
 
 /* ----- MOBILE ----- */
@@ -303,40 +768,79 @@ h2 {
     background-size: 30%;
 }
 
+.distro-card.opensuse::before {
+    background-image: url('../img/logo-opensuse.png');
+    background-size: 30%;
+}
+
+.distro-card.manjaro::before {
+    background-image: url('../img/logo-manjaro.png');
+    background-size: 30%;
+}
+
+.distro-card.popos::before {
+    background-image: url('../img/logo-popos.png');
+    background-size: 30%;
+}
+
+.distro-card.elementary::before {
+    background-image: url('../img/logo-elementary.png');
+    background-size: 30%;
+}
+
+.distro-card.zorin::before {
+    background-image: url('../img/logo-zorin.png');
+    background-size: 30%;
+}
+
+.distro-card.kali::before {
+    background-image: url('../img/logo-kali.png');
+    background-size: 30%;
+}
+
+.distro-card.rocky::before {
+    background-image: url('../img/logo-rocky.png');
+    background-size: 30%;
+}
+
+.distro-card.endeavouros::before {
+    background-image: url('../img/logo-endeavouros.png');
+    background-size: 30%;
+}
+
+#disktro-card::before {
+    background-image: url('../img/disktro-logo.png');
+    background-size: 30%;
+}
+
 /* Version selector styling */
 .version-selector {
     width: 100%;
-    margin: 5px 0 15px 0;
     padding: 8px 12px;
-    border-radius: 4px;
+    margin: 8px 0;
+    border-radius: 5px;
     background-color: #1e1e1e;
     color: #e0e0e0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 14px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    appearance: none; /* Removes default arrow */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
 }
 
 .version-selector:hover {
-    background-color: #2c2c2c;
-    border-color: rgba(255, 255, 255, 0.3);
+    background-color: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .version-selector:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 140, 186, 0.5);
-}
-
-/* Add a custom dropdown arrow */
-.version-selector {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="%23e0e0e0" d="M0 0l6 6 6-6z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 30px;
+    border-color: var(--circle-primary-color, #D4AF37);
 }
 
 /* Add styling for unavailable versions */
@@ -359,12 +863,258 @@ h2 {
     transform: translateY(-50%);
 }
 
-/* Footer/Info Card Styling */
-.distro-card.info {
+/* Footer Card (disktro-card) styling */
+#disktro-card {
+    grid-column: 1 / -1 !important; /* Make it span the entire row width */
     margin-top: 30px;
+    width: 100%;
+    order: 999; /* Ensure it appears at the end */
+    display: flex !important; /* Always visible */
 }
 
-.distro-card.info::before {
-    background-image: url('../img/disktro-logo.png');
-    background-size: 30%;
+/* Column layout specific styles */
+.os-sections.column-layout .distro-card {
+    max-width: 100%;
+    width: 100%;
+}
+
+.os-sections.column-layout .distro-card .card-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 0; /* Reset the negative margin we used in grid view */
+}
+
+.os-sections.column-layout .distro-card .download-section {
+    flex: 1;
+    min-width: 300px;
+    gap: 8px; /* Consistent spacing within the download section for column view */
+    margin-top: 4px; /* Add a little space at the top in column view */
+}
+
+/* Ensure consistent spacing for the download link in column layout */
+.os-sections.column-layout .distro-card .os-link {
+    margin-top: 0; /* Reset negative margin in column view */
+}
+
+/* Ensure the hash maintains proper spacing in column layout */
+.os-sections.column-layout .distro-card .hash {
+    margin: 8px 0 2px 0; /* Keep the same spacing in column layout */
+}
+
+.os-sections.column-layout .distro-card .info {
+    flex: 2;
+    min-width: 300px;
+}
+
+/* Ensure the disktro-card is not affected by hover or selection styles */
+#disktro-card.selected,
+#disktro-card:hover {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Remove any existing .os-sections definition we added earlier */
+.os-sections {
+    /* This is already defined in main.css */
+}
+
+/* Add tooltips for copy-to-clipboard functions */
+.tooltip {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    background-color: var(--circle-primary-color, #D4AF37);
+    color: #0e0e0e;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip.fade-out {
+    opacity: 0;
+}
+
+/* Add no-matches message styling */
+.no-matches-message {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #0e0e0e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #aaa;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+/* Documentation link styling */
+.docs-link {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 50%;
+    color: #d0d0d0;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.docs-link:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+/* Distro-specific docs link colors - match the home-link hover colors */
+.debian .docs-link:hover {
+    background-color: rgba(215, 10, 83, 0.25);
+    border-color: rgba(215, 10, 83, 0.5);
+    color: rgba(215, 10, 83, 1);
+}
+
+.ubuntu .docs-link:hover {
+    background-color: rgba(233, 84, 32, 0.25);
+    border-color: rgba(233, 84, 32, 0.5);
+    color: rgba(233, 84, 32, 1);
+}
+
+.fedora .docs-link:hover {
+    background-color: rgba(41, 65, 114, 0.25);
+    border-color: rgba(41, 65, 114, 0.5);
+    color: rgba(41, 65, 114, 1);
+}
+
+.arch .docs-link:hover {
+    background-color: rgba(23, 147, 209, 0.25);
+    border-color: rgba(23, 147, 209, 0.5);
+    color: rgba(23, 147, 209, 1);
+}
+
+.mint .docs-link:hover {
+    background-color: rgba(135, 207, 62, 0.25);
+    border-color: rgba(135, 207, 62, 0.5);
+    color: rgba(135, 207, 62, 1);
+}
+
+.gentoo .docs-link:hover {
+    background-color: rgba(84, 72, 122, 0.25);
+    border-color: rgba(84, 72, 122, 0.5);
+    color: rgba(84, 72, 122, 1);
+}
+
+.slackware .docs-link:hover {
+    background-color: rgba(116, 121, 161, 0.25);
+    border-color: rgba(116, 121, 161, 0.5);
+    color: rgba(116, 121, 161, 1);
+}
+
+.pureos .docs-link:hover {
+    background-color: rgba(143, 87, 177, 0.25);
+    border-color: rgba(143, 87, 177, 0.5);
+    color: rgba(143, 87, 177, 1);
+}
+
+.opensuse .docs-link:hover {
+    background-color: rgba(115, 186, 37, 0.25);
+    border-color: rgba(115, 186, 37, 0.5);
+    color: rgba(115, 186, 37, 1);
+}
+
+.manjaro .docs-link:hover {
+    background-color: rgba(53, 191, 92, 0.25);
+    border-color: rgba(53, 191, 92, 0.5);
+    color: rgba(53, 191, 92, 1);
+}
+
+.popos .docs-link:hover {
+    background-color: rgba(72, 185, 199, 0.25);
+    border-color: rgba(72, 185, 199, 0.5);
+    color: rgba(72, 185, 199, 1);
+}
+
+.elementary .docs-link:hover {
+    background-color: rgba(100, 186, 255, 0.25);
+    border-color: rgba(100, 186, 255, 0.5);
+    color: rgba(100, 186, 255, 1);
+}
+
+.zorin .docs-link:hover {
+    background-color: rgba(21, 166, 240, 0.25);
+    border-color: rgba(21, 166, 240, 0.5);
+    color: rgba(21, 166, 240, 1);
+}
+
+.kali .docs-link:hover {
+    background-color: rgba(74, 102, 172, 0.25);
+    border-color: rgba(74, 102, 172, 0.5);
+    color: rgba(74, 102, 172, 1);
+}
+
+.rocky .docs-link:hover {
+    background-color: rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.5);
+    color: rgba(16, 185, 129, 1);
+}
+
+.endeavouros .docs-link:hover {
+    background-color: rgba(127, 63, 191, 0.25);
+    border-color: rgba(127, 63, 191, 0.5);
+    color: rgba(127, 63, 191, 1);
+}
+
+#disktro-card .docs-link:hover {
+    background-color: rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.5);
+    color: rgba(212, 175, 55, 1);
+}
+
+/* Quick tooltip styling for home and docs links */
+.quick-tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(20, 20, 20, 0.9);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.quick-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: rgba(20, 20, 20, 0.9) transparent transparent;
+}
+
+/* Position the tooltip container */
+.home-link, .docs-link {
+    position: relative;
+}
+
+/* Ensure consistent info-bar handling in column layout */
+.os-sections.column-layout .distro-card .info-bar {
+    margin: 0;
+    padding: 0;
+    min-height: auto;
+    border-bottom: none;
 }
