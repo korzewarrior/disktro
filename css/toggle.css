@@ -13,10 +13,10 @@
 
 .toggle-buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    height: 36px;
 }
 
 .filter-group {
@@ -48,15 +48,27 @@
 }
 
 .toggle-button {
-    font-size: 14px;
+    background-color: #1e1e1e;
+    color: #aaa;
+    border: none;
     padding: 8px 12px;
-    margin: 0 5px;
-    border: 1px solid rgba(255, 255, 255, 0.192);
-    background-color: #0e0e0e;
-    color: #e0e0e0;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border-radius: 5px;
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.toggle-button:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggle-button:hover {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+.toggle-button.active {
+    background-color: var(--circle-primary-color, #D4AF37);
+    color: #0e0e0e;
 }
 
 /* Specific styling for layout icons */
@@ -68,20 +80,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.toggle-button:hover {
-    background-color: #2a2a2a;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.toggle-button.active {
-    background-color: var(--circle-primary-color, #D4AF37);
-    color: #0e0e0e;
-    font-weight: bold;
-    border-color: transparent;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .search-toggle-container {
@@ -207,6 +205,7 @@
     border-color: var(--circle-primary-color, #D4AF37);
 }
 
+/* Mobile responsive styles */
 @media (max-width: 768px) {
     .button-container {
         flex-wrap: wrap;
@@ -214,6 +213,11 @@
     
     .filter-group, .version-filter-wrapper, .reset-button-container {
         margin: 10px;
+    }
+    
+    #layout-toggle .toggle-button {
+        padding: 6px 10px;
+        min-width: 36px;
     }
 }
 

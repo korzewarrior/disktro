@@ -27,27 +27,27 @@ document.addEventListener('DOMContentLoaded', function() {
             infoCard.innerHTML = `
                 <div class="card-header">
                     <img src="img/disktro-logo.png" alt="Disktro logo" class="distro-logo">
-                    <h2 class="distro-title">Disktro | ISO Library</h2>
+                    <h2 class="distro-title">DIS<span class="highlight">[K]</span>TRO</h2>
                     <div class="header-controls">
-                        <a href="https://github.com/disktro/disktro" target="_blank" class="home-link" data-tooltip="View source on GitHub">🏠</a>
-                        <a href="https://github.com/disktro/disktro/issues" target="_blank" class="docs-link" data-tooltip="Report an issue">❓</a>
+                        <a href="https://github.com" target="_blank" class="home-link" data-tooltip="Visit GitHub">🏠</a>
+                        <a href="javascript:void(0)" class="docs-link" data-tooltip="Contact site administrator">❓</a>
                     </div>
                 </div>
-                <div class="version-subtitle">Find and download your perfect Linux distribution</div>
+                <div class="version-subtitle">ISO Library — Find Your Perfect Linux</div>
                 <div class="card-content">
                     <div class="info-bar" style="display:none; margin:0; padding:0; height:0;"></div>
-                    <div class="footer-info" style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 15px;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0 0 8px 0; color: #aaa; font-size: 14px;">Currently tracking ${distroCount} distributions</p>
-                            <p style="margin: 0 0 8px 0; color: #aaa; font-size: 14px;">Powered by the open-source community</p>
+                    <div class="footer-info">
+                        <div class="footer-column">
+                            <p>Currently tracking ${distroCount} distributions</p>
+                            <p>Powered by the open-source community</p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0 0 8px 0; color: #aaa; font-size: 14px;">Made with ❤️ for Linux users everywhere</p>
-                            <p style="margin: 0 0 8px 0; color: #aaa; font-size: 14px;">All logos belong to their respective projects</p>
+                        <div class="footer-column">
+                            <p>Made with ❤️ for Linux users everywhere</p>
+                            <p>All logos belong to their respective projects</p>
                         </div>
                     </div>
-                    <div class="hash" style="cursor: default; text-align: center; background-color: transparent; border: none;">
-                        © ${new Date().getFullYear()} Disktro — Helping you find your perfect distro
+                    <div class="footer-copyright">
+                        © ${new Date().getFullYear()} DIS[K]TRO — Helping you find your perfect distro
                     </div>
                 </div>
             `;

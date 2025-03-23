@@ -3,6 +3,15 @@ h2 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Subtitle styling for card headers */
+.distro-title .subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #e0e0e0;
+    letter-spacing: 1px;
+    margin-left: 8px;
+}
+
 /* Version subtitle styling */
 .version-subtitle {
     font-size: 14px;
@@ -176,8 +185,24 @@ h2 {
 }
 #disktro-card:hover { 
     border-color: #D4AF37; 
-    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.5) !important;
+    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.3) !important;
+    background-color: #0e0e0e !important; /* Force solid background color on hover */
+    transform: none !important; /* Don't apply the hover animation */
+}
+
+/* Ensure the disktro-card is not affected by hover or selection styles */
+#disktro-card.selected,
+#disktro-card:hover {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     background-color: #0e0e0e !important;
+    opacity: 1 !important;
+}
+
+/* Ensure proper visibility in column layout */
+.os-sections.column-layout #disktro-card {
+    background-color: #0e0e0e !important;
+    opacity: 1 !important;
 }
 
 .info div {
@@ -863,13 +888,88 @@ h2 {
     transform: translateY(-50%);
 }
 
-/* Footer Card (disktro-card) styling */
+/* Footer Card Styling */
 #disktro-card {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    border-color: rgba(255, 255, 255, 0.192); /* Match the regular card borders */
+    background-color: #0e0e0e !important; /* Force solid background */
     grid-column: 1 / -1 !important; /* Make it span the entire row width */
-    margin-top: 30px;
     width: 100%;
     order: 999; /* Ensure it appears at the end */
     display: flex !important; /* Always visible */
+    opacity: 1 !important; /* Ensure full opacity */
+}
+
+.footer-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    background-color: #0e0e0e;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 180px;
+    background-color: transparent;
+}
+
+.footer-column p {
+    margin: 0 0 12px 0;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.footer-copyright {
+    cursor: default;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    color: #888;
+    font-size: 14px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(150, 150, 150, 0.1);
+}
+
+/* Responsive footer adjustments */
+@media (max-width: 768px) {
+    #disktro-card {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-info {
+        gap: 20px;
+    }
+    
+    .footer-column {
+        flex-basis: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #disktro-card {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .footer-info {
+        gap: 15px;
+    }
+    
+    .footer-column p {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .footer-copyright {
+        font-size: 12px;
+        padding-top: 12px;
+    }
 }
 
 /* Column layout specific styles */
@@ -907,13 +1007,6 @@ h2 {
     min-width: 300px;
 }
 
-/* Ensure the disktro-card is not affected by hover or selection styles */
-#disktro-card.selected,
-#disktro-card:hover {
-    transform: none !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-}
-
 /* Remove any existing .os-sections definition we added earlier */
 .os-sections {
     /* This is already defined in main.css */
@@ -940,17 +1033,45 @@ h2 {
 
 /* Add no-matches message styling */
 .no-matches-message {
-    display: block;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    background-color: #0e0e0e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin: 20px 0;
-    color: #aaa;
-    font-style: italic;
-    grid-column: 1 / -1;
+    display: block !important;
+    width: 100% !important;
+    padding: 20px !important;
+    text-align: center !important;
+    background-color: #0e0e0e !important;
+    background: #0e0e0e !important; /* Double background property for extra override */
+    border: 1px solid rgba(255, 255, 255, 0.192) !important;
+    border-radius: 8px !important;
+    margin: 20px 0 !important;
+    color: #aaa !important;
+    font-style: italic !important;
+    grid-column: 1 / -1 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 10 !important; /* Ensure it's above other elements */
+    position: relative !important;
+    overflow: visible !important;
+    backdrop-opacity: 1 !important;
+    -webkit-backdrop-opacity: 1 !important;
+    mix-blend-mode: normal !important; /* Prevent any blend modes */
+    isolation: isolate !important; /* Force isolation to prevent transparency inheritance */
+    
+    /* Additional explicit settings to prevent any transparency */
+    background-image: none !important;
+    background-blend-mode: normal !important;
+    -webkit-background-blend-mode: normal !important; 
+    filter: none !important;
+    -webkit-filter: none !important;
+    
+    /* Force hardware acceleration and prevent any alpha blending */
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: opacity !important;
+    
+    /* Color stops for any gradient effects */
+    background: #0e0e0e !important;
+    background-image: linear-gradient(to bottom, #0e0e0e, #0e0e0e) !important;
 }
 
 /* Documentation link styling */

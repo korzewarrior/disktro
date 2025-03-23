@@ -201,6 +201,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const noMatchesMessage = document.getElementById('no-matches-message');
         if (noMatchesMessage) {
             noMatchesMessage.style.display = 'none';
+            
+            // Completely remove the element to ensure it's gone
+            noMatchesMessage.remove();
         }
     });
 
@@ -216,6 +219,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const cards = document.querySelectorAll('.distro-card');
         let visibleCount = 0;
         
+        // Remove any existing no-matches message entirely
+        const existingNoMatchesMessage = document.getElementById('no-matches-message');
+        if (existingNoMatchesMessage) {
+            existingNoMatchesMessage.remove();
+        }
+        
+        // Always process all cards regardless of search text
         cards.forEach(card => {
             // Skip filtering the disktro-card (footer card)
             if (card.id === 'disktro-card') {
@@ -223,6 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            // If search is empty, show all cards
+            if (!searchText.trim()) {
+                card.style.display = 'flex';
+                visibleCount++;
+                return;
+            }
+            
+            // Otherwise, filter based on search text
             const cardName = card.querySelector('.distro-title').textContent.toLowerCase();
             
             // Check if card matches the search text
@@ -237,23 +255,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Show "no matches" message if all cards are hidden
-        const noMatchesMessage = document.getElementById('no-matches-message');
-        
-        if (visibleCount === 0) {
-            // Create a message if it doesn't exist
-            if (!noMatchesMessage) {
-                const message = document.createElement('div');
-                message.id = 'no-matches-message';
-                message.className = 'no-matches-message';
-                message.textContent = 'No matching distros found';
-                document.querySelector('.os-sections').appendChild(message);
-            } else {
-                noMatchesMessage.textContent = 'No matching distros found';
-                noMatchesMessage.style.display = 'block';
-            }
-        } else if (noMatchesMessage) {
-            noMatchesMessage.style.display = 'none';
+        // Show "no matches" message if all cards are hidden and search text isn't empty
+        if (visibleCount === 0 && searchText.trim()) {
+            // Always create a new message element
+            const message = document.createElement('div');
+            message.id = 'no-matches-message';
+            message.className = 'no-matches-message';
+            message.textContent = 'No matching distros found';
+            
+            // Force a solid opaque background with inline styles - use !important
+            message.setAttribute('style', 'background-color: #0e0e0e !important; opacity: 1 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: #0e0e0e !important; display: block !important');
+            
+            // Add to DOM
+            document.querySelector('.os-sections').appendChild(message);
         }
         
         // Always ensure the disktro-card is the last element
@@ -398,7 +412,7 @@ function refreshAllCards() {
                     // Add docs link
                     const docsLink = document.createElement('a');
                     docsLink.className = 'docs-link';
-                    docsLink.href = info.data.docsPage || (info.data.homePage ? info.data.homePage + '/docs' : '#');
+                    docsLink.href = info.data.docsPage || getDocsUrl(info.distro, info.data.homePage);
                     docsLink.target = '_blank';
                     docsLink.innerHTML = '📖';
                     docsLink.setAttribute('data-tooltip', 'View documentation');
@@ -543,7 +557,7 @@ function createVersionCard(distro, data, version, versionIndex, mainCard) {
             <h2 class="distro-title">${data.name}</h2>
             <div class="header-controls">
                 <a class="home-link" href="${data.homePage}" target="_blank" data-tooltip="Visit homepage">🏠</a>
-                <a class="docs-link" href="${data.docsPage || data.homePage + '/docs'}" target="_blank" data-tooltip="View documentation">📖</a>
+                <a class="docs-link" href="${data.docsPage || '#'}" target="_blank" data-tooltip="View documentation">📖</a>
             </div>
         </div>
         <div class="version-subtitle">${subtitleText}</div>
@@ -728,6 +742,11 @@ function createCardFromData(distro, data, card, versionIndex = 0) {
 function updateCardContent(card, data, selectedVersion) {
     console.log(`Updating card content for ${data.name}, version: ${selectedVersion.version || 'Unknown'}`);
     
+    // Get the distro ID from the card's class or ID
+    const distroClasses = Array.from(card.classList).filter(cls => cls !== 'distro-card');
+    const distroId = distroClasses.length > 0 ? distroClasses[0] : 
+                    (card.id ? card.id.split('-')[0] : '');
+    
     // Update common fields
     card.querySelector('.distro-title').textContent = data.name;
     
@@ -786,7 +805,7 @@ function updateCardContent(card, data, selectedVersion) {
     // Add documentation link icon
     const docsLink = document.createElement('a');
     docsLink.className = 'docs-link';
-    docsLink.href = data.docsPage || (data.homePage ? data.homePage + '/docs' : '#');
+    docsLink.href = data.docsPage || getDocsUrl(distroId, data.homePage);
     docsLink.target = '_blank';
     docsLink.innerHTML = '📖';
     docsLink.setAttribute('data-tooltip', 'View documentation');
@@ -945,10 +964,10 @@ function showAllCards() {
         visibleCount++;
     });
     
-    // Hide any no matches message
+    // Completely remove any no matches message
     const noMatchesElement = document.getElementById('no-matches-message');
     if (noMatchesElement) {
-        noMatchesElement.style.display = 'none';
+        noMatchesElement.remove();
     }
     
     console.log(`showAllCards: ${visibleCount} visible cards`);
@@ -994,4 +1013,29 @@ function updateFooterCardLayout() {
             footerCard.style.maxWidth = '';
         }
     }
+}
+
+// Helper function to get the proper documentation URL for a distro
+function getDocsUrl(distroName, homePage) {
+    // Define specific documentation URLs for major distros
+    const docsMap = {
+        'debian': 'https://www.debian.org/doc/',
+        'ubuntu': 'https://help.ubuntu.com/',
+        'fedora': 'https://docs.fedoraproject.org/',
+        'arch': 'https://wiki.archlinux.org/',
+        'mint': 'https://linuxmint.com/documentation.php',
+        'gentoo': 'https://wiki.gentoo.org/wiki/Main_Page',
+        'slackware': 'http://www.slackware.com/documentation/',
+        'opensuse': 'https://doc.opensuse.org/',
+        'manjaro': 'https://wiki.manjaro.org/',
+        'popos': 'https://support.system76.com/',
+        'elementary': 'https://elementary.io/docs/',
+        'zorin': 'https://zorinos.com/help/',
+        'kali': 'https://www.kali.org/docs/',
+        'rocky': 'https://docs.rockylinux.org/',
+        'endeavouros': 'https://endeavouros.com/wiki/'
+    };
+    
+    // Return the specific docs URL if available, otherwise fall back to homepage
+    return docsMap[distroName.toLowerCase()] || homePage;
 }

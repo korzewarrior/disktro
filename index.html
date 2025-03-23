@@ -19,36 +19,38 @@
     <body>
         <div class="circlecontainer"></div>
         <header>
-            <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
-            <p class="tagline">All Distros, No Distress</p>
+            <div class="header-brand">
+                <img src="img/disktro-logo.png" alt="Disktro Logo" class="header-logo">
+                <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
+            </div>
+            <p class="tagline">ISO Library — Find Your Perfect Linux</p>
         </header>
         <div class="container">
             <div class="search-toggle-container">
-                <div class="search-bar-wrapper">
-                    <input id="search-bar" type="text" placeholder="Search for a distro..." autocomplete="off">
-                    <div class="search-icon">🔍</div>
-                </div>
-                
-                <div class="button-container">
-                    <div class="version-filter-wrapper">
-                        <p>Version</p>
-                        <select id="version-filter">
-                            <option value="latest">Latest</option>
-                            <option value="all">All</option>
-                        </select>
+                <div class="control-bar">
+                    <div class="search-bar-wrapper">
+                        <input id="search-bar" type="text" placeholder="Search for a distro..." autocomplete="off">
+                        <div class="search-icon">🔍</div>
                     </div>
                     
-                    <div class="filter-group">
-                        <div class="filter-group-title">Layout</div>
-                        <div class="toggle-buttons" id="layout-toggle">
-                            <button class="toggle-button active" data-value="grid" title="Grid View">⊞</button>
-                            <button class="toggle-button" data-value="column" title="Column View">≡</button>
+                    <div class="controls-right">
+                        <div class="version-filter-wrapper">
+                            <select id="version-filter" title="Select version filter">
+                                <option value="latest">Latest</option>
+                                <option value="all">All</option>
+                            </select>
                         </div>
-                    </div>
-                    
-                    <div class="reset-button-container">
-                        <p>Reset</p>
-                        <button id="reset-button">↺</button>
+                        
+                        <div class="filter-group">
+                            <div class="toggle-buttons" id="layout-toggle">
+                                <button class="toggle-button active" data-value="grid" title="Grid View">⊞</button>
+                                <button class="toggle-button" data-value="column" title="Column View">≡</button>
+                            </div>
+                        </div>
+                        
+                        <div class="reset-button-container">
+                            <button id="reset-button" title="Reset all filters">↺</button>
+                        </div>
                     </div>
                 </div>
             </div>
