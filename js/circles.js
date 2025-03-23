@@ -561,7 +561,7 @@ document.addEventListener('mousemove', handleMouseMove);
 
 // Add keydown event listener for bomb placement
 document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'b' && hoveredCircle) {
+    if (e.key.toLowerCase() === 'k' && hoveredCircle) {
         // Toggle bomb - placeBomb now handles this logic
         placeBomb(hoveredCircle);
     }
