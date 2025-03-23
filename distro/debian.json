@@ -1,31 +1,94 @@
 {
     "name": "Debian",
-    "version": "12.0.0",
-    "codeName": "Bookworm",
-    "releaseDate": "June 10, 2023",
+    "currentVersion": "12.0.0",
     "homePage": "https://www.debian.org/",
-    "x86": {
-        "FULL": {
-            "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.0.0-amd64-DVD-1.iso",
-            "size": "3.9 GB",
-            "sha256": "e482910626b30f9a7de9b0cc142c3d4a079fbfa96110f53ce7d6cd6e5c0fb802"
+    "versions": [
+        {
+            "version": "12.0.0",
+            "codeName": "Bookworm",
+            "releaseDate": "June 10, 2023",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.0.0-amd64-DVD-1.iso",
+                    "size": "3.9 GB",
+                    "sha256": "e482910626b30f9a7de9b0cc142c3d4a079fbfa96110f53ce7d6cd6e5c0fb802"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.0.0-amd64-netinst.iso",
+                    "size": "625 MB",
+                    "sha256": "ec5a758cc719f9b9b4211522801e2e28394827ba853d6c7cfa076bbcf6438d7f"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-dvd/debian-12.0.0-arm64-DVD-1.iso",
+                    "size": "3.7 GB",
+                    "sha256": "15d10f39e7ecb0c5174f8c0d9fcaffb8a3d44c3b3d0e6b5daecd93f916cc3248"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.0.0-arm64-netinst.iso",
+                    "size": "585 MB",
+                    "sha256": "271271e9a7e48fcbad5d010c84e24be2a88daabe61146af377a50fe57e4ccd6c"
+                }
+            }
         },
-        "NET": {
-            "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.0.0-amd64-netinst.iso",
-            "size": "625 MB",
-            "sha256": "ec5a758cc719f9b9b4211522801e2e28394827ba853d6c7cfa076bbcf6438d7f"
-        }
-    },
-    "ARM": {
-        "FULL": {
-            "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-dvd/debian-12.0.0-arm64-DVD-1.iso",
-            "size": "3.7 GB",
-            "sha256": "15d10f39e7ecb0c5174f8c0d9fcaffb8a3d44c3b3d0e6b5daecd93f916cc3248"
+        {
+            "version": "11.7.0",
+            "codeName": "Bullseye",
+            "releaseDate": "March 11, 2023",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/11.7.0/amd64/iso-dvd/debian-11.7.0-amd64-DVD-1.iso",
+                    "size": "3.8 GB",
+                    "sha256": "297574494d1e1aba8b1d8f14f4da133f15e6a5175d62006b1fe6dd7e1a9f8d96"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/11.7.0/amd64/iso-cd/debian-11.7.0-amd64-netinst.iso",
+                    "size": "396 MB",
+                    "sha256": "5a92f8c5f59df99147697db31e0a972c7d54b6f775eeb725ebc2d674e415b69d"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso",
+                    "size": "3.6 GB",
+                    "sha256": "7287486c6ecf515c21481a5cca1a4bb1e23915684ab2a1b1f0f81e5da9f73bee"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/11.7.0/arm64/iso-cd/debian-11.7.0-arm64-netinst.iso",
+                    "size": "376 MB",
+                    "sha256": "0cf7ed9a20cbdfd77bd1c947e96b97aecd6a8c4d8aa6856f0157b31d3fc246fd"
+                }
+            }
         },
-        "NET": {
-            "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.0.0-arm64-netinst.iso",
-            "size": "585 MB",
-            "sha256": "271271e9a7e48fcbad5d010c84e24be2a88daabe61146af377a50fe57e4ccd6c"
+        {
+            "version": "10.13.0",
+            "codeName": "Buster",
+            "releaseDate": "September 10, 2022",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/10.13.0/amd64/iso-dvd/debian-10.13.0-amd64-DVD-1.iso",
+                    "size": "3.8 GB",
+                    "sha256": "ac656ae42fee1dbe9baa30e9957606d2d1bd6b8994959e6ef5ede95c4e4a69d2"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/10.13.0/amd64/iso-cd/debian-10.13.0-amd64-netinst.iso",
+                    "size": "352 MB",
+                    "sha256": "52d2d421df5dbe4eb5e6f30e2dc2afda79904c74594cf451189e69fd9e90fb63"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/10.13.0/arm64/iso-dvd/debian-10.13.0-arm64-DVD-1.iso",
+                    "size": "3.5 GB",
+                    "sha256": "1431e39da92b1e2cca9c9d8dc23e7b6d7bd1cd7df5c42b69ec9a25ceeab2d88b"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/10.13.0/arm64/iso-cd/debian-10.13.0-arm64-netinst.iso",
+                    "size": "336 MB",
+                    "sha256": "27723c22ecb25dceb17b5e856cca8055464de725f58bf9b974659fbbaef96457"
+                }
+            }
         }
-    }
+    ]
 } 

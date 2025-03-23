@@ -1,31 +1,94 @@
 {
     "name": "Ubuntu",
-    "version": "23.10",
-    "codeName": "Mantic Minotaur",
-    "releaseDate": "October 12, 2023",
+    "currentVersion": "23.10",
     "homePage": "https://ubuntu.com/",
-    "x86": {
-        "FULL": {
-            "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-desktop-amd64.iso",
-            "size": "4.8 GB",
-            "sha256": "0828fd0cc0a5a3e551ad9452cee131915f13384b59f60db059242f86fe746a3e"
+    "versions": [
+        {
+            "version": "23.10",
+            "codeName": "Mantic Minotaur",
+            "releaseDate": "October 12, 2023",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-desktop-amd64.iso",
+                    "size": "4.8 GB",
+                    "sha256": "0828fd0cc0a5a3e551ad9452cee131915f13384b59f60db059242f86fe746a3e"
+                },
+                "NET": {
+                    "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso",
+                    "size": "1.5 GB",
+                    "sha256": "82b33dfa3eee30b20e3ce7c2c96700a0d6743df781bd0ec6f65a14e8b7f6a02c"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-desktop-arm64+raspi.img.xz",
+                    "size": "4.6 GB",
+                    "sha256": "eec68a2106b7d60e7ccb33d43076433ce24008eb28bb8041ad8c3b1c59d3da78"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz",
+                    "size": "1.1 GB",
+                    "sha256": "c4e97e0b900d31bf53352c5be71ba7c1b842c8cdcefa30e45c1e51a1a2bac8bb"
+                }
+            }
         },
-        "NET": {
-            "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso",
-            "size": "1.5 GB",
-            "sha256": "82b33dfa3eee30b20e3ce7c2c96700a0d6743df781bd0ec6f65a14e8b7f6a02c"
-        }
-    },
-    "ARM": {
-        "FULL": {
-            "downloadLink": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-desktop-arm64+raspi.img.xz",
-            "size": "4.6 GB",
-            "sha256": "eec68a2106b7d60e7ccb33d43076433ce24008eb28bb8041ad8c3b1c59d3da78"
+        {
+            "version": "22.04.3",
+            "codeName": "Jammy Jellyfish",
+            "releaseDate": "August 10, 2023",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-desktop-amd64.iso",
+                    "size": "4.7 GB",
+                    "sha256": "a435f6f393dda581172490eda9f683c38b2b14a4c66346959e062b9ff1e646d1"
+                },
+                "NET": {
+                    "downloadLink": "https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso",
+                    "size": "1.4 GB",
+                    "sha256": "a4acfda10b18da50e2ec50ccaf860d7f20421e335f0bba2680488c0714d8d9fe"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.ubuntu.com/releases/22.04.3/release/ubuntu-22.04.3-preinstalled-desktop-arm64+raspi.img.xz",
+                    "size": "4.3 GB",
+                    "sha256": "10659f0a1f91fabd98ac398a641ca0af175685a843bd1820711741950925d5a2"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.ubuntu.com/releases/22.04.3/release/ubuntu-22.04.3-preinstalled-server-arm64+raspi.img.xz",
+                    "size": "949 MB",
+                    "sha256": "8b0e01a712980c4bbc471a93be17ba409b81a50a87bd6e1cacace2c5e3771ccb"
+                }
+            }
         },
-        "NET": {
-            "downloadLink": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz",
-            "size": "1.1 GB",
-            "sha256": "c4e97e0b900d31bf53352c5be71ba7c1b842c8cdcefa30e45c1e51a1a2bac8bb"
+        {
+            "version": "20.04.6",
+            "codeName": "Focal Fossa",
+            "releaseDate": "February 23, 2023",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://releases.ubuntu.com/20.04.6/ubuntu-20.04.6-desktop-amd64.iso",
+                    "size": "3.6 GB",
+                    "sha256": "b647cf0a6f3cb0d073c21ab69886db27fdfbdc6be2ede027c176b63963496579"
+                },
+                "NET": {
+                    "downloadLink": "https://releases.ubuntu.com/20.04.6/ubuntu-20.04.6-live-server-amd64.iso",
+                    "size": "1.3 GB",
+                    "sha256": "b8f31413336c9d9deddbebe7a422f7d4f5fa82b3f87370ed1a99cf4aa2422d33"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.ubuntu.com/releases/20.04.6/release/ubuntu-20.04.6-preinstalled-desktop-arm64+raspi.img.xz",
+                    "size": "3.4 GB",
+                    "sha256": "c0a5f65d29e7eb29c306faaac121fa7e5a273b3e41ad200b6bcc19da85e9e0e6"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.ubuntu.com/releases/20.04.6/release/ubuntu-20.04.6-preinstalled-server-arm64+raspi.img.xz",
+                    "size": "885 MB",
+                    "sha256": "fc7a553e9ff07a3afc393e8e9c2be5ce72680a28d0f833c57d1d0d9db23d27a9"
+                }
+            }
         }
-    }
+    ]
 } 
