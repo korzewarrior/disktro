@@ -26,6 +26,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     pointer-events: none; /* Allow clicks to pass through to circles */
+    width: 100%;
 }
 
 /* Ensure content inside cards remains clickable */
@@ -47,7 +48,6 @@
 
 .content-section {
     width: 100%;
-    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
 }
