@@ -547,6 +547,7 @@ function propagateRipple(clickedCircle) {
             animation.circle.classList.add('clicked');
             animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${animation.intensity * 0.6})`;
             animation.circle.style.opacity = '0'; // Make the circle fully disappear
+            animation.circle.style.pointerEvents = 'none'; // Disable click events while invisible
             
             const circleTimeout = setTimeout(() => {
                 animation.circle.classList.remove('clicked');
@@ -555,6 +556,7 @@ function propagateRipple(clickedCircle) {
                     animation.circle.style.backgroundColor = 'transparent';
                 }
                 animation.circle.style.opacity = '1'; // Fade back in
+                animation.circle.style.pointerEvents = 'auto'; // Re-enable click events
             }, animation.respawnTime);
             
             animation.circle.dataset.timeoutId = circleTimeout;
@@ -565,6 +567,7 @@ function propagateRipple(clickedCircle) {
     clickedCircle.classList.add('clicked');
     clickedCircle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.6)`;
     clickedCircle.style.opacity = '0'; // Make the clicked circle fully disappear
+    clickedCircle.style.pointerEvents = 'none'; // Disable click events while invisible
     
     // The directly clicked circle should stay gone a bit longer (3-6 seconds)
     const circleTimeout = setTimeout(() => {
@@ -574,6 +577,7 @@ function propagateRipple(clickedCircle) {
             clickedCircle.style.backgroundColor = 'transparent';
         }
         clickedCircle.style.opacity = '1'; // Fade back in
+        clickedCircle.style.pointerEvents = 'auto'; // Re-enable click events
     }, Math.random() * 3000 + 3000);
     
     clickedCircle.dataset.timeoutId = circleTimeout;
@@ -594,6 +598,12 @@ document.addEventListener('click', (e) => {
     const clickedElement = e.target;
 
     if (clickedElement.classList.contains('circle')) {
+        // Skip if the circle is currently invisible or in respawn state
+        if (clickedElement.style.opacity === '0' || 
+            clickedElement.style.pointerEvents === 'none') {
+            return;
+        }
+        
         // If the circle has an existing timeout, clear it
         if (clickedElement.dataset.timeoutId) {
             clearTimeout(parseInt(clickedElement.dataset.timeoutId));
