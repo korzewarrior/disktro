@@ -17,7 +17,7 @@
 }
 
 /* Base card component - all cards should have these styles */
-[class*="-card"], .footer-card {
+[class*="-card"], .footer-card, .search-toggle-container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -35,12 +35,24 @@
     -webkit-backdrop-filter: none !important;
 }
 
+/* Override backdrop filter for search card only to keep its blur effect */
+.search-toggle-container {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background-color: rgba(10, 10, 10, 0.6) !important;
+}
+
 /* Hover effect for all cards */
-[class*="-card"]:hover, .footer-card:hover {
+[class*="-card"]:hover, .footer-card:hover, .search-toggle-container:hover {
     transform: translateY(-5px) !important;
     box-shadow: 0 6px 12px var(--card-hover-shadow) !important;
     border-color: var(--highlight-color);
     z-index: 3;
+}
+
+/* Search card gets a higher z-index when hovered to stay on top */
+.search-toggle-container:hover {
+    z-index: 10 !important;
 }
 
 /* Card header - common to all cards */
@@ -85,13 +97,13 @@
 
 /* Responsive adjustments for all cards */
 @media (max-width: 768px) {
-    [class*="-card"], .footer-card {
+    [class*="-card"], .footer-card, .search-toggle-container {
         padding: 12px;
     }
 }
 
 @media (max-width: 576px) {
-    [class*="-card"], .footer-card {
+    [class*="-card"], .footer-card, .search-toggle-container {
         padding: 10px;
     }
     

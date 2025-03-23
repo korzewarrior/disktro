@@ -19,19 +19,36 @@
 
 /* Search controls container */
 .search-toggle-container {
-    margin-bottom: 20px;
-    width: 100%;
+    /* Keep the unique search card properties */
     position: sticky;
     top: 10px;
     z-index: 5;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     background-color: rgba(10, 10, 10, 0.6);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Base card shared properties */
+    margin-bottom: 20px;
+    width: 100%;
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+    box-shadow: 0 2px 4px var(--card-shadow);
     border: 1px solid var(--search-border);
-    transition: all 0.3s ease;
+    transition: var(--card-transition);
+    
+    /* Add the card class for JavaScript targeting */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
+}
+
+/* Add hover effect that matches base card but keeps the blur */
+.search-toggle-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--card-hover-shadow);
+    border-color: var(--highlight-color);
+    z-index: 10; /* Higher than base cards to stay on top */
 }
 
 .control-bar {
