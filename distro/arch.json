@@ -1,0 +1,31 @@
+{
+    "name": "Arch Linux",
+    "version": "2023.11.01",
+    "codeName": "",
+    "releaseDate": "November 1, 2023",
+    "homePage": "https://archlinux.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2023.11.01/archlinux-2023.11.01-x86_64.iso",
+            "size": "782 MB",
+            "sha256": "32c0ef8d8319724e876b5e4b04f6fa4dc39f75d2dd238c767f3d7ba94571402e"
+        },
+        "NET": {
+            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2023.11.01/archlinux-bootstrap-2023.11.01-x86_64.tar.gz",
+            "size": "176 MB",
+            "sha256": "cb72c23d1935e2b3bf8a4e25e71ca92ce1f57fea8847c8b3c3a2c2c24bba3ce1"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz",
+            "size": "308 MB",
+            "sha256": ""
+        },
+        "NET": {
+            "downloadLink": "https://archlinuxarm.org/os/ArchLinuxARM-rpi-armv7-latest.tar.gz",
+            "size": "235 MB",
+            "sha256": ""
+        }
+    }
+} 

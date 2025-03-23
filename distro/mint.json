@@ -1,0 +1,31 @@
+{
+    "name": "Linux Mint",
+    "version": "21.2",
+    "codeName": "Victoria",
+    "releaseDate": "July 16, 2023",
+    "homePage": "https://linuxmint.com/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://mirrors.edge.kernel.org/linuxmint/stable/21.2/linuxmint-21.2-cinnamon-64bit.iso",
+            "size": "2.5 GB",
+            "sha256": "ed1d76d77c8193f3c6d3fcd5116200fc2fa7a7a1aa85b1d35a7fab30028ab608"
+        },
+        "NET": {
+            "downloadLink": "https://mirrors.edge.kernel.org/linuxmint/stable/21.2/linuxmint-21.2-cinnamon-64bit.iso",
+            "size": "2.5 GB",
+            "sha256": "ed1d76d77c8193f3c6d3fcd5116200fc2fa7a7a1aa85b1d35a7fab30028ab608"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "",
+            "size": "",
+            "sha256": ""
+        },
+        "NET": {
+            "downloadLink": "",
+            "size": "",
+            "sha256": ""
+        }
+    }
+} 
