@@ -59,14 +59,36 @@ h2 {
     width: 100%;
     box-sizing: border-box;
     cursor: pointer;
-    padding: 2px 4px;
-    background-color: #0e0e0e00;
-    color: #e0e0e07a;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 6px 10px;
+    background-color: rgba(30, 30, 30, 0.3);
+    color: #e0e0e0a0;
+    overflow-x: auto;
     white-space: nowrap;
     font-size: 15px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200, 200, 200, 0.3) transparent;
+}
+
+.raw-link div:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+    color: #e0e0e0c0;
+}
+
+.raw-link div::-webkit-scrollbar {
+    height: 6px;
+}
+
+.raw-link div::-webkit-scrollbar-thumb {
+    background-color: rgba(200, 200, 200, 0.3);
+    border-radius: 3px;
+}
+
+.raw-link div::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .title-size {
@@ -103,8 +125,37 @@ h2 {
 
 .hash {
     color: #e0e0e0b6;
-    word-break: break-all;
+    word-break: normal;
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 6px 10px;
+    background-color: rgba(30, 30, 30, 0.3);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200, 200, 200, 0.3) transparent;
+    margin: 10px 0;
+}
+
+.hash:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+    color: #e0e0e0c0;
+}
+
+.hash::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hash::-webkit-scrollbar-thumb {
+    background-color: rgba(200, 200, 200, 0.3);
+    border-radius: 3px;
+}
+
+.hash::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .code-name {
@@ -143,12 +194,48 @@ h2 {
     object-fit: contain;
 }
 
+.card-content {
+    width: 100%;
+}
+
+.download-section {
+    margin-top: 15px;
+}
+
+.raw-link p {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #888;
+}
+
 /* ----- MOBILE ----- */
 
 @media (max-width: 600px) {
     .title-size {
         flex-direction: column;
         align-items: flex-start;
+    }
+    
+    .download-section {
+        width: 100%;
+    }
+    
+    .os-link {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    
+    .raw-link {
+        width: 100%;
+    }
+    
+    .raw-link p {
+        margin-bottom: 5px;
+    }
+    
+    .card-content {
+        width: 100%;
     }
 }
 
