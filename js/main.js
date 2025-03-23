@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply initial layout class
     osSection.classList.add('grid-layout');
     
+    // Set up tooltips for search controls
+    setupSearchControlTooltips();
+    
     // Layout toggle buttons
     layoutButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -53,6 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update class on the os-sections container
             osSection.classList.remove('grid-layout', 'column-layout');
             osSection.classList.add(currentLayout + '-layout');
+            
+            // Add or remove column-mode class on the body element
+            if (currentLayout === 'column') {
+                document.body.classList.add('column-mode');
+            } else {
+                document.body.classList.remove('column-mode');
+            }
             
             // Save user preference in localStorage
             localStorage.setItem('preferredLayout', currentLayout);
@@ -107,6 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.click(); // Trigger the click event on the saved layout button
             }
         });
+    } else {
+        // Initialize column-mode class based on default layout
+        if (currentLayout === 'column') {
+            document.body.classList.add('column-mode');
+        }
     }
     
     // Version filter
@@ -257,17 +272,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show "no matches" message if all cards are hidden and search text isn't empty
         if (visibleCount === 0 && searchText.trim()) {
-            // Always create a new message element
-                const message = document.createElement('div');
-                message.id = 'no-matches-message';
-                message.className = 'no-matches-message';
-                message.textContent = 'No matching distros found';
+            // Create a properly styled card instead of just a message div
+            const message = document.createElement('div');
+            message.id = 'no-matches-message';
+            message.className = 'distro-card no-matches-message';
             
-            // Force a solid opaque background with inline styles - use !important
-            message.setAttribute('style', 'background-color: #0e0e0e !important; opacity: 1 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: #0e0e0e !important; display: block !important');
+            // Use the same card structure as other cards
+            message.innerHTML = `
+                <div class="card-header">
+                    <h2 class="distro-title">No Results Found</h2>
+                </div>
+                <div class="version-subtitle">Try a different search term</div>
+                <div class="card-content">
+                    <p>No matching distributions found for "${searchText}".</p>
+                    <p>Try using shorter or more general search terms.</p>
+                </div>
+            `;
             
             // Add to DOM
-                document.querySelector('.os-sections').appendChild(message);
+            document.querySelector('.os-sections').appendChild(message);
         }
         
         // Always ensure the disktro-card is the last element
@@ -280,6 +303,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Debug output
         console.log(`Search: "${searchText}", Visible cards: ${visibleCount}`);
     };
+
+    // Update version filter styling
+    updateVersionFilterStyle();
+
+    // Setup improved keyboard navigation
+    setupKeyboardNavigation();
 });
 
 // Completely refresh all cards - first remove all cards, then create new ones
@@ -406,7 +435,7 @@ function refreshAllCards() {
                     homeLink.className = 'home-link';
                     homeLink.href = info.data.homePage || '#';
                     homeLink.target = '_blank';
-                    homeLink.innerHTML = '🏠';
+                    homeLink.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
                     homeLink.setAttribute('data-tooltip', 'Visit homepage');
                     
                     // Add docs link
@@ -414,7 +443,7 @@ function refreshAllCards() {
                     docsLink.className = 'docs-link';
                     docsLink.href = info.data.docsPage || getDocsUrl(info.distro, info.data.homePage);
                     docsLink.target = '_blank';
-                    docsLink.innerHTML = '📖';
+                    docsLink.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>';
                     docsLink.setAttribute('data-tooltip', 'View documentation');
                     
                     // Add subtitle
@@ -519,6 +548,11 @@ function refreshAllCards() {
             // Debug output of visible cards
             const visibleCards = document.querySelectorAll('.distro-card:not(#disktro-card)');
             console.log(`Total cards created: ${visibleCards.length}`);
+            
+            // Re-setup card click listeners for distro colors
+            if (typeof setupDistroCardListeners === 'function') {
+                setupDistroCardListeners();
+            }
         })
         .catch(error => {
             console.error("Fatal error loading cards:", error);
@@ -798,7 +832,7 @@ function updateCardContent(card, data, selectedVersion) {
     homeLink.className = 'home-link';
     homeLink.href = data.homePage || '#';
     homeLink.target = '_blank';
-    homeLink.innerHTML = '🏠';
+    homeLink.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
     homeLink.setAttribute('data-tooltip', 'Visit homepage');
     headerControls.appendChild(homeLink);
     
@@ -807,7 +841,7 @@ function updateCardContent(card, data, selectedVersion) {
     docsLink.className = 'docs-link';
     docsLink.href = data.docsPage || getDocsUrl(distroId, data.homePage);
     docsLink.target = '_blank';
-    docsLink.innerHTML = '📖';
+    docsLink.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>';
     docsLink.setAttribute('data-tooltip', 'View documentation');
     headerControls.appendChild(docsLink);
     
@@ -903,10 +937,29 @@ function updateHashElement(card, distroData) {
     const hashElement = card.querySelector('.hash');
     
     if (distroData.sha256) {
+        // Show SHA256 prefix in display but don't include in clipboard copy
         hashElement.textContent = `SHA256: ${distroData.sha256}`;
         
-        // Add copy to clipboard functionality
-        hashElement.addEventListener('click', function() {
+        // Make it visually clear that this is clickable
+        hashElement.style.cursor = 'pointer';
+        
+        // Add "Click to copy" text to make it more obvious
+        if (!hashElement.querySelector('.copy-indicator')) {
+            const copyIndicator = document.createElement('span');
+            copyIndicator.className = 'copy-indicator';
+            copyIndicator.textContent = '(click to copy)';
+            copyIndicator.style.marginLeft = '5px';
+            copyIndicator.style.fontSize = '0.8em';
+            copyIndicator.style.opacity = '0.7';
+            hashElement.appendChild(copyIndicator);
+        }
+        
+        // Remove existing click listeners to prevent duplicates
+        const newHashElement = hashElement.cloneNode(true);
+        hashElement.parentNode.replaceChild(newHashElement, hashElement);
+        
+        // Add copy to clipboard functionality - only copy the SHA256 value, not the prefix
+        newHashElement.addEventListener('click', function() {
             const text = distroData.sha256;
             navigator.clipboard.writeText(text)
                 .then(() => {
@@ -914,7 +967,7 @@ function updateHashElement(card, distroData) {
                     const tooltip = document.createElement('span');
                     tooltip.className = 'tooltip';
                     tooltip.textContent = 'Copied to clipboard!';
-                    hashElement.appendChild(tooltip);
+                    newHashElement.appendChild(tooltip);
                     
                     // Remove tooltip after delay
                     setTimeout(() => {
@@ -984,7 +1037,7 @@ function addQuickTooltip(element) {
         // Create and add tooltip
         const tooltip = document.createElement('span');
         tooltip.className = 'quick-tooltip';
-        tooltip.textContent = this.getAttribute('data-tooltip');
+        tooltip.textContent = this.getAttribute('data-tooltip') || this.getAttribute('title');
         this.appendChild(tooltip);
     });
     
@@ -997,16 +1050,37 @@ function addQuickTooltip(element) {
     });
 }
 
+// Apply tooltips to search controls
+function setupSearchControlTooltips() {
+    // Add tooltips to layout toggle buttons
+    document.querySelectorAll('#layout-toggle .toggle-button').forEach(button => {
+        addQuickTooltip(button);
+    });
+    
+    // Add tooltip to reset button
+    const resetButton = document.getElementById('reset-button');
+    if (resetButton) {
+        addQuickTooltip(resetButton);
+    }
+    
+    // Add tooltip to version filter
+    const versionFilter = document.getElementById('version-filter');
+    if (versionFilter) {
+        addQuickTooltip(versionFilter);
+    }
+}
+
 // Update the footer card's styling based on current layout
 function updateFooterCardLayout() {
     const footerCard = document.getElementById('disktro-card');
+    const osSection = document.querySelector('.os-sections');
+    const isColumnLayout = osSection.classList.contains('column-layout');
+    
+    // Update footer card if it exists - make it full width in column layout
     if (footerCard) {
-        const osSection = document.querySelector('.os-sections');
-        // Apply specific styles based on layout
-        if (osSection.classList.contains('column-layout')) {
+        if (isColumnLayout) {
             footerCard.style.width = '100%';
-            footerCard.style.maxWidth = '100%';
-            // Additional column-specific styles if needed
+            footerCard.style.maxWidth = 'none'; // Allow full width expansion
         } else {
             // Reset to default grid styles
             footerCard.style.width = '100%';
@@ -1036,6 +1110,121 @@ function getDocsUrl(distroName, homePage) {
         'endeavouros': 'https://endeavouros.com/wiki/'
     };
     
-    // Return the specific docs URL if available, otherwise fall back to homepage
     return docsMap[distroName.toLowerCase()] || homePage;
+}
+
+// Function to update the version filter dropdown arrow with the current OS color
+function updateVersionFilterStyle() {
+    const versionFilter = document.getElementById('version-filter');
+    if (!versionFilter) return;
+    
+    // Get the current OS primary color from CSS variable
+    const computedStyle = getComputedStyle(document.documentElement);
+    const primaryColor = computedStyle.getPropertyValue('--circle-primary-color').trim();
+    
+    if (primaryColor) {
+        // Create an SVG with the current OS color
+        const svg = `<svg fill='rgb(${primaryColor})' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>`;
+        const svgUrl = `url("data:image/svg+xml;utf8,${svg}")`;
+        
+        // Apply the updated background image
+        versionFilter.style.backgroundImage = svgUrl;
+    } else {
+        // Default styling if no primary color is found
+        versionFilter.classList.add('themed');
+    }
+}
+
+// Function to set up improved keyboard navigation
+function setupKeyboardNavigation() {
+    // Get all focusable content sections
+    const contentSections = document.querySelectorAll('.distro-card, .content-section, .resource-section, .guides-section');
+    
+    // Make sections programmatically focusable
+    contentSections.forEach((section, index) => {
+        // Add tabindex to make it focusable
+        section.setAttribute('tabindex', '-1');
+        
+        // Ensure each section has an ID for targeting
+        if (!section.id) {
+            section.id = 'section-' + index;
+        }
+    });
+    
+    // Add keyboard listener for arrow navigation
+    document.addEventListener('keydown', function(e) {
+        // Only process if we're not in an input field
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+            return;
+        }
+        
+        // Find the currently visible sections
+        const visibleSections = Array.from(contentSections).filter(section => {
+            const rect = section.getBoundingClientRect();
+            return rect.top >= 0 && rect.bottom <= window.innerHeight;
+        });
+        
+        // Handle arrow key navigation
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            navigateToNextSection(visibleSections);
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            navigateToPrevSection(visibleSections);
+        }
+    });
+}
+
+// Navigate to the next section
+function navigateToNextSection(visibleSections) {
+    const contentSections = document.querySelectorAll('.distro-card, .content-section, .resource-section, .guides-section');
+    const allSections = Array.from(contentSections);
+    
+    // Get the last visible section
+    const lastVisible = visibleSections[visibleSections.length - 1];
+    const currentIndex = allSections.indexOf(lastVisible);
+    
+    // If there's a next section, navigate to it
+    if (currentIndex < allSections.length - 1) {
+        const nextSection = allSections[currentIndex + 1];
+        smoothScrollToSection(nextSection);
+    }
+}
+
+// Navigate to the previous section
+function navigateToPrevSection(visibleSections) {
+    const contentSections = document.querySelectorAll('.distro-card, .content-section, .resource-section, .guides-section');
+    const allSections = Array.from(contentSections);
+    
+    // Get the first visible section
+    const firstVisible = visibleSections[0];
+    const currentIndex = allSections.indexOf(firstVisible);
+    
+    // If there's a previous section, navigate to it
+    if (currentIndex > 0) {
+        const prevSection = allSections[currentIndex - 1];
+        smoothScrollToSection(prevSection);
+    }
+}
+
+// Scroll smoothly to a section
+function smoothScrollToSection(section) {
+    // Calculate offset to account for sticky navbar
+    const navbarHeight = 100; // Approximate navbar height
+    const rect = section.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Calculate position ensuring the navbar doesn't cover content
+    const targetPosition = rect.top + scrollTop - navbarHeight;
+    
+    // Smooth scroll to the target
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
+    
+    // Focus the section (will be visually hidden by our CSS)
+    setTimeout(() => {
+        section.focus({ preventScroll: true });
+    }, 600); // Delay to match the smooth scroll duration
 }

@@ -1,15 +1,6 @@
-/* Card Components - core card styles only */
+/* OS-specific card components */
 
 :root {
-    /* Base colors */
-    --card-bg: #0e0e0e;
-    --card-text: #e0e0e0;
-    --card-border: rgba(255, 255, 255, 0.192);
-    --card-shadow: rgba(0, 0, 0, 0.3);
-    
-    /* Highlight color (used in hover states) */
-    --highlight-color: var(--circle-primary-color, #D4AF37);
-    
     /* Distro-specific colors with alpha channel for backgrounds */
     --debian-color: 215, 10, 83;
     --ubuntu-color: 233, 84, 32;
@@ -29,13 +20,7 @@
     --endeavouros-color: 127, 63, 191;
 }
 
-/* Card header elements */
-h2 {
-    margin: 0px 0px 10px 0px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Card title & subtitle */
+/* OS-specific title & subtitle variations */
 .distro-title {
     flex-grow: 1;
     margin: 0;
@@ -65,42 +50,7 @@ h2 {
     min-height: 12px;
 }
 
-/* Main card component */
-.distro-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    background-color: var(--card-bg) !important;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    text-align: left;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 2px 4px var(--card-shadow) !important;
-    border: 1px solid var(--card-border);
-    z-index: 2;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-.distro-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5) !important;
-    border-color: var(--highlight-color);
-    z-index: 3;
-    background-color: var(--card-bg) !important;
-}
-
-/* Card header and logo */
-.card-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 6px;
-    position: relative;
-}
-
+/* Distro card logo */
 .distro-logo {
     width: 32px;
     height: 32px;
@@ -117,37 +67,120 @@ h2 {
     transform: translateY(-50%);
 }
 
-.home-link {
+.home-link, .docs-link {
     width: 32px;
     height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(30, 30, 30, 0.5);
-    border-radius: 50%;
-    color: #d0d0d0;
+    background-color: rgba(30, 30, 30, 0.6);
+    border-radius: 6px;
+    color: #e0e0e0;
     text-decoration: none;
-    font-size: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.home-link:hover {
-    background-color: rgba(50, 50, 50, 0.4);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: var(--card-text);
+.home-link:hover, .docs-link:hover {
+    background-color: rgba(var(--circle-primary-color, 212, 175, 55), 0.3);
+    border-color: rgba(var(--circle-primary-color, 212, 175, 55), 0.5);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Card content */
-.card-content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 0px;
-    margin-top: 0;
-    padding-top: 10px;
+/* OS-specific icon color variations */
+.debian .home-link:hover, .debian .docs-link:hover { 
+    background-color: rgba(var(--debian-color), 0.3);
+    border-color: rgba(var(--debian-color), 0.5); 
+}
+.ubuntu .home-link:hover, .ubuntu .docs-link:hover { 
+    background-color: rgba(var(--ubuntu-color), 0.3); 
+    border-color: rgba(var(--ubuntu-color), 0.5); 
+}
+.fedora .home-link:hover, .fedora .docs-link:hover { 
+    background-color: rgba(var(--fedora-color), 0.3); 
+    border-color: rgba(var(--fedora-color), 0.5); 
+}
+.arch .home-link:hover, .arch .docs-link:hover { 
+    background-color: rgba(var(--arch-color), 0.3); 
+    border-color: rgba(var(--arch-color), 0.5); 
+}
+.mint .home-link:hover, .mint .docs-link:hover { 
+    background-color: rgba(var(--mint-color), 0.3); 
+    border-color: rgba(var(--mint-color), 0.5); 
+}
+.gentoo .home-link:hover, .gentoo .docs-link:hover { 
+    background-color: rgba(var(--gentoo-color), 0.3);
+    border-color: rgba(var(--gentoo-color), 0.5); 
+}
+.slackware .home-link:hover, .slackware .docs-link:hover { 
+    background-color: rgba(var(--slackware-color), 0.3);
+    border-color: rgba(var(--slackware-color), 0.5); 
+}
+.pureos .home-link:hover, .pureos .docs-link:hover { 
+    background-color: rgba(var(--pureos-color), 0.3);
+    border-color: rgba(var(--pureos-color), 0.5); 
+}
+.opensuse .home-link:hover, .opensuse .docs-link:hover { 
+    background-color: rgba(var(--opensuse-color), 0.3);
+    border-color: rgba(var(--opensuse-color), 0.5); 
+}
+.manjaro .home-link:hover, .manjaro .docs-link:hover { 
+    background-color: rgba(var(--manjaro-color), 0.3);
+    border-color: rgba(var(--manjaro-color), 0.5); 
+}
+.popos .home-link:hover, .popos .docs-link:hover { 
+    background-color: rgba(var(--popos-color), 0.3);
+    border-color: rgba(var(--popos-color), 0.5); 
+}
+.elementary .home-link:hover, .elementary .docs-link:hover { 
+    background-color: rgba(var(--elementary-color), 0.3);
+    border-color: rgba(var(--elementary-color), 0.5); 
+}
+.zorin .home-link:hover, .zorin .docs-link:hover { 
+    background-color: rgba(var(--zorin-color), 0.3);
+    border-color: rgba(var(--zorin-color), 0.5); 
+}
+.kali .home-link:hover, .kali .docs-link:hover { 
+    background-color: rgba(var(--kali-color), 0.3);
+    border-color: rgba(var(--kali-color), 0.5); 
+}
+.rocky .home-link:hover, .rocky .docs-link:hover { 
+    background-color: rgba(var(--rocky-color), 0.3);
+    border-color: rgba(var(--rocky-color), 0.5); 
+}
+.endeavouros .home-link:hover, .endeavouros .docs-link:hover { 
+    background-color: rgba(var(--endeavouros-color), 0.3);
+    border-color: rgba(var(--endeavouros-color), 0.5); 
 }
 
+/* Tooltip styles */
+.home-link .quick-tooltip, .docs-link .quick-tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+}
+
+.home-link:hover .quick-tooltip, .docs-link:hover .quick-tooltip {
+    opacity: 1;
+}
+
+/* Download section */
 .download-section {
     display: flex;
     flex-direction: column;
@@ -158,73 +191,65 @@ h2 {
 
 /* OS-specific links and buttons */
 .os-link {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
     background-color: var(--card-bg);
     color: var(--card-text);
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: all 0.3s ease-in-out;
+    padding: 12px 20px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
     border: 1px solid var(--card-border);
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
 }
 
 .os-link:hover {
-    background-color: var(--card-text);
-    color: var(--card-bg);
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    filter: brightness(1.5);
+}
+
+.os-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.os-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 /* OS-specific button styling using CSS variables */
 .debian .os-link { background-color: rgba(var(--debian-color), 0.25); border-color: rgba(var(--debian-color), 0.5); }
-.debian .os-link:hover { background-color: rgba(var(--debian-color), 0.35); color: var(--card-text); }
-
 .ubuntu .os-link { background-color: rgba(var(--ubuntu-color), 0.25); border-color: rgba(var(--ubuntu-color), 0.5); }
-.ubuntu .os-link:hover { background-color: rgba(var(--ubuntu-color), 0.35); color: var(--card-text); }
-
 .fedora .os-link { background-color: rgba(var(--fedora-color), 0.25); border-color: rgba(var(--fedora-color), 0.5); }
-.fedora .os-link:hover { background-color: rgba(var(--fedora-color), 0.35); color: var(--card-text); }
-
 .arch .os-link { background-color: rgba(var(--arch-color), 0.25); border-color: rgba(var(--arch-color), 0.5); }
-.arch .os-link:hover { background-color: rgba(var(--arch-color), 0.35); color: var(--card-text); }
-
 .mint .os-link { background-color: rgba(var(--mint-color), 0.25); border-color: rgba(var(--mint-color), 0.5); }
-.mint .os-link:hover { background-color: rgba(var(--mint-color), 0.35); color: var(--card-text); }
-
 .gentoo .os-link { background-color: rgba(var(--gentoo-color), 0.25); border-color: rgba(var(--gentoo-color), 0.5); }
-.gentoo .os-link:hover { background-color: rgba(var(--gentoo-color), 0.35); color: var(--card-text); }
-
 .slackware .os-link { background-color: rgba(var(--slackware-color), 0.25); border-color: rgba(var(--slackware-color), 0.5); }
-.slackware .os-link:hover { background-color: rgba(var(--slackware-color), 0.35); color: var(--card-text); }
-
 .pureos .os-link { background-color: rgba(var(--pureos-color), 0.25); border-color: rgba(var(--pureos-color), 0.5); }
-.pureos .os-link:hover { background-color: rgba(var(--pureos-color), 0.35); color: var(--card-text); }
-
 .opensuse .os-link { background-color: rgba(var(--opensuse-color), 0.25); border-color: rgba(var(--opensuse-color), 0.5); }
-.opensuse .os-link:hover { background-color: rgba(var(--opensuse-color), 0.35); color: var(--card-text); }
-
 .manjaro .os-link { background-color: rgba(var(--manjaro-color), 0.25); border-color: rgba(var(--manjaro-color), 0.5); }
-.manjaro .os-link:hover { background-color: rgba(var(--manjaro-color), 0.35); color: var(--card-text); }
-
 .popos .os-link { background-color: rgba(var(--popos-color), 0.25); border-color: rgba(var(--popos-color), 0.5); }
-.popos .os-link:hover { background-color: rgba(var(--popos-color), 0.35); color: var(--card-text); }
-
 .elementary .os-link { background-color: rgba(var(--elementary-color), 0.25); border-color: rgba(var(--elementary-color), 0.5); }
-.elementary .os-link:hover { background-color: rgba(var(--elementary-color), 0.35); color: var(--card-text); }
-
 .zorin .os-link { background-color: rgba(var(--zorin-color), 0.25); border-color: rgba(var(--zorin-color), 0.5); }
-.zorin .os-link:hover { background-color: rgba(var(--zorin-color), 0.35); color: var(--card-text); }
-
 .kali .os-link { background-color: rgba(var(--kali-color), 0.25); border-color: rgba(var(--kali-color), 0.5); }
-.kali .os-link:hover { background-color: rgba(var(--kali-color), 0.35); color: var(--card-text); }
-
 .rocky .os-link { background-color: rgba(var(--rocky-color), 0.25); border-color: rgba(var(--rocky-color), 0.5); }
-.rocky .os-link:hover { background-color: rgba(var(--rocky-color), 0.35); color: var(--card-text); }
-
 .endeavouros .os-link { background-color: rgba(var(--endeavouros-color), 0.25); border-color: rgba(var(--endeavouros-color), 0.5); }
-.endeavouros .os-link:hover { background-color: rgba(var(--endeavouros-color), 0.35); color: var(--card-text); }
 
 /* Hash display */
 .hash {
@@ -247,6 +272,9 @@ h2 {
     position: relative;
     -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
     mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .hash::before, .hash::after {
@@ -256,6 +284,103 @@ h2 {
 .hash:hover {
     background-color: rgba(50, 50, 50, 0.4);
     color: #e0e0e0c0;
+    border-color: rgba(var(--circle-primary-color-rgb, 235, 94, 40), 0.3);
+}
+
+/* Tooltip for hash element */
+.hash .tooltip {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 1;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.hash .tooltip.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Copy indicator styling */
+.copy-indicator {
+    font-style: italic;
+    text-shadow: none;
+}
+
+/* OS-specific hover effects for distro cards */
+.distro-card.debian:hover {
+    border-color: rgba(var(--debian-color), 0.8) !important;
+    background-color: rgba(var(--debian-color), 0.05) !important;
+}
+.distro-card.ubuntu:hover {
+    border-color: rgba(var(--ubuntu-color), 0.8) !important;
+    background-color: rgba(var(--ubuntu-color), 0.05) !important;
+}
+.distro-card.fedora:hover {
+    border-color: rgba(var(--fedora-color), 0.8) !important;
+    background-color: rgba(var(--fedora-color), 0.05) !important;
+}
+.distro-card.arch:hover {
+    border-color: rgba(var(--arch-color), 0.8) !important;
+    background-color: rgba(var(--arch-color), 0.05) !important;
+}
+.distro-card.mint:hover {
+    border-color: rgba(var(--mint-color), 0.8) !important;
+    background-color: rgba(var(--mint-color), 0.05) !important;
+}
+.distro-card.gentoo:hover {
+    border-color: rgba(var(--gentoo-color), 0.8) !important;
+    background-color: rgba(var(--gentoo-color), 0.05) !important;
+}
+.distro-card.slackware:hover {
+    border-color: rgba(var(--slackware-color), 0.8) !important;
+    background-color: rgba(var(--slackware-color), 0.05) !important;
+}
+.distro-card.pureos:hover {
+    border-color: rgba(var(--pureos-color), 0.8) !important;
+    background-color: rgba(var(--pureos-color), 0.05) !important;
+}
+.distro-card.opensuse:hover {
+    border-color: rgba(var(--opensuse-color), 0.8) !important;
+    background-color: rgba(var(--opensuse-color), 0.05) !important;
+}
+.distro-card.manjaro:hover {
+    border-color: rgba(var(--manjaro-color), 0.8) !important;
+    background-color: rgba(var(--manjaro-color), 0.05) !important;
+}
+.distro-card.popos:hover {
+    border-color: rgba(var(--popos-color), 0.8) !important;
+    background-color: rgba(var(--popos-color), 0.05) !important;
+}
+.distro-card.elementary:hover {
+    border-color: rgba(var(--elementary-color), 0.8) !important;
+    background-color: rgba(var(--elementary-color), 0.05) !important;
+}
+.distro-card.zorin:hover {
+    border-color: rgba(var(--zorin-color), 0.8) !important;
+    background-color: rgba(var(--zorin-color), 0.05) !important;
+}
+.distro-card.kali:hover {
+    border-color: rgba(var(--kali-color), 0.8) !important;
+    background-color: rgba(var(--kali-color), 0.05) !important;
+}
+.distro-card.rocky:hover {
+    border-color: rgba(var(--rocky-color), 0.8) !important;
+    background-color: rgba(var(--rocky-color), 0.05) !important;
+}
+.distro-card.endeavouros:hover {
+    border-color: rgba(var(--endeavouros-color), 0.8) !important;
+    background-color: rgba(var(--endeavouros-color), 0.05) !important;
 }
 
 /* Card border colors using CSS variables */
@@ -276,10 +401,9 @@ h2 {
 .distro-card.rocky { border-color: rgba(var(--rocky-color), 0.4) !important; }
 .distro-card.endeavouros { border-color: rgba(var(--endeavouros-color), 0.4) !important; }
 
-/* Card-specific responsive styles */
+/* OS card-specific responsive styles */
 @media (max-width: 600px) {
     .download-section,
-    .card-content,
     .os-link {
         width: 100%;
     }
