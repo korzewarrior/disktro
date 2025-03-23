@@ -288,6 +288,8 @@ const handleMouseMove = throttle((e) => {
                 // Reset if far away
                 circle.style.borderColor = 'rgba(170, 170, 170, 0.1)';
                 circle.style.backgroundColor = 'transparent';
+                circle.style.boxShadow = 'none';
+                circle.style.transform = 'scale(1)';
                 return;
             }
             
@@ -299,15 +301,28 @@ const handleMouseMove = throttle((e) => {
             const intensity = Math.min(1, (PERFORMANCE.MAX_DISTANCE - distance) / PERFORMANCE.MAX_DISTANCE);
             
             if (intensity > 0) {
-                // Interpolate the colors
-                const alphaForBorder = 0.15 + (intensity * (0.4 - 0.15));
-                const alphaForBackground = intensity * 0.07;
+                // Interpolate the colors - increase background alpha slightly for more visibility
+                const alphaForBorder = 0.15 + (intensity * (0.5 - 0.15)); // Increased max from 0.4 to 0.5
+                const alphaForBackground = intensity * 0.12; // Increased from 0.07 to 0.12
+                
+                // Add subtle glow effect with box-shadow
+                const glowIntensity = intensity * 0.8;
+                const glowSize = Math.max(2, intensity * 8); // Subtle glow size
+                
+                // Add subtle scale effect
+                const scaleAmount = 1 + (intensity * 0.08); // Max scale of 1.08x
                 
                 circle.style.borderColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${alphaForBorder})`;
                 circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${alphaForBackground})`;
+                circle.style.boxShadow = `0 0 ${glowSize}px rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${glowIntensity})`;
+                circle.style.transform = `scale(${scaleAmount})`;
+                circle.style.zIndex = '2'; // Ensure hovering circles appear above others
             } else {
                 circle.style.borderColor = 'rgba(170, 170, 170, 0.1)';
                 circle.style.backgroundColor = 'transparent';
+                circle.style.boxShadow = 'none';
+                circle.style.transform = 'scale(1)';
+                circle.style.zIndex = '1'; // Reset z-index
             }
         });
     });
