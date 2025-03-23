@@ -41,6 +41,7 @@
     box-shadow: 0 2px 4px var(--card-shadow);
     backdrop-filter: blur(10px);
     /* Remove explicit background-color to use the global card background */
+    padding: var(--resource-spacing-xl);
 }
 
 .content-section {
