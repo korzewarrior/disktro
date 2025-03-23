@@ -2,7 +2,7 @@
 
 :root {
     /* Base card variables */
-    --card-bg: #0e0e0e;
+    --card-bg: rgba(10, 10, 10, 0);  /* Changed to semi-transparent background */
     --card-text: #e0e0e0;
     --card-border: rgba(255, 255, 255, 0.192);
     --card-shadow: rgba(0, 0, 0, 0.3);
@@ -31,22 +31,26 @@
     box-shadow: 0 2px 4px var(--card-shadow) !important;
     border: 1px solid var(--card-border);
     z-index: 2;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* Override backdrop filter for search card only to keep its blur effect */
-.search-toggle-container {
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    background-color: rgba(10, 10, 10, 0.6) !important;
 }
 
-/* Hover effect for all cards */
-[class*="-card"]:hover, .footer-card:hover, .search-toggle-container:hover {
+/* Header card styles moved to card-header.css */
+
+/* Hover effect for all cards except header and search */
+[class*="-card"]:not(.header-card):not(.footer-card):hover, 
+.footer-card:hover {
     transform: translateY(-5px) !important;
     box-shadow: 0 6px 12px var(--card-hover-shadow) !important;
     border-color: var(--highlight-color);
+    z-index: 3;
+}
+
+/* Hover effect for header and search cards - no border color change */
+.header-card:hover, 
+.search-toggle-container:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px var(--card-hover-shadow) !important;
     z-index: 3;
 }
 
@@ -111,4 +115,25 @@
         width: 100%;
         box-sizing: border-box;
     }
+}
+
+/* Card base styles */
+.card,
+.distro-card,
+.header-card,
+.footer-card,
+.content-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: transform, box-shadow, border-color;
+}
+
+/* Make sure all cards have position:relative for proper stacking */
+.distro-card,
+.header-card,
+.search-toggle-container,
+.footer-card,
+#disktro-card {
+    position: relative;
+    /* Ensure transitions are short so they don't conflict with ripple animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 } 

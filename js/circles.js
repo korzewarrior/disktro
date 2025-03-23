@@ -7,7 +7,10 @@ const PERFORMANCE = {
     // Maximum distance for mouse interaction
     MAX_DISTANCE: 100,
     // Maximum distance for click ripple effect
-    MAX_RIPPLE_DISTANCE: 300 // Increased from 150 to 300 for more dramatic explosions
+    MAX_RIPPLE_DISTANCE: 300, // Increased from 150 to 300 for more dramatic explosions
+    // UI elements ripple effect
+    UI_RIPPLE_INTENSITY: 0.4, // How much UI elements move (0.0 to 1.0)
+    UI_RIPPLE_DURATION: 600 // Duration in ms
 };
 
 // Store the circles in an array for faster access
@@ -197,7 +200,77 @@ function getDistanceBetweenElements(a, b) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
-// Handle ripple effect when a circle is clicked
+// New function to make UI elements react to the ripple
+function applyUIRippleEffect(sourceX, sourceY) {
+    // Elements that should react to the ripple
+    const uiElements = [
+        '.header-card',
+        '.search-toggle-container',
+        '.distro-card',
+        '.footer-card',
+        '#disktro-card'
+    ];
+    
+    // Collect all elements
+    const elements = [];
+    uiElements.forEach(selector => {
+        const found = document.querySelectorAll(selector);
+        found.forEach(el => elements.push(el));
+    });
+    
+    // Apply effect to each element
+    elements.forEach(element => {
+        // Get element position relative to viewport
+        const rect = element.getBoundingClientRect();
+        const elementCenterX = rect.left + rect.width / 2;
+        const elementCenterY = rect.top + rect.height / 2;
+        
+        // Calculate direction (vector from source to element)
+        const dirX = elementCenterX - sourceX;
+        const dirY = elementCenterY - sourceY;
+        
+        // Calculate distance
+        const distance = Math.sqrt(dirX * dirX + dirY * dirY);
+        
+        // Skip if too far away
+        const maxDistance = Math.max(window.innerWidth, window.innerHeight) * 0.7;
+        if (distance > maxDistance) return;
+        
+        // Calculate intensity based on distance (closer = stronger effect)
+        const intensity = Math.max(0.05, (1 - (distance / maxDistance)) * PERFORMANCE.UI_RIPPLE_INTENSITY);
+        
+        // Normalize direction vector
+        const length = Math.max(0.1, Math.sqrt(dirX * dirX + dirY * dirY));
+        const normDirX = dirX / length;
+        const normDirY = dirY / length;
+        
+        // Calculate transform amount (move away from source)
+        const moveX = normDirX * intensity * 15; // max 15px movement
+        const moveY = normDirY * intensity * 15;
+        
+        // Calculate rotation (subtle twist based on position)
+        const rotateAmount = (Math.atan2(dirY, dirX) * intensity) / 2; // max 0.5deg rotation
+        
+        // Calculate scale (subtle pulse)
+        const scaleAmount = 1 + (intensity * 0.03); // max 3% scaling
+        
+        // Apply the animation through CSS custom properties
+        element.style.setProperty('--move-x', `${moveX}px`);
+        element.style.setProperty('--move-y', `${moveY}px`);
+        element.style.setProperty('--rotate', `${rotateAmount}deg`);
+        element.style.setProperty('--scale', scaleAmount);
+        
+        // Add the animation class
+        element.classList.add('ripple-animate');
+        
+        // Remove animation after it completes
+        setTimeout(() => {
+            element.classList.remove('ripple-animate');
+        }, PERFORMANCE.UI_RIPPLE_DURATION);
+    });
+}
+
+// Update the propagateRipple function to also trigger UI element effects
 function propagateRipple(clickedCircle) {
     if (!circlesArray.length) return;
     
@@ -205,6 +278,9 @@ function propagateRipple(clickedCircle) {
     const clickedRect = clickedCircle.getBoundingClientRect();
     const clickedX = clickedRect.left + clickedRect.width / 2;
     const clickedY = clickedRect.top + clickedRect.height / 2;
+    
+    // Apply ripple effect to UI elements
+    applyUIRippleEffect(clickedX, clickedY);
     
     // Generate an array of animations to run for better batching
     const animationBatch = [];

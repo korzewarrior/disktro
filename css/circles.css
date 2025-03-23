@@ -66,3 +66,51 @@
         --circle-gap: 5px;
     }
 }
+
+/* Animation for UI elements */
+.ripple-animate {
+    animation: ui-ripple-effect 0.6s cubic-bezier(0.15, 0.85, 0.45, 1.0) forwards;
+    will-change: transform;
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes ui-ripple-effect {
+    0% {
+        transform: translate(0, 0) rotate(0) scale(1);
+    }
+    20% {
+        transform: translate(var(--move-x, 0), var(--move-y, 0)) rotate(var(--rotate, 0)) scale(var(--scale, 1));
+    }
+    100% {
+        transform: translate(0, 0) rotate(0) scale(1);
+    }
+}
+
+/* Add subtle box-shadow to enhance 3D effect during animation */
+.ripple-animate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    animation: shadow-pulse 0.6s cubic-bezier(0.15, 0.85, 0.45, 1.0) forwards;
+    z-index: -1;
+}
+
+@keyframes shadow-pulse {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+    }
+}
