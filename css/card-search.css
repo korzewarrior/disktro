@@ -1,0 +1,187 @@
+/* Search and Filtering Components */
+
+:root {
+    /* Search UI colors */
+    --search-bg: rgba(30, 30, 30, 0.6);
+    --search-border: rgba(255, 255, 255, 0.1);
+    --search-focus-border: rgba(255, 255, 255, 0.3);
+    --search-placeholder: #8a8a8a;
+    --search-text: #e0e0e0;
+    
+    /* Filter UI colors */
+    --filter-bg: rgba(30, 30, 30, 0.5);
+    --filter-border: rgba(255, 255, 255, 0.1);
+    --filter-hover-bg: rgba(50, 50, 50, 0.5);
+    --filter-active-bg: rgba(70, 70, 70, 0.6);
+    --filter-text: #d0d0d0;
+    --filter-active-text: #ffffff;
+}
+
+/* Search controls container */
+.search-controls {
+    margin-bottom: 20px;
+    width: 100%;
+    position: sticky;
+    top: 10px;
+    z-index: 5;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(10, 10, 10, 0.6);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--search-border);
+    transition: all 0.3s ease;
+}
+
+.search-bar {
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Search input styling */
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid var(--search-border);
+    background-color: var(--search-bg);
+    color: var(--search-text);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--search-focus-border);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.search-input::placeholder {
+    color: var(--search-placeholder);
+}
+
+/* Clear search button */
+.clear-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--search-placeholder);
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    display: none;
+}
+
+.clear-search:hover {
+    opacity: 1;
+}
+
+.clear-search.visible {
+    display: block;
+}
+
+/* Filter controls */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.filter-button {
+    padding: 8px 15px;
+    background-color: var(--filter-bg);
+    border: 1px solid var(--filter-border);
+    border-radius: 20px;
+    color: var(--filter-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.filter-button:hover {
+    background-color: var(--filter-hover-bg);
+}
+
+.filter-button.active {
+    background-color: var(--filter-active-bg);
+    color: var(--filter-active-text);
+    border-color: var(--search-focus-border);
+}
+
+.filter-button i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* Search/filter results status */
+.results-info {
+    font-size: 14px;
+    color: var(--search-text);
+    margin-top: 10px;
+    text-align: right;
+}
+
+.highlight {
+    background-color: rgba(255, 255, 0, 0.2);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* No results message */
+.no-results {
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--search-text);
+    background-color: rgba(30, 30, 30, 0.4);
+    border-radius: 8px;
+    border: 1px solid var(--search-border);
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.no-results i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: block;
+    opacity: 0.5;
+}
+
+/* Sort controls */
+.sort-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.sort-label {
+    margin-right: 10px;
+    color: var(--search-text);
+    font-size: 14px;
+}
+
+.sort-select {
+    padding: 6px 10px;
+    background-color: var(--search-bg);
+    border: 1px solid var(--search-border);
+    border-radius: 4px;
+    color: var(--search-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: var(--search-focus-border);
+} 

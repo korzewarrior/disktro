@@ -1,0 +1,153 @@
+/* Responsive Layout Styles */
+
+/* Tablet and smaller desktop */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .col-md-6 {
+        width: 50%;
+    }
+    
+    .col-md-12 {
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .filter-controls {
+        justify-content: center;
+    }
+    
+    .sort-controls {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .results-info {
+        text-align: center;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .col-sm-12 {
+        width: 100%;
+    }
+    
+    .col-sm-6 {
+        width: 50%;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .distro-title {
+        font-size: 1.2rem;
+    }
+    
+    .distro-title .subtitle {
+        font-size: 1rem;
+        display: block;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    .search-controls {
+        padding: 10px;
+    }
+    
+    .filter-button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        margin-top: 15px;
+        justify-content: center;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 5px;
+    }
+    
+    .col-xs-12 {
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .filter-controls {
+        gap: 5px;
+    }
+    
+    .filter-button {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    .filter-button i {
+        margin-right: 3px;
+    }
+    
+    .search-input {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+    
+    .clear-search {
+        font-size: 16px;
+    }
+    
+    .sort-label {
+        font-size: 12px;
+    }
+    
+    .sort-select {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+    
+    .results-info {
+        font-size: 12px;
+    }
+    
+    .distro-card {
+        padding: 10px;
+    }
+    
+    .download-section, 
+    .card-content,
+    .os-link {
+        width: 100%;
+        box-sizing: border-box;
+    }
+} 

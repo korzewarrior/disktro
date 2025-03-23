@@ -1,0 +1,291 @@
+/* Card Components - core card styles only */
+
+:root {
+    /* Base colors */
+    --card-bg: #0e0e0e;
+    --card-text: #e0e0e0;
+    --card-border: rgba(255, 255, 255, 0.192);
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    
+    /* Highlight color (used in hover states) */
+    --highlight-color: var(--circle-primary-color, #D4AF37);
+    
+    /* Distro-specific colors with alpha channel for backgrounds */
+    --debian-color: 215, 10, 83;
+    --ubuntu-color: 233, 84, 32;
+    --fedora-color: 41, 65, 114;
+    --arch-color: 23, 147, 209;
+    --mint-color: 135, 207, 62;
+    --gentoo-color: 84, 72, 122;
+    --slackware-color: 116, 121, 161;
+    --pureos-color: 143, 87, 177;
+    --opensuse-color: 115, 186, 37;
+    --manjaro-color: 53, 191, 92;
+    --popos-color: 72, 185, 199;
+    --elementary-color: 100, 186, 255;
+    --zorin-color: 21, 166, 240;
+    --kali-color: 74, 102, 172;
+    --rocky-color: 16, 185, 129;
+    --endeavouros-color: 127, 63, 191;
+}
+
+/* Card header elements */
+h2 {
+    margin: 0px 0px 10px 0px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Card title & subtitle */
+.distro-title {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.distro-title .subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--card-text);
+    letter-spacing: 1px;
+    margin-left: 8px;
+}
+
+.version-subtitle {
+    font-size: 14px;
+    color: #aaaaaa;
+    font-style: italic;
+    margin: 0;
+    padding: 0 0 8px 0;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: block;
+    min-height: 12px;
+}
+
+/* Main card component */
+.distro-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: var(--card-bg) !important;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px var(--card-shadow) !important;
+    border: 1px solid var(--card-border);
+    z-index: 2;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.distro-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5) !important;
+    border-color: var(--highlight-color);
+    z-index: 3;
+    background-color: var(--card-bg) !important;
+}
+
+/* Card header and logo */
+.card-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.distro-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.home-link {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 50%;
+    color: #d0d0d0;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.home-link:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--card-text);
+}
+
+/* Card content */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+.download-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+    margin-top: 0;
+}
+
+/* OS-specific links and buttons */
+.os-link {
+    display: inline-block;
+    margin: 0;
+    font-size: 18px;
+    text-decoration: none;
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--card-border);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.os-link:hover {
+    background-color: var(--card-text);
+    color: var(--card-bg);
+    transform: scale(1.05);
+}
+
+/* OS-specific button styling using CSS variables */
+.debian .os-link { background-color: rgba(var(--debian-color), 0.25); border-color: rgba(var(--debian-color), 0.5); }
+.debian .os-link:hover { background-color: rgba(var(--debian-color), 0.35); color: var(--card-text); }
+
+.ubuntu .os-link { background-color: rgba(var(--ubuntu-color), 0.25); border-color: rgba(var(--ubuntu-color), 0.5); }
+.ubuntu .os-link:hover { background-color: rgba(var(--ubuntu-color), 0.35); color: var(--card-text); }
+
+.fedora .os-link { background-color: rgba(var(--fedora-color), 0.25); border-color: rgba(var(--fedora-color), 0.5); }
+.fedora .os-link:hover { background-color: rgba(var(--fedora-color), 0.35); color: var(--card-text); }
+
+.arch .os-link { background-color: rgba(var(--arch-color), 0.25); border-color: rgba(var(--arch-color), 0.5); }
+.arch .os-link:hover { background-color: rgba(var(--arch-color), 0.35); color: var(--card-text); }
+
+.mint .os-link { background-color: rgba(var(--mint-color), 0.25); border-color: rgba(var(--mint-color), 0.5); }
+.mint .os-link:hover { background-color: rgba(var(--mint-color), 0.35); color: var(--card-text); }
+
+.gentoo .os-link { background-color: rgba(var(--gentoo-color), 0.25); border-color: rgba(var(--gentoo-color), 0.5); }
+.gentoo .os-link:hover { background-color: rgba(var(--gentoo-color), 0.35); color: var(--card-text); }
+
+.slackware .os-link { background-color: rgba(var(--slackware-color), 0.25); border-color: rgba(var(--slackware-color), 0.5); }
+.slackware .os-link:hover { background-color: rgba(var(--slackware-color), 0.35); color: var(--card-text); }
+
+.pureos .os-link { background-color: rgba(var(--pureos-color), 0.25); border-color: rgba(var(--pureos-color), 0.5); }
+.pureos .os-link:hover { background-color: rgba(var(--pureos-color), 0.35); color: var(--card-text); }
+
+.opensuse .os-link { background-color: rgba(var(--opensuse-color), 0.25); border-color: rgba(var(--opensuse-color), 0.5); }
+.opensuse .os-link:hover { background-color: rgba(var(--opensuse-color), 0.35); color: var(--card-text); }
+
+.manjaro .os-link { background-color: rgba(var(--manjaro-color), 0.25); border-color: rgba(var(--manjaro-color), 0.5); }
+.manjaro .os-link:hover { background-color: rgba(var(--manjaro-color), 0.35); color: var(--card-text); }
+
+.popos .os-link { background-color: rgba(var(--popos-color), 0.25); border-color: rgba(var(--popos-color), 0.5); }
+.popos .os-link:hover { background-color: rgba(var(--popos-color), 0.35); color: var(--card-text); }
+
+.elementary .os-link { background-color: rgba(var(--elementary-color), 0.25); border-color: rgba(var(--elementary-color), 0.5); }
+.elementary .os-link:hover { background-color: rgba(var(--elementary-color), 0.35); color: var(--card-text); }
+
+.zorin .os-link { background-color: rgba(var(--zorin-color), 0.25); border-color: rgba(var(--zorin-color), 0.5); }
+.zorin .os-link:hover { background-color: rgba(var(--zorin-color), 0.35); color: var(--card-text); }
+
+.kali .os-link { background-color: rgba(var(--kali-color), 0.25); border-color: rgba(var(--kali-color), 0.5); }
+.kali .os-link:hover { background-color: rgba(var(--kali-color), 0.35); color: var(--card-text); }
+
+.rocky .os-link { background-color: rgba(var(--rocky-color), 0.25); border-color: rgba(var(--rocky-color), 0.5); }
+.rocky .os-link:hover { background-color: rgba(var(--rocky-color), 0.35); color: var(--card-text); }
+
+.endeavouros .os-link { background-color: rgba(var(--endeavouros-color), 0.25); border-color: rgba(var(--endeavouros-color), 0.5); }
+.endeavouros .os-link:hover { background-color: rgba(var(--endeavouros-color), 0.35); color: var(--card-text); }
+
+/* Hash display */
+.hash {
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 6px 10px;
+    background-color: rgba(30, 30, 30, 0.3);
+    color: #e0e0e0a0;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 15px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200, 200, 200, 0.3) transparent;
+    margin: 8px 0 2px 0;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
+}
+
+.hash::before, .hash::after {
+    content: none;
+}
+
+.hash:hover {
+    background-color: rgba(50, 50, 50, 0.4);
+    color: #e0e0e0c0;
+}
+
+/* Card border colors using CSS variables */
+.distro-card.debian { border-color: rgba(var(--debian-color), 0.4) !important; }
+.distro-card.ubuntu { border-color: rgba(var(--ubuntu-color), 0.4) !important; }
+.distro-card.fedora { border-color: rgba(var(--fedora-color), 0.4) !important; }
+.distro-card.arch { border-color: rgba(var(--arch-color), 0.4) !important; }
+.distro-card.mint { border-color: rgba(var(--mint-color), 0.4) !important; }
+.distro-card.gentoo { border-color: rgba(var(--gentoo-color), 0.4) !important; }
+.distro-card.slackware { border-color: rgba(var(--slackware-color), 0.4) !important; }
+.distro-card.pureos { border-color: rgba(var(--pureos-color), 0.4) !important; }
+.distro-card.opensuse { border-color: rgba(var(--opensuse-color), 0.4) !important; }
+.distro-card.manjaro { border-color: rgba(var(--manjaro-color), 0.4) !important; }
+.distro-card.popos { border-color: rgba(var(--popos-color), 0.4) !important; }
+.distro-card.elementary { border-color: rgba(var(--elementary-color), 0.4) !important; }
+.distro-card.zorin { border-color: rgba(var(--zorin-color), 0.4) !important; }
+.distro-card.kali { border-color: rgba(var(--kali-color), 0.4) !important; }
+.distro-card.rocky { border-color: rgba(var(--rocky-color), 0.4) !important; }
+.distro-card.endeavouros { border-color: rgba(var(--endeavouros-color), 0.4) !important; }
+
+/* Card-specific responsive styles */
+@media (max-width: 600px) {
+    .download-section,
+    .card-content,
+    .os-link {
+        width: 100%;
+    }
+    
+    .os-link {
+        box-sizing: border-box;
+        text-align: center;
+    }
+} 
