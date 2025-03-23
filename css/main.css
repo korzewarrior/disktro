@@ -3,7 +3,6 @@
     src: url('../fonts/raleway-medium.ttf') format('truetype');
 }
 
-
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: 'Raleway Medium';
@@ -16,11 +15,11 @@ html, body {
     width: 100% !important;
     min-width: 100% !important;
     overflow-x: hidden !important;
+    background-color: #0e0e0e;
+    color: #e0e0e0;
 }
 
 body {
-    background-color: #0e0e0e;
-    color: #e0e0e0;
     text-align: center;
     padding-top: 50px;
     margin: 0;
@@ -50,7 +49,7 @@ input:focus {
     margin-bottom: 120px;
     padding: 20px 20px 20px;
     width: 80%;
-    max-width: 800px;
+    max-width: 1200px;
 }
 
 .title {
@@ -66,54 +65,7 @@ input:focus {
     font-size: 1em;
 }
 
-.os-sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-/* Layout styles for grid and column views */
-.os-sections.grid-layout {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.os-sections.column-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Make footer card (disktro-card) full width in both layouts */
-.os-sections.column-layout #disktro-card {
-    width: 100%;
-}
-
-.os-section {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.os-title {
-    margin: 0 0 10px;
-    font-size: 1.5em;
-    color: #2C3E50;
-}
-
-.release-date {
-    margin: 0 0 20px;
-    color: #7F8C8D;
-}
-
-.checksum {
-    font-size: 14px;
-    color: #7F8C8D;
-}
-
+/* Basic heading styles */
 h1 {
     margin: 0;
     font-size: 2.5em;
@@ -132,14 +84,7 @@ h3 {
     color: #7F8C8D;
 }
 
-ul {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
+/* Content styles that aren't card-specific */
 .container.roadmap {
     background-color: #0e0e0e;
     color: #e0e0e0;
@@ -173,36 +118,14 @@ ul {
     color: #005577;
 }
 
+/* Basic responsive adjustments */
 @media (max-width: 600px) {
     .container {
         width: 95%;
     }
 }
 
-/* Main CSS file for Disktro */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
+/* Header styles */
 header {
     text-align: center;
     padding: 40px 20px;
@@ -254,25 +177,7 @@ header {
     margin-bottom: 20px;
 }
 
-.os-sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-/* New search card styles */
-.search-title {
-    display: none;
-}
-
-/* These old search styles are replaced by our new control-bar styles */
-/* Commenting out to prevent conflicts */
-/*.search-bar-wrapper {
-    position: relative;
-    width: 100%;
-    margin-bottom: 15px;
-}*/
-
+/* Search icon (only the non-card part) */
 .search-icon {
     position: absolute;
     right: 12px;
@@ -283,11 +188,8 @@ header {
     pointer-events: none;
 }
 
+/* Mobile responsiveness for header */
 @media (max-width: 600px) {
-    .os-sections {
-        grid-template-columns: 1fr;
-    }
-    
     .title {
         font-size: 2.5rem;
     }
@@ -301,343 +203,4 @@ header {
     .title {
         font-size: 2rem;
     }
-}
-
-/* Updated search-toggle-container to have a single row layout */
-.search-toggle-container {
-    background-color: #0e0e0e !important;
-    border-radius: 8px !important;
-    padding: 15px !important;
-    margin-bottom: 20px !important;
-    border: 1px solid rgba(255, 255, 255, 0.192) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 100 !important; /* Higher z-index to ensure it stays on top */
-    display: block !important;
-    flex-direction: unset !important;
-}
-
-.control-bar {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 15px !important;
-    width: 100% !important;
-    flex-wrap: nowrap !important;
-}
-
-/* Make search bar take up more space but be flexible */
-.control-bar .search-bar-wrapper {
-    flex: 2 !important;
-    min-width: 180px !important;
-    max-width: 60% !important;
-    position: relative !important;
-    margin-bottom: 0 !important;
-    width: auto !important;
-}
-
-/* Search bar input styling */
-#search-bar {
-    width: 100% !important;
-    padding: 10px 35px 10px 15px !important;
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.192) !important;
-    border-radius: 4px !important;
-    font-size: 14px !important;
-    flex-grow: unset !important;
-    transform: none !important;
-}
-
-#search-bar:focus, #search-bar:hover {
-    border-color: var(--circle-primary-color, #D4AF37) !important;
-    outline: none !important;
-    transform: none !important;
-}
-
-/* Group for the right side controls */
-.controls-right {
-    display: flex !important;
-    align-items: center !important;
-    gap: 15px !important;
-    flex: 0 0 auto !important;
-    justify-content: flex-end !important;
-    flex-wrap: nowrap !important;
-}
-
-/* Version filter styling */
-.version-filter-wrapper {
-    display: flex !important;
-    align-items: center !important;
-    flex-direction: row !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-#version-filter {
-    padding: 8px 12px !important;
-    height: 36px !important;
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.192) !important;
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    font-size: 14px !important;
-    min-width: 100px !important;
-    width: auto !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 8px center !important;
-    background-size: 16px !important;
-    padding-right: 30px !important;
-}
-
-/* Layout toggle styling */
-.filter-group {
-    display: flex !important;
-    align-items: center !important;
-    flex-direction: row !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Reset button styling */
-.reset-button-container {
-    display: flex !important;
-    align-items: center !important;
-    flex-direction: row !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: auto !important;
-}
-
-#reset-button {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 50% !important;
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
-    font-size: 18px !important;
-    border: 1px solid rgba(255, 255, 255, 0.192) !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-#reset-button:hover {
-    background-color: #2a2a2a !important;
-    border-color: var(--circle-primary-color, #D4AF37) !important;
-    transform: none !important;
-}
-
-/* Override button container styles that conflict */
-.button-container {
-    display: none !important;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .control-bar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-    
-    .controls-right {
-        justify-content: space-between;
-    }
-    
-    .search-bar-wrapper {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .controls-right {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-    
-    .version-filter-wrapper, 
-    .filter-group,
-    .reset-button-container {
-        justify-content: center;
-    }
-    
-    #reset-button {
-        width: 100%;
-        border-radius: 4px;
-    }
-}
-
-/* UNCOMMENT FOR DEBUGGING SPECIFIC ISSUES
-body, .container, header, .header-brand, .tagline, .content-page, .os-sections {
-    background-color: #0e0e0e !important;
-}
-
-.container,
-.content-page,
-.distro-card,
-div[class*="card"],
-div[class*="section"],
-div[class*="content"],
-div[class*="container"] {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background-color: #0e0e0e !important;
-    opacity: 1 !important;
-}
-
-html, body {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background-color: #0e0e0e !important;
-}
-*/
-
-/* HEADER FIX - Ensure header is always visible */
-header, .header-brand {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 10 !important;
-}
-
-.header-logo {
-    height: 70px !important;
-    width: 70px !important;
-    margin-right: 15px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
-}
-
-.title, .tagline {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
-}
-
-/* FIX CONTAINER BACKGROUNDS */
-.container, .os-sections {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* Keep ONLY cards opaque with backgrounds */
-.distro-card, .content-section {
-    background-color: #0e0e0e !important;
-    opacity: 1 !important;
-}
-
-/* STANDARDIZE CONTAINER WIDTHS ACROSS ALL PAGES */
-.container {
-    max-width: 1200px !important;
-    width: 80% !important;
-    margin: 0 auto !important;
-    padding: 20px !important;
-    border-radius: 8px !important;
-    box-sizing: border-box !important;
-}
-
-/* Ensure content pages on all sections have consistent width */
-.content-page {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-}
-
-/* Ensure footer has same width as main content */
-#disktro-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    box-sizing: border-box !important;
-}
-
-/* Ensure consistent widths for specific pages */
-body[class*="faq"] .container,
-body[class*="getting-started"] .container,
-body[class*="compare"] .container {
-    max-width: 1200px !important;
-    width: 80% !important;
-}
-
-/* Force grid layout containers to be the same size */
-.os-sections.grid-layout {
-    width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-/* MORE AGGRESSIVE WIDTH FIXES */
-body > .container,
-body > .footer-container {
-    width: 80% !important;
-    max-width: 1200px !important;
-    min-width: 300px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
-}
-
-.content-page,
-.compare-interface {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
-/* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
-.content-page,
-div.content-page,
-body .container .content-page,
-.os-sections,
-.os-sections.grid-layout,
-.os-sections.column-layout,
-.container,
-.content-container,
-.page-container {
-    background-color: transparent !important;
-    background: transparent !important;
-    background-image: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    opacity: 1 !important;
-    position: relative !important; 
-    z-index: 1 !important;
-}
-
-/* Force cards to have solid backgrounds */
-.distro-card, 
-.content-section, 
-.section-content, 
-.comparison-section, 
-.comparison-results, 
-.code-block {
-    background-color: #0e0e0e !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.192) !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 2 !important;
-}
-
-/* Remove any overflow or transform properties that might interfere */
-html, body, .container {
-    overflow-x: visible !important;
 }
