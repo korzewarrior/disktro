@@ -211,8 +211,14 @@ function applyUIRippleEffect(sourceX, sourceY) {
         '#disktro-card'
     ];
     
-    // Wave propagation speed (pixels per millisecond)
-    const waveSpeed = 0.8; // Tuned to look natural
+    // Wave propagation speed (pixels per millisecond) - increased for faster propagation
+    const waveSpeed = 1.5; // Increased from 0.8 to make wave travel faster
+    
+    // Visual indicator of wave front (for debugging, set to true to see wave)
+    const showWaveFront = false;
+    
+    // Wave expansion radius - to account for the visual size of the explosion
+    const waveRadius = 40; // Matches roughly the visual explosion radius at start
     
     // Collect all elements
     const elements = [];
@@ -220,6 +226,26 @@ function applyUIRippleEffect(sourceX, sourceY) {
         const found = document.querySelectorAll(selector);
         found.forEach(el => elements.push(el));
     });
+    
+    // Create wave indicator if enabled
+    let waveIndicator;
+    if (showWaveFront) {
+        waveIndicator = document.createElement('div');
+        waveIndicator.style.position = 'fixed';
+        waveIndicator.style.left = sourceX + 'px';
+        waveIndicator.style.top = sourceY + 'px';
+        waveIndicator.style.width = '0';
+        waveIndicator.style.height = '0';
+        waveIndicator.style.borderRadius = '50%';
+        waveIndicator.style.border = '2px solid red';
+        waveIndicator.style.transform = 'translate(-50%, -50%)';
+        waveIndicator.style.zIndex = '9999';
+        waveIndicator.style.pointerEvents = 'none';
+        document.body.appendChild(waveIndicator);
+    }
+    
+    // Maximum distance for effect to reach
+    const maxDistance = Math.max(window.innerWidth, window.innerHeight) * 0.8;
     
     // Setup wave propagation calculations for each element
     elements.forEach(element => {
@@ -232,20 +258,35 @@ function applyUIRippleEffect(sourceX, sourceY) {
         const dirX = elementCenterX - sourceX;
         const dirY = elementCenterY - sourceY;
         
-        // Calculate distance
+        // Calculate distance from explosion center to element center
         const distance = Math.sqrt(dirX * dirX + dirY * dirY);
         
-        // Skip if too far away
-        const maxDistance = Math.max(window.innerWidth, window.innerHeight) * 0.7;
+        // Skip elements too far away from explosion
         if (distance > maxDistance) return;
         
-        // Calculate time for wave to reach this element
-        const waveArrivalTime = distance / waveSpeed;
+        // Calculate adjusted distance accounting for element size
+        // This makes the wave "hit" the closer edge of the element first
+        const elementRadius = Math.min(rect.width, rect.height) / 2;
+        const adjustedDistance = Math.max(0, distance - elementRadius - waveRadius);
+        
+        // Calculate time for wave to reach this element (accounting for initial explosion size)
+        const waveArrivalTime = adjustedDistance / waveSpeed;
+        
+        // Animate the wave indicator if enabled
+        if (showWaveFront) {
+            setTimeout(() => {
+                // Highlight the element when wave reaches it
+                element.style.outline = '2px solid red';
+                setTimeout(() => {
+                    element.style.outline = '';
+                }, 300);
+            }, waveArrivalTime);
+        }
         
         // Schedule the animation to start when the wave reaches this element
         setTimeout(() => {
             // Calculate intensity based on distance (closer = stronger effect)
-            const intensity = Math.max(0.05, (1 - (distance / maxDistance)) * PERFORMANCE.UI_RIPPLE_INTENSITY);
+            const intensity = Math.max(0.1, (1 - (distance / maxDistance)) * PERFORMANCE.UI_RIPPLE_INTENSITY * 1.5);
             
             // Normalize direction vector
             const length = Math.max(0.1, Math.sqrt(dirX * dirX + dirY * dirY));
@@ -253,14 +294,14 @@ function applyUIRippleEffect(sourceX, sourceY) {
             const normDirY = dirY / length;
             
             // Calculate transform amount (move away from source)
-            const moveX = normDirX * intensity * 20; // increased from 15 to 20px for more noticeable effect
-            const moveY = normDirY * intensity * 20;
+            const moveX = normDirX * intensity * 25; // increased for more noticeable effect
+            const moveY = normDirY * intensity * 25;
             
             // Calculate rotation (subtle twist based on position)
-            const rotateAmount = (Math.atan2(dirY, dirX) * intensity) * 1.5; // increased for more visible effect
+            const rotateAmount = (Math.atan2(dirY, dirX) * intensity) * 2.0; // increased for more visible effect
             
             // Calculate scale (subtle pulse)
-            const scaleAmount = 1 + (intensity * 0.05); // increased from 0.03 to 0.05
+            const scaleAmount = 1 + (intensity * 0.08); // increased for more visible effect
             
             // Apply the animation through CSS custom properties
             element.style.setProperty('--move-x', `${moveX}px`);
@@ -277,6 +318,26 @@ function applyUIRippleEffect(sourceX, sourceY) {
             }, 600); // Animation duration
         }, waveArrivalTime);
     });
+    
+    // Animate wave indicator expanding if enabled
+    if (showWaveFront) {
+        const startTime = performance.now();
+        const animateWave = (time) => {
+            const elapsed = time - startTime;
+            const radius = elapsed * waveSpeed;
+            
+            waveIndicator.style.width = radius * 2 + 'px';
+            waveIndicator.style.height = radius * 2 + 'px';
+            
+            if (radius < maxDistance) {
+                requestAnimationFrame(animateWave);
+            } else {
+                document.body.removeChild(waveIndicator);
+            }
+        };
+        
+        requestAnimationFrame(animateWave);
+    }
 }
 
 // Update the propagateRipple function to also trigger UI element effects
