@@ -9,8 +9,6 @@
     --resource-radius-sm: 4px;
     --resource-radius-md: 8px;
     --resource-radius-lg: 12px;
-    --resource-card-bg: rgba(30, 30, 30, 0.6);
-    --resource-card-hover-bg: rgba(40, 40, 40, 0.8);
     --resource-card-border: rgba(255, 255, 255, 0.1);
     --resource-link-color: var(--circle-primary-color, #D4AF37);
     --book-cover-bg: rgba(20, 20, 20, 0.8);
@@ -37,13 +35,12 @@
 
 /* Style resource sections to match card styling from main site */
 .resource-section {
-    padding: var(--resource-spacing-lg);
-    background-color: rgba(25, 25, 25, 0.8);
-    border-radius: var(--resource-radius-md);
-    border: 1px solid var(--resource-card-border);
-    margin-bottom: var(--resource-spacing-lg);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--card-border);
+    margin-bottom: var(--card-margin);
+    box-shadow: 0 2px 4px var(--card-shadow);
     backdrop-filter: blur(10px);
+    /* Remove explicit background-color to use the global card background */
 }
 
 .content-section {
@@ -85,24 +82,23 @@
 
 /* Resource Card Styling - updated to match main site cards */
 .resource-card {
-    background-color: rgba(35, 35, 35, 0.7);
-    border: 1px solid var(--resource-card-border);
-    border-radius: var(--resource-radius-md);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: var(--card-transition);
     display: flex;
     padding: var(--resource-spacing-md);
     gap: var(--resource-spacing-md);
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--card-shadow);
 }
 
 .resource-card:hover,
 .resource-card.card-hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    background-color: var(--resource-card-hover-bg);
     border-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
 }
 

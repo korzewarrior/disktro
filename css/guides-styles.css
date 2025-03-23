@@ -9,8 +9,6 @@
     --guide-radius-sm: 4px;
     --guide-radius-md: 8px;
     --guide-radius-lg: 12px;
-    --guide-card-bg: rgba(30, 30, 30, 0.6);
-    --guide-card-hover-bg: rgba(40, 40, 40, 0.8);
     --guide-card-border: rgba(255, 255, 255, 0.1);
     --beginner-color: #4CAF50;
     --intermediate-color: #2196F3;
@@ -36,13 +34,12 @@
 
 /* Guides Section Styling - updated to match site card styling */
 .guides-section {
-    padding: var(--guide-spacing-lg);
-    background-color: rgba(25, 25, 25, 0.8);
-    border-radius: var(--guide-radius-md);
-    border: 1px solid var(--guide-card-border);
-    margin-bottom: var(--guide-spacing-lg);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--card-border);
+    margin-bottom: var(--card-margin);
+    box-shadow: 0 2px 4px var(--card-shadow);
     backdrop-filter: blur(10px);
+    /* Remove explicit background-color to use the global card background */
 }
 
 .content-section {
@@ -84,20 +81,19 @@
 
 /* Guide Card Styling - updated to match main site cards */
 .guide-card {
-    background-color: rgba(35, 35, 35, 0.7);
-    border: 1px solid var(--guide-card-border);
-    border-radius: var(--guide-radius-md);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: var(--card-transition);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--card-shadow);
 }
 
 .guide-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    background-color: var(--guide-card-hover-bg);
     border-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
 }
 
