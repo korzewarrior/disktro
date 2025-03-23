@@ -6,26 +6,45 @@
     <meta name="description" content="Curated resources and links for learning about Linux distributions and related technologies">
     <title>Resources | Disktro</title>
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/card.css">
-    <link rel="stylesheet" href="css/resources-styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/card-header.css">
+    <link rel="stylesheet" type="text/css" href="css/card-os.css">
+    <link rel="stylesheet" type="text/css" href="css/card-layout.css">
+    <link rel="stylesheet" type="text/css" href="css/card-responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/circles.css">
+    <link rel="stylesheet" type="text/css" href="css/card-footer.css">
+    <link rel="stylesheet" type="text/css" href="css/card-nav.css">
+    <link rel="stylesheet" type="text/css" href="css/resources-styles.css">
     
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
     
     <!-- Scripts -->
-    <script src="js/main.js" defer></script>
-    <script src="js/navbar.js" defer></script>
-    <script src="js/resources.js" defer></script>
-    <script src="js/card-navigation.js" defer></script>
+    <script defer src="js/footer.js"></script>
+    <script defer src="js/header.js"></script>
+    <script defer src="js/navbar.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/circles.js"></script>
+    <script defer src="js/distro-colors.js"></script>
+    <script defer src="js/card-navigation.js"></script>
+    <script defer src="js/circle-theme.js"></script>
+    <script defer src="js/resources.js"></script>
 </head>
 <body>
-    <!-- Dynamic Header will be inserted by JavaScript -->
-    <div id="header"></div>
-    <div id="navbar"></div>
+    <div class="circlecontainer"></div>
     
-    <div class="content-container">
+    <div class="container">
+        <div id="header"></div>
+        <div id="navbar"></div>
+        
         <div class="content-page">
             <!-- Introduction -->
             <div class="distro-card">
@@ -407,7 +426,7 @@
         </div>
     </div>
     
-    <!-- Dynamic Footer will be inserted by JavaScript -->
     <div id="footer"></div>
+</div>
 </body>
 </html> 

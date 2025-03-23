@@ -18,29 +18,31 @@
     --highlight-border: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
 }
 
-/* Content page spacing and layout */
+/* Content page spacing and layout aligned with site standards */
 .content-page {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
-    pointer-events: none; /* Allow clicks to pass through to circles */
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 0 20px;
 }
 
-/* Ensure content inside cards remains clickable */
-.content-page .distro-card,
-.content-page .resource-section {
-    pointer-events: auto;
-}
-
-/* Resource Section Styling */
+/* Style resource sections to match card styling from main site */
 .resource-section {
     padding: var(--resource-spacing-lg);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(25, 25, 25, 0.8);
     border-radius: var(--resource-radius-md);
     border: 1px solid var(--resource-card-border);
     margin-bottom: var(--resource-spacing-lg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .section-header {
@@ -53,12 +55,14 @@
     margin-top: 0;
     margin-bottom: var(--resource-spacing-sm);
     font-size: 1.6em;
+    font-weight: 600;
 }
 
 .section-header p {
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
     font-size: 1.1em;
+    font-weight: 300;
 }
 
 .section-header i {
