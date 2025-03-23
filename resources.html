@@ -16,10 +16,14 @@
     
     <!-- Scripts -->
     <script src="js/main.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/resources.js" defer></script>
+    <script src="js/card-navigation.js" defer></script>
 </head>
 <body>
     <!-- Dynamic Header will be inserted by JavaScript -->
-    <div id="header-container"></div>
+    <div id="header"></div>
+    <div id="navbar"></div>
     
     <div class="content-container">
         <div class="content-page">
@@ -33,6 +37,20 @@
                 </div>
                 <div class="card-content">
                     <p>Welcome to our comprehensive collection of Linux resources! Whether you're just getting started with Linux or looking to deepen your knowledge, we've gathered valuable links, communities, documentation, and tools to help you on your journey. Explore the sections below to find the resources that best suit your needs.</p>
+                    
+                    <!-- Resource Filter -->
+                    <div class="resource-filter">
+                        <p class="filter-label">Filter resources by category:</p>
+                        <div class="filter-buttons">
+                            <button class="filter-button active" data-filter="all">All Resources</button>
+                            <button class="filter-button" data-filter="documentation">Documentation</button>
+                            <button class="filter-button" data-filter="learning">Learning</button>
+                            <button class="filter-button" data-filter="community">Community</button>
+                            <button class="filter-button" data-filter="news">News</button>
+                            <button class="filter-button" data-filter="tools">Tools</button>
+                            <button class="filter-button" data-filter="books">Books</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -390,6 +408,6 @@
     </div>
     
     <!-- Dynamic Footer will be inserted by JavaScript -->
-    <div id="footer-container"></div>
+    <div id="footer"></div>
 </body>
 </html> 
