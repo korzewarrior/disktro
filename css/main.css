@@ -128,22 +128,22 @@ h3 {
 
 /* Basic styling for links across the site */
 a {
-    color: var(--circle-primary-color, #D4AF37);
+    color: #62c8f3; /* Distinct blue color that stands out from the gold accents */
     text-decoration: none;
     font-weight: 500;
     transition: all 0.2s ease;
-    border-bottom: 1px dotted rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.5);
+    border-bottom: 1px dotted rgba(98, 200, 243, 0.5);
     padding-bottom: 1px;
 }
 
 a:hover {
-    color: var(--circle-primary-color, #D4AF37);
-    border-bottom: 1px solid var(--circle-primary-color, #D4AF37);
-    text-shadow: 0 0 1px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.4);
+    color: #8cd5f7; /* Lighter blue on hover */
+    border-bottom: 1px solid #8cd5f7;
+    text-shadow: 0 0 1px rgba(98, 200, 243, 0.4);
 }
 
 a:focus {
-    outline: 2px solid rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.5);
+    outline: 2px solid rgba(98, 200, 243, 0.5);
     outline-offset: 2px;
 }
 
@@ -172,6 +172,18 @@ button a,
 button a:hover,
 .card-action a:hover {
     border-bottom: none;
+}
+
+/* This is an exception - preserve gold color for buttons and action links that should match the theme */
+.resource-link,
+.guide-button,
+.request-button,
+.suggest-button,
+.de-button,
+.compare-button,
+.preset-button,
+.filter-button.active {
+    color: var(--circle-primary-color, #D4AF37); /* Keep gold color for buttons */
 }
 
 /* Basic responsive adjustments */
