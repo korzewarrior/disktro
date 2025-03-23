@@ -24,7 +24,6 @@ let isLowPerformanceDevice = false;
 // Bomb state tracking
 let bombCircles = []; // Array to track which circles have bombs
 let hoveredCircle = null; // Currently hovered circle
-let bombTooltipShown = false; // Track if we've shown the tooltip
 
 // Cache DOM elements
 const container = document.querySelector('.circlecontainer');
@@ -114,13 +113,6 @@ function initializeCircles() {
         // Add hover listeners for bomb placement
         circle.addEventListener('mouseover', () => {
             hoveredCircle = circle;
-            if (!bombTooltipShown) {
-                bombTooltip.style.opacity = '1';
-                bombTooltipShown = true;
-                setTimeout(() => {
-                    bombTooltip.style.opacity = '0';
-                }, 5000); // Hide tooltip after 5 seconds
-            }
         });
         
         circle.addEventListener('mouseout', () => {
@@ -155,35 +147,11 @@ function placeBomb(circle) {
     bombCircles.push(circle);
     circle.classList.add('bomb');
     
-    // Visual indicator
+    // Visual indicator using theme color
     const rgbColor = getThemeColor();
-    circle.style.backgroundColor = PERFORMANCE.BOMB_HIGHLIGHT_COLOR;
+    circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.3)`;
     circle.style.borderColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.8)`;
-    circle.style.boxShadow = `0 0 10px rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.4)`;
-    
-    // Show feedback
-    const feedback = document.createElement('div');
-    feedback.textContent = `Bomb placed! (${bombCircles.length}/${PERFORMANCE.MAX_BOMBS})`;
-    feedback.style.position = 'fixed';
-    feedback.style.left = '50%';
-    feedback.style.top = '20px';
-    feedback.style.transform = 'translateX(-50%)';
-    feedback.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.9)`;
-    feedback.style.color = 'white';
-    feedback.style.padding = '8px 15px';
-    feedback.style.borderRadius = '6px';
-    feedback.style.fontSize = '14px';
-    feedback.style.fontFamily = "'Raleway Medium', sans-serif";
-    feedback.style.zIndex = '9999';
-    feedback.style.transition = 'opacity 0.3s ease';
-    document.body.appendChild(feedback);
-    
-    setTimeout(() => {
-        feedback.style.opacity = '0';
-        setTimeout(() => {
-            document.body.removeChild(feedback);
-        }, 300);
-    }, 1500);
+    circle.style.boxShadow = `0 0 10px rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.5)`;
 }
 
 // Helper function to properly remove a bomb and reset styling
@@ -198,31 +166,6 @@ function removeBomb(circle) {
     circle.style.backgroundColor = 'transparent';
     circle.style.borderColor = 'rgba(170, 170, 170, 0.1)';
     circle.style.boxShadow = 'none';
-    
-    // Show feedback for bomb removal
-    const rgbColor = getThemeColor();
-    const feedback = document.createElement('div');
-    feedback.textContent = `Bomb removed! (${bombCircles.length}/${PERFORMANCE.MAX_BOMBS})`;
-    feedback.style.position = 'fixed';
-    feedback.style.left = '50%';
-    feedback.style.top = '20px';
-    feedback.style.transform = 'translateX(-50%)';
-    feedback.style.backgroundColor = 'rgba(80, 80, 80, 0.9)';
-    feedback.style.color = 'white';
-    feedback.style.padding = '8px 15px';
-    feedback.style.borderRadius = '6px';
-    feedback.style.fontSize = '14px';
-    feedback.style.fontFamily = "'Raleway Medium', sans-serif";
-    feedback.style.zIndex = '9999';
-    feedback.style.transition = 'opacity 0.3s ease';
-    document.body.appendChild(feedback);
-    
-    setTimeout(() => {
-        feedback.style.opacity = '0';
-        setTimeout(() => {
-            document.body.removeChild(feedback);
-        }, 300);
-    }, 1500);
 }
 
 // Check if a ripple hits any bomb circles and trigger them
@@ -618,7 +561,7 @@ document.addEventListener('mousemove', handleMouseMove);
 
 // Add keydown event listener for bomb placement
 document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === PERFORMANCE.BOMB_KEY && hoveredCircle) {
+    if (e.key.toLowerCase() === 'b' && hoveredCircle) {
         // Toggle bomb - placeBomb now handles this logic
         placeBomb(hoveredCircle);
     }

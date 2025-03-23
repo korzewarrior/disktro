@@ -4,7 +4,6 @@
     --circle-primary-color-rgb: 212, 175, 55;
     --circle-size: 50px;
     --circle-gap: 8px;
-    --bomb-color: rgba(255, 50, 50, 0.5);
 }
 
 .circlecontainer {
@@ -39,7 +38,7 @@
 /* Bomb styling */
 .circle.bomb {
     animation: bomb-pulse 1.5s infinite alternate;
-    box-shadow: 0 0 12px var(--bomb-color);
+    box-shadow: 0 0 12px rgba(var(--circle-primary-color-rgb), 0.5);
     border-width: 2px;
     z-index: 3;
     position: relative;
@@ -48,11 +47,11 @@
 @keyframes bomb-pulse {
     0% {
         transform: scale(1);
-        box-shadow: 0 0 8px var(--bomb-color);
+        box-shadow: 0 0 8px rgba(var(--circle-primary-color-rgb), 0.4);
     }
     100% {
         transform: scale(1.15);
-        box-shadow: 0 0 16px var(--bomb-color);
+        box-shadow: 0 0 16px rgba(var(--circle-primary-color-rgb), 0.6);
     }
 }
 
