@@ -1,0 +1,152 @@
+/* Navbar Card Specific Styles */
+
+:root {
+    /* Navbar specific variables */
+    --navbar-bg: rgba(10, 10, 10, 0.9);
+    --navbar-border: rgba(255, 255, 255, 0.15);
+    --navbar-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar container */
+#navbar {
+    width: 100%;
+    max-width: var(--container-max-width, 1200px);
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+/* Navbar card container */
+.navbar-card {
+    width: 100%;
+    background-color: var(--navbar-bg);
+    border-radius: var(--card-radius);
+    padding: 15px;
+    margin-bottom: 0;
+    border: 1px solid var(--navbar-border);
+    box-shadow: 0 2px 10px var(--navbar-shadow);
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+/* Simple rule to prevent transform and color change on hover */
+.navbar-card:hover {
+    transform: none !important;
+    box-shadow: 0 2px 10px var(--navbar-shadow) !important;
+}
+
+/* Navbar links container */
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Navbar link styling */
+.navbar-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: #e0e0e0;
+    padding: 8px 15px;
+    transition: all 0.25s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.navbar-link:hover {
+    transform: translateY(-2px);
+    color: var(--circle-primary-color, #D4AF37);
+}
+
+/* Add a subtle underline indicator on hover */
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--circle-primary-color, #D4AF37);
+    transition: all 0.25s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.navbar-link:hover::after {
+    width: 75%;
+    opacity: 0.7;
+}
+
+/* Remove the hover gradient effect */
+.navbar-link::before {
+    display: none;
+}
+
+/* Make active link stand out with theme color */
+.navbar-link.active {
+    color: var(--circle-primary-color, #D4AF37) !important;
+    font-weight: 600;
+    border-bottom: 2px solid var(--circle-primary-color, #D4AF37);
+    padding-bottom: 6px; /* compensate for border */
+    transform: none; /* Don't apply the hover transform */
+}
+
+/* Ensure the active link doesn't show the hover animation */
+.navbar-link.active::after {
+    display: none;
+}
+
+/* Prevent hover effects on active link */
+.navbar-link.active:hover {
+    transform: none;
+    color: var(--circle-primary-color, #D4AF37) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-card {
+        padding: 12px;
+    }
+    
+    .navbar {
+        gap: 10px;
+    }
+    
+    .navbar-link {
+        font-size: 14px;
+        padding: 6px 15px;
+    }
+    
+    .navbar-link.active {
+        padding-bottom: 4px; /* compensate for border */
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-card {
+        padding: 10px;
+    }
+    
+    .navbar-link {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    
+    .navbar-link.active {
+        padding-bottom: 3px; /* compensate for border */
+    }
+} 

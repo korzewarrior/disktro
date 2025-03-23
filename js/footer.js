@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Set active link in header navigation
+    setActiveNavLink();
+    
     // Function to load the footer template and insert it
     function loadFooter() {
         console.log('loadFooter called');
@@ -30,17 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // DIRECT HTML INJECTION - Skip fetch completely to avoid any network issues
         const footerHTML = `
         <div id="disktro-card" class="distro-card footer-card">
-            <div class="card-header">
-                <img src="img/disktro-logo.png" alt="Disktro logo" class="distro-logo">
-                <h2 class="distro-title">DIS<span class="highlight">[K]</span>TRO</h2>
-                <div class="header-controls">
-                    <a href="https://github.com" target="_blank" class="home-link" data-tooltip="Visit GitHub">🏠</a>
-                    <a href="javascript:void(0)" class="docs-link" data-tooltip="Contact site administrator">❓</a>
-                </div>
+            <div class="card-header" style="position: relative;">
+                <a href="index.html" title="Back to Home" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                    <img src="img/disktro-logo.png" alt="Disktro logo" class="distro-logo">
+                    <h2 class="distro-title">DIS<span class="accent">[K]</span>TRO</h2>
+                </a>
+                <a href="#" id="back-to-top" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #888; text-decoration: none; font-size: 20px; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 15l-6-6-6 6"/>
+                    </svg>
+                </a>
             </div>
-            <div class="version-subtitle">ISO Library — Find Your Perfect Linux</div>
             <div class="card-content">
-                <div class="info-bar" style="display:none; margin:0; padding:0; height:0;"></div>
                 <div class="footer-info">
                     <div class="footer-column">
                         <p>Currently tracking <span id="distro-count">16</span> distributions</p>
@@ -50,12 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p>Made with ❤️ for Linux users everywhere</p>
                         <p>All logos belong to their respective projects</p>
                     </div>
-                </div>
-                <div class="footer-nav">
-                    <a href="index.html" class="footer-nav-link" data-page="index">Home</a>
-                    <a href="faq.html" class="footer-nav-link" data-page="faq">FAQ</a>
-                    <a href="getting-started.html" class="footer-nav-link" data-page="getting-started">Getting Started</a>
-                    <a href="compare.html" class="footer-nav-link" data-page="compare">Compare</a>
                 </div>
                 <div class="footer-copyright">
                     © <span id="current-year">${new Date().getFullYear()}</span> DIS[K]TRO — Helping you find your perfect distro
@@ -70,26 +68,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get the footer element
         const footerCard = tempContainer.firstElementChild;
         
-        console.log('Footer element created directly:', footerCard.id);
-        
-        // Update dynamic content
+        // Set dynamic content (distro count, current year)
         setDynamicContent(footerCard);
         
-        // Append footer to the proper container
+        // Add the footer to the appropriate container
         appendFooterToContainer(footerCard);
         
-        // Set active navigation links
-        setActiveNavLink(footerCard);
-        
-        // Initialize tooltips
-        initializeTooltips(footerCard);
-        
-        // Apply layout styling
-        if (typeof updateFooterCardLayout === 'function') {
-            updateFooterCardLayout();
-        }
-        
-        console.log('Footer loaded and inserted successfully');
+        // Set up hover effects for back to top button
+        setupBackToTopButton();
     }
     
     // Set dynamic content in the footer
@@ -103,149 +89,111 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set the distro count
         const countElement = footer.querySelector('#distro-count');
         if (countElement) {
-            countElement.textContent = window.distros ? window.distros.length : 16;
+            // This is defined at the top of main.js - get the count from there
+            const distroCount = window.distros ? window.distros.length : 16;
+            countElement.textContent = distroCount;
         }
     }
     
-    // Append the footer to the appropriate container
+    // Add footer to the appropriate container
     function appendFooterToContainer(footer) {
-        console.log('Appending footer to container');
+        // Try to find the os-sections container first (for the main page)
+        let container = document.querySelector('.os-sections');
         
-        let osSection = document.querySelector('.os-sections');
-        console.log('Found .os-sections?', !!osSection);
-        
-        // If .os-sections doesn't exist (like on content pages), create a container for the footer
-        if (!osSection) {
-            console.log('Creating container for footer');
-            const footerContainer = document.createElement('div');
-            footerContainer.className = 'footer-container';
-            
-            // Create a substitute .os-sections element
-            osSection = document.createElement('div');
-            osSection.className = 'os-sections';
-            
-            footerContainer.appendChild(osSection);
-            
-            // Find where to insert the footer container (before the #footer div)
-            const originalFooter = document.getElementById('footer');
-            if (originalFooter) {
-                console.log('Inserting before #footer div');
-                originalFooter.parentNode.insertBefore(footerContainer, originalFooter);
-            } else {
-                // If no #footer, append to body
-                console.log('No #footer found, appending to body');
-                document.body.appendChild(footerContainer);
-            }
+        // If not found, look for the content-page container (for other pages)
+        if (!container) {
+            container = document.querySelector('.content-page');
         }
         
-        osSection.appendChild(footer);
-        console.log('Footer appended to section container');
+        // If still not found, use the #footer div as a fallback
+        if (!container) {
+            container = document.getElementById('footer');
+        }
         
-        // Hide the original footer div
-        const originalFooter = document.getElementById('footer');
-        if (originalFooter) {
-            originalFooter.style.display = 'none';
-            console.log('Original footer hidden');
+        // If we found a container, append the footer
+        if (container) {
+            console.log('Appending footer to container:', container);
+            container.appendChild(footer);
+            
+            // Update the position immediately
+            updateFooterPosition();
+        } else {
+            console.error('No container found for footer');
+            
+            // Last resort - append to body
+            document.body.appendChild(footer);
         }
     }
     
-    // Set the active navigation link based on current page
-    function setActiveNavLink(footer) {
-        const currentPath = window.location.pathname;
-        console.log('Current path for nav links:', currentPath);
-        const navLinks = footer.querySelectorAll('.footer-nav-link');
+    // Setup hover effects for the back to top button
+    function setupBackToTopButton() {
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (!backToTopBtn) return;
         
-        navLinks.forEach(link => {
-            // Remove any existing active class
-            link.classList.remove('active');
-            
-            // Get the page identifier from data attribute
-            const page = link.getAttribute('data-page');
-            
-            // Check if this is the current page
-            if ((page === 'index' && (currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/'))) ||
-                (page !== 'index' && currentPath.endsWith(page + '.html'))) {
-                link.classList.add('active');
-                console.log('Active nav link set:', page);
-            }
+        backToTopBtn.addEventListener('mouseover', function() {
+            this.style.color = 'rgba(var(--circle-primary-color, 212, 175, 55), 1)';
+        });
+        
+        backToTopBtn.addEventListener('mouseout', function() {
+            this.style.color = '#888';
         });
     }
     
-    // Initialize tooltips for footer links
-    function initializeTooltips(footer) {
-        const footerHomeLink = footer.querySelector('.home-link');
-        const footerDocsLink = footer.querySelector('.docs-link');
+    // Set the active navigation link based on the current page
+    function setActiveNavLink() {
+        // Get all navigation links from the header
+        const navLinks = document.querySelectorAll('.header-nav-link');
+        if (!navLinks || navLinks.length === 0) {
+            console.log('No navigation links found');
+            return;
+        }
         
-        if (typeof addQuickTooltip === 'function') {
-            addQuickTooltip(footerHomeLink);
-            addQuickTooltip(footerDocsLink);
-        } else {
-            // Fallback if addQuickTooltip function isn't available
-            [footerHomeLink, footerDocsLink].forEach(link => {
-                if (link) {
-                    link.addEventListener('mouseenter', function() {
-                        const tooltip = document.createElement('span');
-                        tooltip.className = 'quick-tooltip';
-                        tooltip.textContent = this.getAttribute('data-tooltip');
-                        this.appendChild(tooltip);
-                    });
-                    
-                    link.addEventListener('mouseleave', function() {
-                        const tooltip = this.querySelector('.quick-tooltip');
-                        if (tooltip) tooltip.remove();
-                    });
-                }
-            });
+        // Get the current page filename
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        console.log('Current page detected as:', currentPage);
+        
+        let activeFound = false;
+        
+        // Loop through all nav links and set the active class
+        navLinks.forEach(link => {
+            // Get the href attribute
+            const href = link.getAttribute('href');
+            
+            // If this link's href matches the current page, set it as active
+            if (href === currentPage || 
+                (currentPage === '' && href === 'index.html') ||
+                (currentPage === '/' && href === 'index.html')) {
+                link.classList.add('active');
+                console.log('Setting active class on:', href);
+                activeFound = true;
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        if (!activeFound) {
+            console.log('No active link was found for current page');
         }
     }
     
-    // Fallback simple footer creation if loading template fails
-    function createSimpleFooter() {
-        console.log('Creating simple fallback footer');
-        const footer = document.createElement('div');
-        footer.id = 'disktro-card';
-        footer.className = 'distro-card footer-card';
-        footer.innerHTML = `
-            <div class="card-header">
-                <img src="img/disktro-logo.png" alt="Disktro logo" class="distro-logo">
-                <h2 class="distro-title">DIS<span class="highlight">[K]</span>TRO</h2>
-            </div>
-            <div class="card-content">
-                <div class="footer-nav">
-                    <a href="index.html" class="footer-nav-link" data-page="index">Home</a>
-                    <a href="faq.html" class="footer-nav-link" data-page="faq">FAQ</a>
-                    <a href="getting-started.html" class="footer-nav-link" data-page="getting-started">Getting Started</a>
-                    <a href="compare.html" class="footer-nav-link" data-page="compare">Compare</a>
-                </div>
-                <div class="footer-copyright">
-                    © ${new Date().getFullYear()} DIS[K]TRO — Helping you find your perfect distro
-                </div>
-            </div>
-        `;
-        
-        appendFooterToContainer(footer);
-    }
-    
-    // Update the footer position (ensure it's at the end)
+    // Update the footer position on the page
     function updateFooterPosition() {
-        const disktroCard = document.getElementById('disktro-card');
-        const osSection = document.querySelector('.os-sections');
+        const footerCard = document.getElementById('disktro-card');
+        if (!footerCard) return;
         
-        if (disktroCard && osSection) {
-            osSection.appendChild(disktroCard);
-            console.log('Footer position updated');
-        } else {
-            console.log('Cannot update footer position - elements not found:', 
-                        'disktroCard:', !!disktroCard, 
-                        'osSection:', !!osSection);
-        }
+        // Get the parent container
+        const container = footerCard.parentElement;
+        if (!container) return;
+        
+        // First remove the footer to ensure it's at the end
+        footerCard.remove();
+        
+        // Then re-append it to ensure it's the last element
+        container.appendChild(footerCard);
+        
+        console.log('Footer repositioned');
+        
+        // Setup back to top button again after repositioning
+        setupBackToTopButton();
     }
-    
-    // Force footer loading after a short delay in case there are timing issues
-    setTimeout(function() {
-        if (!document.getElementById('disktro-card')) {
-            console.log('Footer not found after delay, forcing load');
-            loadFooter();
-        }
-    }, 1000);
 });

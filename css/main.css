@@ -294,3 +294,59 @@ header {
         font-size: 2rem;
     }
 }
+
+/* Keyboard Navigation Improvements */
+/* Remove focus outline from content sections while keeping accessibility */
+.content-section:focus,
+.distro-card:focus,
+.resource-section:focus,
+.guides-section:focus,
+.resource-card:focus,
+.guide-card:focus,
+[tabindex]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Add scroll padding to all scrollable elements to account for sticky navbar */
+html {
+    scroll-padding-top: 120px; /* Adjust based on navbar height */
+    scroll-behavior: smooth;
+}
+
+/* Fix for content jumping under navbar when using keyboard navigation */
+[id]:target {
+    padding-top: 100px;
+    margin-top: -80px;
+}
+
+/* Improve keyboard accessibility while removing visible outlines */
+.content-section:focus-visible,
+.distro-card:focus-visible,
+.resource-section:focus-visible,
+.guides-section:focus-visible {
+    box-shadow: 0 0 0 2px var(--circle-primary-color, #D4AF37) !important;
+    border-color: var(--circle-primary-color, #D4AF37) !important;
+}
+
+/* Ensure all interactive elements have appropriate focus states for accessibility */
+button:focus,
+a:focus,
+select:focus,
+input:focus {
+    outline: 2px solid var(--circle-primary-color, #D4AF37);
+    outline-offset: 2px;
+}
+
+/* Hide outline on mouse click, but keep for keyboard navigation */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+input:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Ensure all content pages have consistent scrolling behavior */
+.content-page {
+    padding-top: 20px;
+}

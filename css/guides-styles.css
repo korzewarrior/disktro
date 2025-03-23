@@ -41,6 +41,7 @@
     backdrop-filter: blur(10px);
     /* Remove explicit background-color to use the global card background */
     padding: var(--guide-spacing-xl);
+    scroll-margin-top: 120px;
 }
 
 .content-section {
@@ -268,4 +269,18 @@
         flex-direction: row;
         justify-content: space-between;
     }
+}
+
+/* Fix for keyboard navigation focus styles */
+.guides-section:focus,
+.guide-card:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Keep accessible focus styles for keyboard navigation */
+.guides-section:focus-visible,
+.guide-card:focus-visible {
+    box-shadow: 0 0 0 2px var(--guide-card-border) !important;
+    border-color: var(--circle-primary-color, #D4AF37) !important;
 } 

@@ -1,108 +1,107 @@
-/* Search and Filtering Components */
-
 :root {
     /* Search UI colors */
     --search-bg: rgba(30, 30, 30, 0.6);
-    --search-border: rgba(255, 255, 255, 0.1);
-    --search-focus-border: rgba(255, 255, 255, 0.3);
-    --search-placeholder: #8a8a8a;
+    --search-border: rgba(255, 255, 255, 0.15);
+    --search-focus-border: rgba(var(--circle-primary-color, 212, 175, 55), 0.5);
+    --search-placeholder: #9a9a9a;
     --search-text: #e0e0e0;
     
     /* Filter UI colors */
     --filter-bg: rgba(30, 30, 30, 0.5);
-    --filter-border: rgba(255, 255, 255, 0.1);
+    --filter-border: rgba(255, 255, 255, 0.15);
     --filter-hover-bg: rgba(50, 50, 50, 0.5);
-    --filter-active-bg: rgba(70, 70, 70, 0.6);
-    --filter-text: #d0d0d0;
+    --filter-active-bg: rgba(var(--circle-primary-color, 212, 175, 55), 0.3);
+    --filter-text: #e0e0e0;
     --filter-active-text: #ffffff;
+    
+    /* Common transition */
+    --smooth-transition: all 0.25s ease;
 }
 
-/* Search controls container */
+/* Shared styles for UI components */
+.quick-tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgba(var(--circle-primary-color, 212, 175, 55), 1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(var(--circle-primary-color, 212, 175, 55), 0.3);
+}
+
+/* Main container */
 .search-toggle-container {
-    /* Keep the unique search card properties */
     position: sticky;
-    top: 10px;
-    z-index: 5;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background-color: rgba(10, 10, 10, 0.6);
-    
-    /* Base card shared properties */
-    margin-bottom: 20px;
-    width: 100%;
-    padding: var(--card-padding);
-    border-radius: var(--card-radius);
-    box-shadow: 0 2px 4px var(--card-shadow);
-    border: 1px solid var(--search-border);
-    transition: var(--card-transition);
-    
-    /* Add the card class for JavaScript targeting */
+    top: 80px;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    text-align: left;
+    background-color: #0e0e0e;
+    z-index: 50;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.192);
+    transition: var(--smooth-transition);
 }
 
-/* Add hover effect that matches base card but keeps the blur */
-.search-toggle-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px var(--card-hover-shadow);
-    border-color: var(--highlight-color);
-    z-index: 10; /* Higher than base cards to stay on top */
-}
-
+/* Control bar layout */
 .control-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
     width: 100%;
-    flex-wrap: nowrap;
 }
 
-/* Search bar styling */
+/* Search functionality */
 .control-bar .search-bar-wrapper {
     flex: 2;
     min-width: 180px;
-    max-width: 60%;
+    max-width: 65%;
     position: relative;
     margin-bottom: 0;
-    width: auto;
 }
 
 #search-bar {
     width: 100%;
-    padding: 10px 35px 10px 15px;
     background-color: var(--search-bg);
-    color: var(--search-text);
     border: 1px solid var(--search-border);
-    border-radius: 4px;
-    font-size: 14px;
-    transition: all 0.3s ease-in-out;
-}
-
-#search-bar:focus, #search-bar:hover {
-    outline: none;
-    border-color: var(--search-focus-border);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    color: var(--search-text);
+    padding: 12px 35px 12px 12px;
+    border-radius: 6px;
+    transition: var(--smooth-transition);
 }
 
 #search-bar::placeholder {
     color: var(--search-placeholder);
-}
-
-.search-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--search-placeholder);
-    font-size: 16px;
     opacity: 0.7;
-    pointer-events: none;
 }
 
-/* Right side controls group */
+#search-bar:hover {
+    transform: scale(1.01);
+    border-color: var(--circle-primary-color, #D4AF37);
+}
+
+#search-bar:focus {
+    transform: scale(1.01);
+    border-color: var(--circle-primary-color, #D4AF37) !important;
+    box-shadow: 0 0 5px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
+    color: var(--search-text);
+    outline: none;
+}
+
+/* Controls group */
 .controls-right {
     display: flex;
     align-items: center;
@@ -112,6 +111,164 @@
     flex-wrap: nowrap;
 }
 
+/* Button Container */
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.192);
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* Toggle and filter styles */
+.toggle-wrapper, .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.toggle-wrapper p, .filter-group-title, .reset-button-container p, .version-filter-wrapper p {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+}
+
+.toggle-buttons {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.192);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 36px;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.switch-container:first-child {
+    margin-left: 15px;
+}
+
+.switch-container:last-child {
+    margin-right: 10px;
+}
+
+/* Toggle button styling */
+.toggle-button {
+    padding: 10px 16px;
+    background-color: var(--search-bg);
+    border: 1px solid var(--search-border);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--search-text);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: var(--smooth-transition);
+}
+
+.toggle-button:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggle-button::before {
+    display: none;
+}
+
+.toggle-button:hover {
+    background-color: rgba(var(--circle-primary-color, 212, 175, 55), 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-color: rgba(var(--circle-primary-color, 212, 175, 55), 0.5);
+    color: rgba(var(--circle-primary-color, 212, 175, 55), 1);
+}
+
+.toggle-button.active {
+    background-color: var(--circle-primary-color, #D4AF37);
+    border-color: var(--circle-primary-color, #D4AF37);
+    color: #0e0e0e;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Layout toggle */
+#layout-toggle {
+    display: flex;
+    gap: 2px;
+    border: 1px solid var(--search-border);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#layout-toggle .toggle-button {
+    width: 42px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 4px 0;
+    font-size: 20px;
+    line-height: 1;
+    background-color: var(--search-bg);
+    border: none;
+    border-radius: 0;
+}
+
+#layout-toggle .toggle-button:first-child {
+    border-right: 1px solid var(--search-border);
+}
+
+/* Update layout toggle active state to match other active states */
+#layout-toggle .toggle-button.active {
+    background-color: var(--circle-primary-color, #D4AF37);
+    color: #0e0e0e;
+    border: none;
+    font-weight: 500;
+}
+
+/* Reset button styling */
+.reset-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#reset-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.192);
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: #e0e0e0;
+    border-radius: 50%;
+    transition: var(--smooth-transition);
+    box-shadow: 0 2px 4px var(--card-shadow);
+}
+
+#reset-button:hover {
+    transform: scale(1.05);
+    color: var(--circle-primary-color, #D4AF37);
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: transparent;
+}
+
 /* Version filter styling */
 .version-filter-wrapper {
     display: flex;
@@ -119,102 +276,72 @@
     flex-direction: row;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 #version-filter {
-    padding: 8px 12px;
-    height: 36px;
+    padding: 10px 35px 10px 14px;
+    height: 41px;
     background-color: var(--search-bg);
     color: var(--search-text);
     border: 1px solid var(--search-border);
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     min-width: 100px;
-    width: auto;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-image: none;
     background-repeat: no-repeat;
     background-position: right 8px center;
     background-size: 16px;
     padding-right: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: var(--smooth-transition);
+    letter-spacing: 0.5px;
+    position: relative;
 }
 
-/* Filter group styling */
-.filter-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+#version-filter:hover {
+    background-color: var(--circle-primary-color, #D4AF37);
+    color: #0e0e0e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* Reset button styling */
-.reset-button-container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin: 0;
-    padding: 0;
-    height: auto;
+#version-filter:focus {
+    background-color: var(--circle-primary-color, #D4AF37);
+    color: #0e0e0e;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#reset-button {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: var(--search-bg);
-    color: var(--search-text);
-    font-size: 18px;
-    border: 1px solid var(--search-border);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Add a clearer dropdown indicator with a label */
+.version-filter-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(var(--circle-primary-color, 212, 175, 55), 0.7);
+    font-size: 10px;
+    pointer-events: none;
+    z-index: 2;
+    transition: var(--smooth-transition);
 }
 
-#reset-button:hover {
-    background-color: var(--filter-hover-bg);
-    border-color: var(--search-focus-border);
-    transform: none;
+.version-filter-wrapper:hover::after {
+    color: #0e0e0e;
 }
 
-/* Layout toggle */
-#layout-toggle {
-    display: flex;
-    gap: 5px;
+/* Update the themed version */
+#version-filter.themed {
+    background-color: rgba(var(--circle-primary-color, 212, 175, 55), 0.15);
+    color: rgba(var(--circle-primary-color, 212, 175, 55), 1);
+    background-image: none;
 }
 
-#layout-toggle .toggle-button {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    font-size: 16px;
-}
-
-.toggle-button {
-    padding: 8px 15px;
-    background-color: var(--search-bg);
-    border: 1px solid var(--search-border);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--search-text);
-}
-
-.toggle-button:hover {
-    background-color: var(--filter-hover-bg);
-}
-
-.toggle-button.active {
-    background-color: var(--filter-active-bg);
-    border-color: var(--search-focus-border);
-}
-
-/* Search/filter results status */
+/* Results styling */
 .results-info {
     font-size: 14px;
     color: var(--search-text);
@@ -222,30 +349,21 @@
     text-align: right;
 }
 
-.highlight {
-    background-color: rgba(255, 255, 0, 0.2);
-    padding: 0 2px;
-    border-radius: 2px;
-}
-
-/* No results message */
 .no-results {
-    width: 100%;
-    padding: 40px 20px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
     text-align: center;
-    color: var(--search-text);
-    background-color: rgba(30, 30, 30, 0.4);
-    border-radius: 8px;
-    border: 1px solid var(--search-border);
-    margin-top: 20px;
-    font-size: 18px;
+    margin: 10px 0;
 }
 
 .no-results i {
-    font-size: 40px;
-    margin-bottom: 10px;
-    display: block;
     opacity: 0.5;
+}
+
+/* No matches message - works with the card-based styling */
+.no-matches-message {
+    max-width: 600px;
+    margin: 20px auto !important; /* Center the card */
 }
 
 /* Sort controls */
@@ -265,13 +383,82 @@
     padding: 6px 10px;
     background-color: var(--search-bg);
     border: 1px solid var(--search-border);
-    border-radius: 4px;
+    border-radius: 6px;
     color: var(--search-text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--smooth-transition);
 }
 
 .sort-select:focus {
     outline: none;
     border-color: var(--search-focus-border);
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .button-container {
+        flex-wrap: wrap;
+    }
+    
+    .filter-group, .version-filter-wrapper, .reset-button-container {
+        margin: 10px;
+    }
+    
+    #layout-toggle .toggle-button {
+        padding: 6px 10px;
+        min-width: 36px;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-toggle-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #search-bar {
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .button-container {
+        width: 100%;
+        padding: 15px 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .toggle-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 5px 0;
+    }
+    
+    .toggle-button {
+        margin: 5px;
+    }
+    
+    .version-filter-wrapper, .filter-group {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    #version-filter {
+        width: 100%;
+    }
+    
+    .control-bar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .control-bar .search-bar-wrapper {
+        max-width: 100%;
+        min-width: 100%;
+    }
+    
+    .controls-right {
+        width: 100%;
+        justify-content: center;
+    }
 } 

@@ -65,6 +65,17 @@
         min-width: 36px;
     }
     
+    /* Header navigation responsiveness */
+    .header-nav {
+        gap: 10px;
+        padding: 12px 0;
+    }
+    
+    .header-nav-link {
+        font-size: 14px;
+        padding: 5px 12px;
+    }
+    
     /* Layout adjustments */
     .os-sections.grid-layout {
         grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
@@ -119,10 +130,62 @@
         margin-top: 15px;
         justify-content: center;
     }
+    
+    /* Title card styles - not currently used */
+    .title-card {
+        max-width: 350px;
+        padding: 12px;
+    }
+    
+    .title-card .header-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .title-card .title {
+        font-size: 2rem;
+    }
+    
+    .title-card .tagline {
+        font-size: 0.9rem;
+    }
+    
+    .header-card {
+        margin-top: 20px;
+        padding: 12px;
+    }
+    
+    .header-card .header-logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+    
+    .header-card .title {
+        font-size: 2rem;
+    }
+    
+    .header-card .tagline {
+        font-size: 0.9rem;
+    }
 }
 
 /* Small devices (landscape phones) */
 @media (max-width: 600px) {
+    /* Header navigation responsiveness */
+    .header-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .header-nav-link {
+        font-size: 13px;
+        padding: 4px 10px;
+        flex-grow: 1;
+        text-align: center;
+    }
+    
     /* Layout and structure */
     .os-sections.grid-layout {
         grid-template-columns: 1fr;
@@ -193,6 +256,49 @@
     #reset-button {
         width: 100%;
         border-radius: 4px;
+    }
+    
+    /* Title card styles - not currently used */
+    .title-card {
+        max-width: 280px;
+        padding: 10px;
+    }
+    
+    .title-card .header-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .title-card .title {
+        font-size: 1.8rem;
+    }
+    
+    .title-card .tagline {
+        font-size: 0.8rem;
+    }
+    
+    .header-card {
+        margin-top: 15px;
+        padding: 10px;
+    }
+    
+    .header-card .header-brand {
+        flex-direction: column;
+    }
+    
+    .header-card .header-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    
+    .header-card .title {
+        font-size: 1.8rem;
+    }
+    
+    .header-card .tagline {
+        font-size: 0.8rem;
     }
 }
 

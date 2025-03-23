@@ -1,0 +1,480 @@
+/* Compare Page Specific Styles */
+
+/* Root variables for compare page */
+:root {
+    --compare-spacing-sm: 10px;
+    --compare-spacing-md: 15px;
+    --compare-spacing-lg: 20px;
+    --compare-spacing-xl: 30px;
+    --compare-radius-sm: 4px;
+    --compare-radius-md: 6px;
+    --table-border-color: rgba(255, 255, 255, 0.1);
+    --section-border-color: rgba(255, 255, 255, 0.1);
+    --input-bg-color: rgba(30, 30, 30, 0.6);
+    --input-bg-hover: rgba(50, 50, 50, 0.8);
+    --input-border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Content page spacing and layout */
+.content-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    pointer-events: none; /* Allow clicks to pass through to circles */
+}
+
+/* Ensure content inside cards remains clickable */
+.content-page .distro-card {
+    pointer-events: auto;
+}
+
+/* Section subtitle for compare page */
+.section-subtitle {
+    position: relative;
+    margin: 20px 0 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--circle-primary-color, #D4AF37);
+}
+
+/* Selector container for dropdown selects */
+.selector-container {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--compare-spacing-md);
+    margin-bottom: var(--compare-spacing-md);
+    width: 100%;
+}
+
+.selector {
+    flex: 1;
+    min-width: 200px;
+}
+
+.selector-label {
+    display: block;
+    margin-bottom: var(--compare-spacing-sm);
+    font-weight: bold;
+    color: var(--circle-primary-color, #D4AF37);
+}
+
+/* Dropdown styling */
+select.distro-select {
+    /* Box model */
+    width: 100%;
+    padding: 12px;
+    padding-right: 30px;
+    
+    /* Visual */
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--compare-radius-md);
+    
+    /* Typography */
+    color: #e0e0e0;
+    font-size: 16px;
+    
+    /* Dropdown styling */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e0e0e0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    
+    /* Misc */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select.distro-select:hover {
+    background-color: var(--input-bg-hover);
+    border-color: var(--circle-primary-color, #D4AF37);
+}
+
+select.distro-select:focus {
+    outline: none;
+    border-color: var(--circle-primary-color, #D4AF37);
+    box-shadow: 0 0 0 2px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
+}
+
+select.distro-select:focus-visible {
+    outline: 2px solid var(--circle-primary-color, #D4AF37);
+    outline-offset: 2px;
+}
+
+/* Compare button container */
+.compare-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--compare-spacing-lg);
+}
+
+/* Compare button styling */
+.compare-button {
+    /* Box model */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--compare-spacing-sm);
+    padding: 12px 24px;
+    
+    /* Visual */
+    background-color: var(--circle-primary-color, #D4AF37);
+    border: none;
+    border-radius: var(--compare-radius-md);
+    
+    /* Typography */
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    
+    /* Misc */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.compare-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.compare-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.5);
+}
+
+.compare-button:focus:not(:focus-visible) {
+    box-shadow: none;
+}
+
+.compare-button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.compare-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.compare-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Preset buttons section */
+.presets-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--compare-spacing-sm);
+    margin-bottom: var(--compare-spacing-md);
+}
+
+.preset-button {
+    /* Box model */
+    padding: 10px 15px;
+    
+    /* Visual */
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--compare-radius-md);
+    
+    /* Typography */
+    color: #e0e0e0;
+    font-size: 14px;
+    
+    /* Misc */
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.preset-button:hover {
+    background-color: var(--input-bg-hover);
+    border-color: var(--circle-primary-color, #D4AF37);
+    transform: translateY(-2px);
+}
+
+.preset-button:focus {
+    outline: none;
+    border-color: var(--circle-primary-color, #D4AF37);
+    box-shadow: 0 0 0 2px rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
+}
+
+.preset-button:focus-visible {
+    outline: 2px solid var(--circle-primary-color, #D4AF37);
+    outline-offset: 2px;
+}
+
+.preset-button:active,
+.preset-button.active {
+    background-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.2);
+    border-color: var(--circle-primary-color, #D4AF37);
+    transform: translateY(0);
+}
+
+/* Comparison results styling */
+#comparison-results {
+    margin-top: var(--compare-spacing-lg);
+}
+
+/* Error messages */
+.error-message {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: var(--compare-radius-md);
+    padding: var(--compare-spacing-md);
+    margin: var(--compare-spacing-md) 0;
+    color: #e0e0e0;
+}
+
+/* Comparison results styling */
+.comparison-header {
+    text-align: center;
+    margin-bottom: var(--compare-spacing-xl);
+}
+
+.comparison-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--circle-primary-color, #D4AF37);
+    margin-bottom: var(--compare-spacing-md);
+}
+
+/* Distro logos container */
+.distro-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--compare-spacing-xl);
+    margin-bottom: var(--compare-spacing-xl);
+}
+
+.distro-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--compare-spacing-sm);
+}
+
+.comparison-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.versus-divider {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Comparison sections */
+.comparison-section {
+    margin-bottom: var(--compare-spacing-xl);
+    border-bottom: 1px solid var(--section-border-color);
+    padding-bottom: var(--compare-spacing-md);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--circle-primary-color, #D4AF37);
+    margin-bottom: var(--compare-spacing-md);
+    text-align: center;
+}
+
+/* Comparison table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--compare-spacing-md);
+    table-layout: fixed; /* Helps with responsive tables */
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border-color);
+    word-wrap: break-word; /* Allows words to break and wrap */
+}
+
+.comparison-table th {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--circle-primary-color, #D4AF37);
+    font-weight: bold;
+}
+
+.comparison-table th:first-child {
+    width: 25%; /* Feature column gets 25% width */
+}
+
+.comparison-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Flex container for strengths/weaknesses */
+.comparison-flex-container {
+    display: flex;
+}
+
+.distro-details {
+    flex: 1;
+    padding: var(--compare-spacing-md);
+}
+
+.comparison-flex-container .distro-details:first-child {
+    border-right: 1px solid var(--section-border-color);
+}
+
+.distro-name {
+    color: var(--circle-primary-color, #D4AF37);
+    margin-top: 0;
+    margin-bottom: var(--compare-spacing-md);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.distro-list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.distro-list li {
+    margin-bottom: 8px;
+}
+
+/* Comparison conclusion */
+.comparison-conclusion {
+    text-align: center;
+    margin-top: var(--compare-spacing-xl);
+    padding: var(--compare-spacing-md);
+    background-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.05);
+    border-radius: var(--compare-radius-md);
+}
+
+.comparison-conclusion a {
+    color: var(--circle-primary-color, #D4AF37);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.comparison-conclusion a:hover {
+    text-decoration: underline;
+}
+
+.comparison-conclusion a:focus {
+    outline: 2px solid var(--circle-primary-color, #D4AF37);
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .selector-container {
+        flex-direction: column;
+        gap: var(--compare-spacing-md);
+    }
+    
+    .selector {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .presets-container {
+        justify-content: center;
+    }
+    
+    .comparison-flex-container {
+        flex-direction: column;
+    }
+    
+    .comparison-flex-container .distro-details:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--section-border-color);
+        padding-bottom: var(--compare-spacing-md);
+        margin-bottom: var(--compare-spacing-md);
+    }
+    
+    .distro-logos {
+        flex-direction: column;
+        gap: var(--compare-spacing-md);
+    }
+    
+    .versus-divider {
+        margin: var(--compare-spacing-sm) 0;
+    }
+    
+    /* Better table handling on mobile */
+    .comparison-table {
+        font-size: 14px;
+    }
+    
+    .comparison-table th:first-child {
+        width: 30%; /* Slightly wider feature column on mobile */
+    }
+    
+    .comparison-table th, 
+    .comparison-table td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .preset-button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .comparison-table {
+        /* Create a horizontally scrollable table container */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .comparison-title {
+        font-size: 20px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+}
+
+/* Placeholder styles for initial state */
+.initial-state {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.placeholder-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.comparison-placeholder-logo {
+    width: 100px;
+    height: 100px;
+    opacity: 0.8;
+}
+
+.centered-text {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #e0e0e0;
+} 
