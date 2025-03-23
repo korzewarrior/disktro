@@ -208,6 +208,28 @@ h2 {
     color: #888;
 }
 
+/* Selected card styling */
+.distro-card.selected {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    border-color: var(--circle-primary-color);
+    position: relative;
+}
+
+.distro-card.selected::after {
+    content: "Selected";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--circle-primary-color);
+    color: #FFFFFF;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
 /* ----- MOBILE ----- */
 
 @media (max-width: 600px) {
