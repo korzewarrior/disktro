@@ -10,15 +10,44 @@ const PERFORMANCE = {
     MAX_RIPPLE_DISTANCE: 300, // Increased from 150 to 300 for more dramatic explosions
     // UI elements ripple effect
     UI_RIPPLE_INTENSITY: 0.4, // How much UI elements move (0.0 to 1.0)
-    UI_RIPPLE_DURATION: 600 // Duration in ms
+    UI_RIPPLE_DURATION: 600, // Duration in ms
+    // Bomb feature configuration
+    MAX_BOMBS: 5, // Maximum number of bombs that can be placed
+    BOMB_KEY: 'b', // Key to press to place a bomb
+    BOMB_HIGHLIGHT_COLOR: 'rgba(255, 50, 50, 0.3)' // Color to highlight bomb circles
 };
 
 // Store the circles in an array for faster access
 let circlesArray = [];
 let isLowPerformanceDevice = false;
 
+// Bomb state tracking
+let bombCircles = []; // Array to track which circles have bombs
+let hoveredCircle = null; // Currently hovered circle
+let bombTooltipShown = false; // Track if we've shown the tooltip
+
 // Cache DOM elements
 const container = document.querySelector('.circlecontainer');
+
+// Create a tooltip element for bomb instructions
+const bombTooltip = document.createElement('div');
+bombTooltip.style.position = 'fixed';
+bombTooltip.style.bottom = '20px';
+bombTooltip.style.left = '50%';
+bombTooltip.style.transform = 'translateX(-50%)';
+bombTooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+bombTooltip.style.color = 'white';
+bombTooltip.style.padding = '10px 15px';
+bombTooltip.style.borderRadius = '6px';
+bombTooltip.style.fontSize = '14px';
+bombTooltip.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+bombTooltip.style.zIndex = '9999';
+bombTooltip.style.fontFamily = "'Raleway Medium', sans-serif";
+bombTooltip.style.pointerEvents = 'none';
+bombTooltip.style.opacity = '0';
+bombTooltip.style.transition = 'opacity 0.3s ease';
+bombTooltip.textContent = `Hover over a circle and press '${PERFORMANCE.BOMB_KEY}' to place a bomb (${PERFORMANCE.MAX_BOMBS} max)`;
+document.body.appendChild(bombTooltip);
 
 // Performance detection - run a quick test
 function detectPerformance() {
@@ -55,6 +84,10 @@ function initializeCircles() {
     container.innerHTML = '';
     circlesArray = [];
     
+    // Reset bomb circles when regenerating
+    bombCircles = [];
+    hoveredCircle = null;
+    
     const maxCircles = detectPerformance();
     const { size, gap } = getCircleSizeAndGap();
     const totalSize = size + gap;
@@ -77,6 +110,23 @@ function initializeCircles() {
     for (let i = 0; i < totalCircles; i++) {
         const circle = document.createElement('div');
         circle.classList.add('circle');
+        
+        // Add hover listeners for bomb placement
+        circle.addEventListener('mouseover', () => {
+            hoveredCircle = circle;
+            if (!bombTooltipShown) {
+                bombTooltip.style.opacity = '1';
+                bombTooltipShown = true;
+                setTimeout(() => {
+                    bombTooltip.style.opacity = '0';
+                }, 5000); // Hide tooltip after 5 seconds
+            }
+        });
+        
+        circle.addEventListener('mouseout', () => {
+            hoveredCircle = null;
+        });
+        
         fragment.appendChild(circle);
         circlesArray.push(circle);
     }
@@ -84,6 +134,91 @@ function initializeCircles() {
     container.appendChild(fragment);
     
     console.log(`Initialized ${totalCircles} circles of ${totalCirclesNeeded} needed (viewport: ${viewportWidth}x${viewportHeight}). Low performance mode: ${isLowPerformanceDevice}`);
+}
+
+// Function to place a bomb on a circle
+function placeBomb(circle) {
+    // Check if we've reached the max number of bombs
+    if (bombCircles.length >= PERFORMANCE.MAX_BOMBS) {
+        // Remove the oldest bomb
+        const oldestBomb = bombCircles.shift();
+        oldestBomb.classList.remove('bomb');
+        oldestBomb.style.backgroundColor = 'transparent';
+        oldestBomb.style.borderColor = 'rgba(170, 170, 170, 0.1)';
+    }
+    
+    // Mark this circle as a bomb
+    bombCircles.push(circle);
+    circle.classList.add('bomb');
+    
+    // Visual indicator
+    const rgbColor = getThemeColor();
+    circle.style.backgroundColor = PERFORMANCE.BOMB_HIGHLIGHT_COLOR;
+    circle.style.borderColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.8)`;
+    circle.style.boxShadow = `0 0 10px rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.4)`;
+    
+    // Show feedback
+    const feedback = document.createElement('div');
+    feedback.textContent = `Bomb placed! (${bombCircles.length}/${PERFORMANCE.MAX_BOMBS})`;
+    feedback.style.position = 'fixed';
+    feedback.style.left = '50%';
+    feedback.style.top = '20px';
+    feedback.style.transform = 'translateX(-50%)';
+    feedback.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.9)`;
+    feedback.style.color = 'white';
+    feedback.style.padding = '8px 15px';
+    feedback.style.borderRadius = '6px';
+    feedback.style.fontSize = '14px';
+    feedback.style.fontFamily = "'Raleway Medium', sans-serif";
+    feedback.style.zIndex = '9999';
+    feedback.style.transition = 'opacity 0.3s ease';
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(feedback);
+        }, 300);
+    }, 1500);
+}
+
+// Check if a ripple hits any bomb circles and trigger them
+function checkBombDetonation(sourceX, sourceY, maxDistance) {
+    if (bombCircles.length === 0) return; // No bombs placed
+    
+    const bombsToTrigger = [];
+    
+    // Check each bomb to see if the explosion wave reaches it
+    bombCircles.forEach(bombCircle => {
+        // Skip if the bomb circle itself was the source of the explosion
+        if (bombCircle.classList.contains('clicked')) return;
+        
+        const rect = bombCircle.getBoundingClientRect();
+        const circleCenterX = rect.left + rect.width / 2;
+        const circleCenterY = rect.top + rect.height / 2;
+        
+        const distance = getDistance(sourceX, sourceY, circleCenterX, circleCenterY);
+        
+        // If the explosion wave reaches this bomb, add it to trigger list
+        if (distance <= maxDistance) {
+            bombsToTrigger.push({
+                circle: bombCircle,
+                delay: distance / 700 * 1000 // The delay should match the wave arrival
+            });
+        }
+    });
+    
+    // Trigger the bombs with appropriate delays
+    bombsToTrigger.forEach(bomb => {
+        setTimeout(() => {
+            // Remove from bomb list
+            bombCircles = bombCircles.filter(c => c !== bomb.circle);
+            bomb.circle.classList.remove('bomb');
+            
+            // Trigger the explosion
+            propagateRipple(bomb.circle);
+        }, bomb.delay + 100); // Add a small extra delay for visual effect
+    });
 }
 
 // Helper function to convert hex to RGB
@@ -156,6 +291,9 @@ const handleMouseMove = throttle((e) => {
     // Use requestAnimationFrame for smoother updates
     requestAnimationFrame(() => {
         circlesArray.forEach(circle => {
+            // Skip if this is a bomb circle
+            if (circle.classList.contains('bomb')) return;
+            
             // Only calculate for visible circles (performance optimization)
             const rect = circle.getBoundingClientRect();
             
@@ -246,6 +384,9 @@ function applyUIRippleEffect(sourceX, sourceY) {
     
     // Maximum distance for effect to reach - FURTHER REDUCED for shorter propagation
     const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+    
+    // Check if any bombs should detonate from this explosion
+    checkBombDetonation(sourceX, sourceY, maxDistance);
     
     // Setup wave propagation calculations for each element
     elements.forEach(element => {
@@ -365,6 +506,9 @@ function propagateRipple(clickedCircle) {
     const animationBatch = [];
     
     circlesArray.forEach(circle => {
+        // Skip the clicked circle itself
+        if (circle === clickedCircle) return;
+        
         const rect = circle.getBoundingClientRect();
         const distance = getDistance(
             clickedX, clickedY,
@@ -402,16 +546,43 @@ function propagateRipple(clickedCircle) {
             
             const circleTimeout = setTimeout(() => {
                 animation.circle.classList.remove('clicked');
-                animation.circle.style.backgroundColor = 'transparent';
+                // Only reset backgroundColor if it's not a bomb
+                if (!animation.circle.classList.contains('bomb')) {
+                    animation.circle.style.backgroundColor = 'transparent';
+                }
             }, 500);
             
             animation.circle.dataset.timeoutId = circleTimeout;
         }, animation.delay);
     });
+    
+    // Add the clicked animation to the source circle
+    clickedCircle.classList.add('clicked');
+    clickedCircle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.6)`;
+    
+    const circleTimeout = setTimeout(() => {
+        clickedCircle.classList.remove('clicked');
+        // Only reset background if it's not a bomb
+        if (!clickedCircle.classList.contains('bomb')) {
+            clickedCircle.style.backgroundColor = 'transparent';
+        }
+    }, 500);
+    
+    clickedCircle.dataset.timeoutId = circleTimeout;
 }
 
 // Event listeners
 document.addEventListener('mousemove', handleMouseMove);
+
+// Add keydown event listener for bomb placement
+document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === PERFORMANCE.BOMB_KEY && hoveredCircle) {
+        // Prevent placing bomb on a circle that already has one
+        if (!hoveredCircle.classList.contains('bomb')) {
+            placeBomb(hoveredCircle);
+        }
+    }
+});
 
 document.addEventListener('click', (e) => {
     const clickedElement = e.target;

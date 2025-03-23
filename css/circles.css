@@ -4,6 +4,7 @@
     --circle-primary-color-rgb: 212, 175, 55;
     --circle-size: 50px;
     --circle-gap: 8px;
+    --bomb-color: rgba(255, 50, 50, 0.5);
 }
 
 .circlecontainer {
@@ -33,6 +34,26 @@
     pointer-events: auto; /* Make circles clickable */
     will-change: transform, opacity, background-color, border-color; /* Optimize for animations */
     contain: layout paint style; /* Containment for performance */
+}
+
+/* Bomb styling */
+.circle.bomb {
+    animation: bomb-pulse 1.5s infinite alternate;
+    box-shadow: 0 0 12px var(--bomb-color);
+    border-width: 2px;
+    z-index: 3;
+    position: relative;
+}
+
+@keyframes bomb-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 8px var(--bomb-color);
+    }
+    100% {
+        transform: scale(1.15);
+        box-shadow: 0 0 16px var(--bomb-color);
+    }
 }
 
 @keyframes ripple {
