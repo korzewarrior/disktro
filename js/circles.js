@@ -383,8 +383,8 @@ function applyUIRippleEffect(sourceX, sourceY) {
         document.body.appendChild(waveIndicator);
     }
     
-    // Maximum distance for effect to reach - FURTHER REDUCED for shorter propagation
-    const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+    // Maximum distance for effect to reach - INCREASED for wider impact radius
+    const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.4; // Increased from 0.3 to 0.4
     
     // Check if any bombs should detonate from this explosion
     checkBombDetonation(sourceX, sourceY, maxDistance);
@@ -403,7 +403,7 @@ function applyUIRippleEffect(sourceX, sourceY) {
         // Calculate distance from explosion center to element center
         const distance = Math.sqrt(dirX * dirX + dirY * dirY);
         
-        // Skip elements too far away from explosion - using stricter threshold
+        // Skip elements too far away from explosion - using wider radius now
         if (distance > maxDistance) return;
         
         // Calculate adjusted distance accounting for element size
@@ -431,25 +431,25 @@ function applyUIRippleEffect(sourceX, sourceY) {
             // Using squared falloff (less aggressive than cubic) to increase impact radius
             const normalizedDistance = distance / maxDistance;
             const falloff = Math.max(0, 1 - (normalizedDistance * normalizedDistance));
-            const intensity = Math.max(0.15, falloff * PERFORMANCE.UI_RIPPLE_INTENSITY * 1.8);
+            const intensity = Math.max(0.15, falloff * PERFORMANCE.UI_RIPPLE_INTENSITY * 2.2); // Increased from 1.8 to 2.2
             
             // Skip very low intensity effects but with a lower threshold
-            if (intensity < 0.12) return;
+            if (intensity < 0.1) return; // Lowered from 0.12 to 0.1 to include more distant elements
             
             // Normalize direction vector
             const length = Math.max(0.1, Math.sqrt(dirX * dirX + dirY * dirY));
             const normDirX = dirX / length;
             const normDirY = dirY / length;
             
-            // Calculate transform amount (move away from source)
-            const moveX = normDirX * intensity * 28; // increased for more impact
-            const moveY = normDirY * intensity * 28;
+            // Calculate transform amount (move away from source) - INCREASED for stronger impact
+            const moveX = normDirX * intensity * 35; // Increased from 28 to 35
+            const moveY = normDirY * intensity * 35; // Increased from 28 to 35
             
-            // Calculate rotation (subtle twist based on position)
-            const rotateAmount = (Math.atan2(dirY, dirX) * intensity) * 2.2; // increased for more visible effect
+            // Calculate rotation (subtle twist based on position) - INCREASED for stronger impact
+            const rotateAmount = (Math.atan2(dirY, dirX) * intensity) * 3.0; // Increased from 2.2 to 3.0
             
-            // Calculate scale (subtle pulse)
-            const scaleAmount = 1 + (intensity * 0.09); // increased for more visible effect
+            // Calculate scale (subtle pulse) - INCREASED for stronger impact
+            const scaleAmount = 1 + (intensity * 0.12); // Increased from 0.09 to 0.12
             
             // Apply the animation through CSS custom properties
             element.style.setProperty('--move-x', `${moveX}px`);
@@ -500,8 +500,8 @@ function propagateRipple(clickedCircle) {
     // Apply ripple effect to UI elements
     applyUIRippleEffect(clickedX, clickedY);
     
-    // Reduce max ripple distance for a more localized effect that matches the UI element ripple
-    const localizedRippleDistance = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+    // Adjust ripple distance to match the UI element ripple distance
+    const localizedRippleDistance = Math.min(window.innerWidth, window.innerHeight) * 0.4; // Updated to match UI elements
     
     // Generate an array of animations to run for better batching
     const animationBatch = [];
@@ -519,11 +519,11 @@ function propagateRipple(clickedCircle) {
         
         if (distance < localizedRippleDistance) {
             // Calculate delay based on distance - faster propagation
-            const delay = distance / 700; // Speed up for shorter propagation time
+            const delay = distance / 750; // Slightly slower for better matching with UI ripple
             
             // Calculate intensity with squared falloff (less aggressive than cubic) for more impact
             const normalizedDistance = distance / localizedRippleDistance;
-            const falloff = Math.max(0.12, 1 - (normalizedDistance * normalizedDistance));
+            const falloff = Math.max(0.1, 1 - (normalizedDistance * normalizedDistance)); // Lower threshold to 0.1
             
             // Store all animations to apply together
             animationBatch.push({
