@@ -244,8 +244,8 @@ function applyUIRippleEffect(sourceX, sourceY) {
         document.body.appendChild(waveIndicator);
     }
     
-    // Maximum distance for effect to reach
-    const maxDistance = Math.max(window.innerWidth, window.innerHeight) * 0.8;
+    // Maximum distance for effect to reach - REDUCED to create more localized effects
+    const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.4;
     
     // Setup wave propagation calculations for each element
     elements.forEach(element => {
@@ -261,7 +261,7 @@ function applyUIRippleEffect(sourceX, sourceY) {
         // Calculate distance from explosion center to element center
         const distance = Math.sqrt(dirX * dirX + dirY * dirY);
         
-        // Skip elements too far away from explosion
+        // Skip elements too far away from explosion - using stricter threshold
         if (distance > maxDistance) return;
         
         // Calculate adjusted distance accounting for element size
@@ -285,8 +285,14 @@ function applyUIRippleEffect(sourceX, sourceY) {
         
         // Schedule the animation to start when the wave reaches this element
         setTimeout(() => {
-            // Calculate intensity based on distance (closer = stronger effect)
-            const intensity = Math.max(0.1, (1 - (distance / maxDistance)) * PERFORMANCE.UI_RIPPLE_INTENSITY * 1.5);
+            // Calculate intensity based on distance with more aggressive falloff
+            // Using cubic falloff (distance^3) instead of linear falloff
+            const normalizedDistance = distance / maxDistance;
+            const falloff = Math.max(0, 1 - (normalizedDistance * normalizedDistance * normalizedDistance));
+            const intensity = Math.max(0.1, falloff * PERFORMANCE.UI_RIPPLE_INTENSITY * 1.5);
+            
+            // Skip very low intensity effects to ensure only nearby elements are affected
+            if (intensity < 0.15) return;
             
             // Normalize direction vector
             const length = Math.max(0.1, Math.sqrt(dirX * dirX + dirY * dirY));
@@ -352,6 +358,9 @@ function propagateRipple(clickedCircle) {
     // Apply ripple effect to UI elements
     applyUIRippleEffect(clickedX, clickedY);
     
+    // Reduce max ripple distance for a more localized effect that matches the UI element ripple
+    const localizedRippleDistance = Math.min(window.innerWidth, window.innerHeight) * 0.4;
+    
     // Generate an array of animations to run for better batching
     const animationBatch = [];
     
@@ -363,17 +372,19 @@ function propagateRipple(clickedCircle) {
             rect.top + rect.height / 2
         );
         
-        if (distance < PERFORMANCE.MAX_RIPPLE_DISTANCE) {
+        if (distance < localizedRippleDistance) {
             // Calculate delay based on distance - faster propagation
             const delay = distance / 600; // Speed up from 500 to 600
-            // Calculate intensity based on distance - stronger effect
-            const intensity = Math.max(0.1, 1 - (distance / PERFORMANCE.MAX_RIPPLE_DISTANCE));
+            
+            // Calculate intensity with cubic falloff for more localized effect
+            const normalizedDistance = distance / localizedRippleDistance;
+            const falloff = Math.max(0.1, 1 - (normalizedDistance * normalizedDistance * normalizedDistance));
             
             // Store all animations to apply together
             animationBatch.push({
                 circle,
                 delay: delay * 1000,
-                intensity
+                intensity: falloff
             });
         }
     });
@@ -387,7 +398,7 @@ function propagateRipple(clickedCircle) {
             }
             
             animation.circle.classList.add('clicked');
-            animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${animation.intensity * 0.4})`; // Increased opacity for more visible effect
+            animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${animation.intensity * 0.5})`; // Increased opacity for more visible effect
             
             const circleTimeout = setTimeout(() => {
                 animation.circle.classList.remove('clicked');
