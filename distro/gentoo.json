@@ -1,0 +1,31 @@
+{
+    "name": "Gentoo Linux",
+    "version": "20230723T180034Z",
+    "codeName": "",
+    "releaseDate": "July 23, 2023",
+    "homePage": "https://www.gentoo.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230723T180034Z/livegui-amd64-20230723T180034Z.iso",
+            "size": "4.7 GB",
+            "sha256": "cb9a34c2f2dfb1b6aeac2f3fa0b8a9a32b641a29c83c30f77e16d75da1439b1f"
+        },
+        "NET": {
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230723T180034Z/install-amd64-minimal-20230723T180034Z.iso",
+            "size": "415 MB",
+            "sha256": "a30dae67d1a64f602f0e27b825e0e96a4f4eb82a676a7e7bfcc154a7f87eb95d"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/arm64/autobuilds/20230723T180034Z/stage3-arm64-systemd-20230723T180034Z.tar.xz",
+            "size": "274 MB",
+            "sha256": "39cec75eb70c344fc95fe6f83c4a50e73be0ca2e6e17a4c58b10a2ec7a0744c9"
+        },
+        "NET": {
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/arm64/autobuilds/20230723T180034Z/stage3-arm64-systemd-20230723T180034Z.tar.xz",
+            "size": "274 MB",
+            "sha256": "39cec75eb70c344fc95fe6f83c4a50e73be0ca2e6e17a4c58b10a2ec7a0744c9"
+        }
+    }
+} 

@@ -1,0 +1,31 @@
+{
+    "name": "Slackware Linux",
+    "version": "15.0",
+    "codeName": "",
+    "releaseDate": "February 2, 2022",
+    "homePage": "http://www.slackware.com/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://mirrors.slackware.com/slackware/slackware-iso/slackware64-15.0-iso/slackware64-15.0-install-dvd.iso",
+            "size": "3.2 GB",
+            "sha256": "a7fa622adbbe1c91c2bfe196d230b3e81c597b4a3b96a3c5ad1ae863cf0b6204"
+        },
+        "NET": {
+            "downloadLink": "https://mirrors.slackware.com/slackware/slackware-iso/slackware64-15.0-iso/slackware64-15.0-install-dvd.iso",
+            "size": "3.2 GB",
+            "sha256": "a7fa622adbbe1c91c2bfe196d230b3e81c597b4a3b96a3c5ad1ae863cf0b6204"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "http://ftp.arm.slackware.com/slackwarearm/slackwarearm-15.0/slackware/slackwarearm-15.0-complete.iso",
+            "size": "2.1 GB",
+            "sha256": "c2f9c76313ebdbf31c0977fa004c7fbdeb7ecc4adfc8a2d614fa478f5a92956a"
+        },
+        "NET": {
+            "downloadLink": "http://ftp.arm.slackware.com/slackwarearm/slackwarearm-15.0/isolinux/mini.iso",
+            "size": "86 MB",
+            "sha256": "88d09a7fde1e8435c4f67dcf9a9f7a5b5ed71fb2b49f1a7531037cfbcb95a77a"
+        }
+    }
+} 

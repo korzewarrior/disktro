@@ -1,0 +1,31 @@
+{
+    "name": "PureOS",
+    "version": "10.0",
+    "codeName": "Byzantium",
+    "releaseDate": "April 20, 2022",
+    "homePage": "https://pureos.net/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://downloads.pureos.net/byzantium/gnome/2022-04-20/pureos-10.0-gnome-live_20220420_amd64.hybrid.iso",
+            "size": "2.9 GB",
+            "sha256": "13cd5c8a74e1e3cc3bda5c20ba7bc09c9f0e75ea2bbefac12a260d4c6e23b17f"
+        },
+        "NET": {
+            "downloadLink": "https://downloads.pureos.net/byzantium/gnome/2022-04-20/pureos-10.0-gnome-netinst_20220420_amd64.iso",
+            "size": "415 MB",
+            "sha256": "d5dda8079bbd9ea36cac3b7b2a55aee8c1c4d93f46e031c77c75e32d9df8cf1c"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://downloads.pureos.net/byzantium/landing/pureos-10.0-byza",
+            "size": "670 MB",
+            "sha256": "6a3e73786ea35c7d46e6bf42b4af24bff91c54bc55ac9ea48f16cd298a4e4981"
+        },
+        "NET": {
+            "downloadLink": "https://downloads.pureos.net/byzantium/landing/pureos-10.0-byza",
+            "size": "670 MB",
+            "sha256": "6a3e73786ea35c7d46e6bf42b4af24bff91c54bc55ac9ea48f16cd298a4e4981"
+        }
+    }
+} 
