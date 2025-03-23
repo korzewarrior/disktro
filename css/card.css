@@ -1,0 +1,102 @@
+/* Base Card Component Styles */
+
+:root {
+    /* Base card variables */
+    --card-bg: #0e0e0e;
+    --card-text: #e0e0e0;
+    --card-border: rgba(255, 255, 255, 0.192);
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --card-radius: 8px;
+    --card-padding: 15px;
+    --card-margin: 15px;
+    --card-transition: all 0.3s ease-in-out;
+    
+    /* Interaction colors */
+    --card-hover-shadow: rgba(0, 0, 0, 0.5);
+    --highlight-color: var(--circle-primary-color, #D4AF37);
+}
+
+/* Base card component - all cards should have these styles */
+[class*="-card"] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: var(--card-bg) !important;
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+    margin-bottom: var(--card-margin);
+    text-align: left;
+    transition: var(--card-transition);
+    box-shadow: 0 2px 4px var(--card-shadow) !important;
+    border: 1px solid var(--card-border);
+    z-index: 2;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Hover effect for all cards */
+[class*="-card"]:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px var(--card-hover-shadow) !important;
+    border-color: var(--highlight-color);
+    z-index: 3;
+}
+
+/* Card header - common to all cards */
+.card-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+/* Card content area - common to all cards */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+/* Common subtitle style */
+.card-subtitle {
+    font-size: 14px;
+    color: #aaaaaa;
+    font-style: italic;
+    margin: 0;
+    padding: 0 0 8px 0;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: block;
+}
+
+/* Common title style */
+.card-title {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Responsive adjustments for all cards */
+@media (max-width: 768px) {
+    [class*="-card"] {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    [class*="-card"] {
+        padding: 10px;
+    }
+    
+    .card-content {
+        width: 100%;
+        box-sizing: border-box;
+    }
+} 
