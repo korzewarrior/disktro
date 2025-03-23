@@ -1,0 +1,102 @@
+/* FAQ Page Specific Styles */
+
+/* Root variables for FAQ page */
+:root {
+    --faq-spacing-sm: 10px;
+    --faq-spacing-md: 15px;
+    --faq-spacing-lg: 20px;
+    --faq-spacing-xl: 30px;
+    --faq-radius-sm: 4px;
+    --faq-radius-md: 6px;
+    --section-border-color: rgba(255, 255, 255, 0.1);
+}
+
+.code-block {
+    background-color: #1a1a1a;
+    border-radius: var(--faq-radius-md);
+    padding: var(--faq-spacing-md) var(--faq-spacing-lg);
+    margin: var(--faq-spacing-md) 0;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-block code {
+    font-family: monospace;
+    color: #e0e0e0;
+    line-height: 1.5;
+}
+
+.content-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    pointer-events: none; /* Allow clicks to pass through to circles */
+}
+
+/* Ensure content inside cards remains clickable */
+.content-page .distro-card {
+    pointer-events: auto;
+}
+
+.content-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.content-section ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.content-section ul li,
+.content-section ol li {
+    margin-bottom: 5px;
+}
+
+.content-section ul ul,
+.content-section ol ul {
+    margin-top: 5px;
+}
+
+/* Strong and emphasis styling */
+.content-section strong {
+    color: var(--circle-primary-color, #D4AF37);
+    font-weight: bold;
+}
+
+.content-section em {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Add highlight effect for focused card */
+.content-section.focused {
+    box-shadow: 0 0 0 2px var(--circle-primary-color, #D4AF37);
+    outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-section .card-content {
+        padding: var(--faq-spacing-md);
+    }
+    
+    .code-block {
+        padding: var(--faq-spacing-sm) var(--faq-spacing-md);
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-section .distro-title {
+        font-size: 18px;
+    }
+    
+    .code-block {
+        font-size: 13px;
+    }
+}

@@ -8,40 +8,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ | Disktro</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/toggle.css">
     <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/card-header.css">
     <link rel="stylesheet" type="text/css" href="css/card-os.css">
     <link rel="stylesheet" type="text/css" href="css/card-layout.css">
     <link rel="stylesheet" type="text/css" href="css/card-search.css">
     <link rel="stylesheet" type="text/css" href="css/card-responsive.css">
     <link rel="stylesheet" type="text/css" href="css/circles.css">
     <link rel="stylesheet" type="text/css" href="css/card-footer.css">
+    <link rel="stylesheet" type="text/css" href="css/card-nav.css">
+    <link rel="stylesheet" type="text/css" href="css/faq-styles.css">
     <script defer src="js/footer.js"></script>
+    <script defer src="js/header.js"></script>
+    <script defer src="js/navbar.js"></script>
     <script defer src="js/main.js"></script>
     <script defer src="js/circles.js"></script>
     <script defer src="js/distro-colors.js"></script>
+    <script defer src="js/card-navigation.js"></script>
 </head>
 <body>
     <div class="circlecontainer"></div>
-    <header>
-        <div class="header-brand">
-            <img src="img/disktro-logo.png" alt="Disktro Logo" class="header-logo">
-            <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
-        </div>
-        <p class="tagline">Frequently Asked Questions</p>
-    </header>
+    
     <div class="container">
+        <div id="header"></div>
+        <div id="navbar"></div>
+        
         <div class="content-page">
-            <div class="content-section">
-                <h2 class="section-title">What is Linux?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What is Disktro?</h2>
+                </div>
+                <div class="card-content">
+                    <p>Disktro is a centralized resource hub for discovering and comparing Linux distributions. We provide direct links to official distribution mirrors, making it simpler for users to find the perfect Linux distribution for their needs without having to search across multiple websites. We don't host any ISO files ourselves; instead, we connect you directly to the official sources.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">Why use Disktro instead of going directly to distribution websites?</h2>
+                </div>
+                <div class="card-content">
+                    <p>While you can certainly go directly to each distribution's official website, Disktro offers several advantages:</p>
+                    <ul>
+                        <li><strong>Centralized Directory:</strong> We save you time by providing direct links to all major distributions in one place</li>
+                        <li><strong>Comparison Tools:</strong> Our side-by-side comparison tool helps you evaluate distributions based on features, system requirements, and use cases</li>
+                        <li><strong>Consistent Interface:</strong> Navigate different distributions with a unified experience, rather than learning different website layouts</li>
+                        <li><strong>Curated Information:</strong> We provide standardized, easy-to-understand information about each distribution</li>
+                        <li><strong>Simple Discovery:</strong> Our categorization and filtering help you find distributions that match your specific needs</li>
+                        <li><strong>Beginner Guidance:</strong> Our Getting Started guide helps newcomers choose and install their first Linux distribution</li>
+                    </ul>
+                    <p>Think of Disktro as a specialized directory for Linux distributions, making discovery and comparison easier while still connecting you directly to the official sources.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">Where do the downloads come from?</h2>
+                </div>
+                <div class="card-content">
+                    <p>All download links on Disktro point directly to the official mirrors provided by each Linux distribution. We do not host, modify, or redistribute any ISO files ourselves. When you click a download link, you're accessing the exact same files you would get by visiting the distribution's official website.</p>
+                    <p>We simply provide the information, comparison tools, and direct links to make your Linux discovery journey easier. The SHA256 checksums we display are also taken directly from the official sources so you can verify file integrity.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">How does Disktro help me choose the right Linux distribution?</h2>
+                </div>
+                <div class="card-content">
+                    <p>Choosing the right Linux distribution can be overwhelming, especially for newcomers. Disktro helps in several ways:</p>
+                    <ul>
+                        <li><strong>Interactive Comparison:</strong> Our compare page lets you evaluate two distributions side-by-side across multiple factors</li>
+                        <li><strong>Standardized Information:</strong> Each distribution is presented with consistent data points like difficulty level, resource requirements, and ideal use cases</li>
+                        <li><strong>Visual Organization:</strong> Color-coding and clear categorization help you quickly identify distributions that might fit your needs</li>
+                        <li><strong>Getting Started Guide:</strong> Comprehensive step-by-step guidance for choosing, downloading, and installing your first Linux distribution</li>
+                        <li><strong>Frequently Asked Questions:</strong> Answers to common questions about Linux and its various distributions</li>
+                    </ul>
+                    <p>Our goal is to simplify the discovery process and help you find the perfect Linux distribution for your specific needs and technical skill level.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What is Linux?</h2>
+                </div>
+                <div class="card-content">
                     <p>Linux is a free and open-source operating system kernel first released by Linus Torvalds in 1991. When people refer to "Linux," they often mean a complete operating system built around this kernel, which includes system utilities, applications, and a graphical user interface. These complete systems are known as Linux distributions or "distros."</p>
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">What is a Linux Distribution?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What is a Linux Distribution?</h2>
+                </div>
+                <div class="card-content">
                     <p>A Linux distribution (distro) is a complete operating system package built around the Linux kernel. It includes:</p>
                     <ul>
                         <li>The Linux kernel</li>
@@ -54,9 +114,11 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">Why are there so many different Linux distributions?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">Why are there so many different Linux distributions?</h2>
+                </div>
+                <div class="card-content">
                     <p>Linux's open-source nature allows anyone to modify and redistribute it, leading to hundreds of distributions, each with specific goals:</p>
                     <ul>
                         <li><strong>User Focus:</strong> Some target beginners (Ubuntu, Mint), others experienced users (Arch, Gentoo)</li>
@@ -68,9 +130,11 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">What does "ISO" mean?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What does "ISO" mean?</h2>
+                </div>
+                <div class="card-content">
                     <p>ISO refers to an ISO image file (.iso), which is an archive file that contains an exact copy of data found on an optical disc, like a CD or DVD. The name comes from the ISO 9660 file system used with CD-ROM media.</p>
                     <p>When you download a Linux distribution from Disktro, you're downloading an ISO file that contains all the data needed to install the operating system. This file can be:</p>
                     <ul>
@@ -81,9 +145,11 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">What's the difference between Full ISO and Net Install ISO?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What's the difference between Full ISO and Net Install ISO?</h2>
+                </div>
+                <div class="card-content">
                     <p><strong>Full ISO:</strong></p>
                     <ul>
                         <li>Contains all packages needed for a complete installation</li>
@@ -103,9 +169,11 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">How do I verify my ISO download?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">How do I verify my ISO download?</h2>
+                </div>
+                <div class="card-content">
                     <p>It's important to verify your downloaded ISO to ensure it hasn't been corrupted or tampered with. On Disktro, you can find the SHA256 checksum next to each download. To verify:</p>
                     
                     <p><strong>On Windows:</strong></p>
@@ -127,9 +195,11 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">Which Linux distribution is best for beginners?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">Which Linux distribution is best for beginners?</h2>
+                </div>
+                <div class="card-content">
                     <p>For beginners, we recommend distributions that are:</p>
                     <ul>
                         <li>Easy to install</li>
@@ -149,9 +219,11 @@
                 </div>
             </div>
 
-            <div class="content-section">
-                <h2 class="section-title">Can I try Linux without installing it?</h2>
-                <div class="section-content">
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">Can I try Linux without installing it?</h2>
+                </div>
+                <div class="card-content">
                     <p>Yes! There are several ways to try Linux without modifying your existing operating system:</p>
                     
                     <p><strong>Live USB/DVD:</strong></p>
@@ -169,158 +241,185 @@
                     <p>Windows 10 and 11 users can install the Windows Subsystem for Linux, which provides a Linux environment directly within Windows. It's primarily command-line based, although graphical applications are possible.</p>
                 </div>
             </div>
+
+            <!-- New FAQ sections added below -->
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What are Desktop Environments?</h2>
+                </div>
+                <div class="card-content">
+                    <p>A Desktop Environment (DE) is a collection of software that provides a complete graphical user interface for your Linux system. Common desktop environments include:</p>
+                    <ul>
+                        <li><strong>GNOME:</strong> Modern, clean interface with minimal customization options; used by Ubuntu and Fedora</li>
+                        <li><strong>KDE Plasma:</strong> Highly customizable with a Windows-like interface; used by Kubuntu and openSUSE</li>
+                        <li><strong>Xfce:</strong> Lightweight and traditional interface; used by Xubuntu and Linux Lite</li>
+                        <li><strong>MATE:</strong> Traditional desktop based on GNOME 2; used by Ubuntu MATE</li>
+                        <li><strong>Cinnamon:</strong> Modern but traditional interface; default in Linux Mint</li>
+                        <li><strong>LXDE/LXQt:</strong> Extremely lightweight for older hardware; used by Lubuntu</li>
+                    </ul>
+                    <p>Many Linux distributions offer versions with different desktop environments, allowing you to choose the one that best suits your preferences and hardware capabilities.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What's the difference between rolling release and point release distributions?</h2>
+                </div>
+                <div class="card-content">
+                    <p><strong>Point Release Model:</strong></p>
+                    <ul>
+                        <li>Releases occur at scheduled intervals (e.g., every 6 months or 2 years)</li>
+                        <li>Each version has a defined support period</li>
+                        <li>Major upgrades require a significant update process</li>
+                        <li>Examples: Ubuntu, Fedora, Debian</li>
+                        <li>Generally more stable and predictable</li>
+                    </ul>
+                    
+                    <p><strong>Rolling Release Model:</strong></p>
+                    <ul>
+                        <li>Continuous updates instead of version releases</li>
+                        <li>Software is updated as soon as new versions are available</li>
+                        <li>No need for major version upgrades</li>
+                        <li>Always running the latest software</li>
+                        <li>Examples: Arch Linux, openSUSE Tumbleweed, Manjaro</li>
+                        <li>Requires more frequent maintenance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">How do I dual-boot Linux with Windows?</h2>
+                </div>
+                <div class="card-content">
+                    <p>Dual-booting allows you to have both Windows and Linux installed on the same computer, choosing which to use at startup. Here's a general overview of the process:</p>
+                    
+                    <ol>
+                        <li><strong>Backup your data</strong> - Always backup important files before modifying partitions</li>
+                        <li><strong>Free up disk space</strong> - Shrink your Windows partition to create space for Linux</li>
+                        <li><strong>Disable Fast Startup in Windows</strong> - This can cause issues with dual-boot setups</li>
+                        <li><strong>Boot from Linux installation media</strong> - Use a USB drive with your chosen distribution</li>
+                        <li><strong>Select "Install alongside Windows"</strong> - Most installers have this option</li>
+                        <li><strong>Follow the installation wizard</strong> - The installer will guide you through the process</li>
+                        <li><strong>Reboot</strong> - After installation, you'll see a boot menu allowing you to choose between Windows and Linux</li>
+                    </ol>
+                    
+                    <p>For detailed instructions specific to your distribution, refer to its official documentation.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What are package managers?</h2>
+                </div>
+                <div class="card-content">
+                    <p>Package managers are software tools that automate the process of installing, upgrading, configuring, and removing software packages. Different Linux distributions use different package management systems:</p>
+                    
+                    <ul>
+                        <li><strong>APT (Advanced Package Tool):</strong> Used by Debian, Ubuntu, and their derivatives
+                            <div class="code-block">
+                                <code>sudo apt update<br>sudo apt install package-name</code>
+                            </div>
+                        </li>
+                        <li><strong>DNF/YUM:</strong> Used by Fedora, RHEL, and CentOS
+                            <div class="code-block">
+                                <code>sudo dnf install package-name</code>
+                            </div>
+                        </li>
+                        <li><strong>Pacman:</strong> Used by Arch Linux and its derivatives
+                            <div class="code-block">
+                                <code>sudo pacman -S package-name</code>
+                            </div>
+                        </li>
+                        <li><strong>Zypper:</strong> Used by openSUSE
+                            <div class="code-block">
+                                <code>sudo zypper install package-name</code>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>Package managers handle dependencies automatically, making software installation much simpler than on other operating systems.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What Linux distributions are best for gaming?</h2>
+                </div>
+                <div class="card-content">
+                    <p>Gaming on Linux has improved significantly in recent years, thanks to technologies like Proton and Steam Play. For the best gaming experience, consider these distributions:</p>
+                    
+                    <ul>
+                        <li><strong>Pop!_OS:</strong> By System76, includes optimized NVIDIA drivers and Steam pre-installed</li>
+                        <li><strong>Manjaro:</strong> Rolling release with the latest drivers and gaming tools</li>
+                        <li><strong>Garuda Linux:</strong> Arch-based with gaming optimizations out of the box</li>
+                        <li><strong>Ubuntu:</strong> Good hardware support and compatibility with Steam</li>
+                        <li><strong>Fedora:</strong> Relatively up-to-date packages with good stability</li>
+                    </ul>
+                    
+                    <p>Key factors that make a distribution good for gaming include:</p>
+                    <ul>
+                        <li>Easy installation of the latest graphics drivers</li>
+                        <li>Support for Steam and Proton</li>
+                        <li>Access to gaming tools like Lutris and Wine</li>
+                        <li>Low-latency kernel options</li>
+                        <li>Good hardware compatibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">How can I contribute to Linux projects?</h2>
+                </div>
+                <div class="card-content">
+                    <p>There are many ways to contribute to Linux and open-source projects, regardless of your technical skill level:</p>
+                    
+                    <ul>
+                        <li><strong>Code contributions:</strong> Submit patches or pull requests to fix bugs or add features</li>
+                        <li><strong>Testing:</strong> Test beta releases and report bugs</li>
+                        <li><strong>Documentation:</strong> Help improve user guides, wikis, and man pages</li>
+                        <li><strong>Translation:</strong> Translate software or documentation into other languages</li>
+                        <li><strong>Design:</strong> Create icons, themes, or improve user interfaces</li>
+                        <li><strong>Support:</strong> Help other users in forums and community channels</li>
+                        <li><strong>Donation:</strong> Contribute financially to projects you value</li>
+                    </ul>
+                    
+                    <p>Most projects have contribution guidelines on their websites or GitHub repositories. Start with something small and work your way up as you gain experience.</p>
+                </div>
+            </div>
+
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">What is the Linux terminal and why is it useful?</h2>
+                </div>
+                <div class="card-content">
+                    <p>The terminal (also called command line or shell) is a text-based interface for interacting with your computer. While it may seem intimidating at first, the terminal offers several advantages:</p>
+                    
+                    <ul>
+                        <li><strong>Efficiency:</strong> Many tasks can be completed faster via terminal commands than using GUI tools</li>
+                        <li><strong>Automation:</strong> Commands can be scripted to automate repetitive tasks</li>
+                        <li><strong>Remote Access:</strong> You can manage remote systems easily via SSH</li>
+                        <li><strong>System Administration:</strong> Many advanced configuration options are only available via command line</li>
+                        <li><strong>Troubleshooting:</strong> Provides detailed information for diagnosing problems</li>
+                    </ul>
+                    
+                    <p>Common shells include Bash (the most common), Zsh, and Fish. Learning basic terminal commands is an important skill for any Linux user, particularly useful commands include:</p>
+                    
+                    <div class="code-block">
+                        <code>ls       # List files and directories<br>
+cd       # Change directory<br>
+mkdir    # Make a new directory<br>
+cp       # Copy files<br>
+mv       # Move/rename files<br>
+rm       # Remove files<br>
+cat      # Display file contents<br>
+grep     # Search for patterns in files<br>
+sudo     # Run commands with administrative privileges</code>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="footer"></div>
-
-<style>
-    /* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
-    .content-page,
-    div.content-page,
-    body .container .content-page {
-        background-color: transparent !important;
-        background: transparent !important;
-        background-image: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        box-shadow: none !important;
-        border: none !important;
-        opacity: 1 !important;
-        position: relative !important; 
-        z-index: 1 !important;
-    }
-    
-    /* Force content sections to have solid backgrounds */
-    .content-section {
-        background-color: #0e0e0e !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.192) !important;
-        opacity: 1 !important;
-        position: relative !important;
-        z-index: 2 !important;
-        overflow: hidden;
-        width: 100%;
-    }
-    
-    /* SUPER CRITICAL - FORCE FOOTER TO BE VISIBLE */
-    #disktro-card.footer-card {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        background-color: #0e0e0e !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        padding: 0 !important;
-        margin-top: 40px !important;
-        margin-bottom: 60px !important;
-        border: 1px solid rgba(255, 255, 255, 0.192) !important;
-    }
-    
-    #disktro-card.footer-card .card-header,
-    #disktro-card.footer-card .card-content,
-    #disktro-card.footer-card .version-subtitle,
-    #disktro-card.footer-card .footer-info,
-    #disktro-card.footer-card .footer-nav,
-    #disktro-card.footer-card .footer-copyright,
-    #disktro-card.footer-card .footer-column,
-    #disktro-card.footer-card .footer-column p {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-    
-    #disktro-card.footer-card .card-content {
-        padding: 20px !important;
-    }
-    
-    #disktro-card.footer-card .footer-nav {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 20px !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding-top: 15px !important;
-        margin: 15px 0 !important;
-    }
-    
-    #disktro-card.footer-card .footer-info {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 30px !important;
-        justify-content: space-between !important;
-    }
-    
-    /* Remove any overflow or transform properties that might interfere */
-    html, body, .container {
-        overflow-x: visible !important;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        color: #e0e0e0;
-        background-color: #0a0a0a !important;
-        margin: 0;
-        padding: 15px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .section-content {
-        padding: 20px;
-        background-color: #0e0e0e !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-
-    .code-block {
-        background-color: #1a1a1a !important;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin: 10px 0;
-        overflow-x: auto;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-    
-    .code-block code {
-        font-family: monospace;
-        color: #e0e0e0;
-        background-color: #1a1a1a !important;
-    }
-    
-    .section-content ul {
-        list-style-type: disc;
-        padding-left: 20px;
-        margin: 5px 0;
-        background-color: transparent !important;
-        border-radius: 0;
-    }
-    
-    .section-content ul li {
-        margin-bottom: 5px;
-        background-color: #0e0e0e !important;
-    }
-    
-    .section-content ul li a {
-        color: var(--circle-primary-color, #D4AF37);
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-    
-    .section-content ul li a:hover {
-        text-decoration: underline;
-    }
-    
-    .section-content p {
-        margin-bottom: 10px;
-        background-color: #0e0e0e !important;
-    }
-
-    strong {
-        background-color: #0e0e0e !important;
-    }
-</style>
 </body>
 </html>
