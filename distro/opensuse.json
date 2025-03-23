@@ -1,0 +1,31 @@
+{
+    "name": "openSUSE",
+    "version": "16.1",
+    "codeName": "Leap",
+    "releaseDate": "January 18, 2025",
+    "homePage": "https://www.opensuse.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://download.opensuse.org/distribution/leap/16.1/iso/openSUSE-Leap-16.1-DVD-x86_64-Current.iso",
+            "size": "4.9 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://download.opensuse.org/distribution/leap/16.1/iso/openSUSE-Leap-16.1-NET-x86_64-Current.iso",
+            "size": "250 MB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://download.opensuse.org/ports/aarch64/distribution/leap/16.1/appliances/openSUSE-Leap-16.1-ARM-JeOS-efi.aarch64.raw.xz",
+            "size": "340 MB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://download.opensuse.org/ports/aarch64/distribution/leap/16.1/iso/openSUSE-Leap-16.1-NET-aarch64-Current.iso",
+            "size": "220 MB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 

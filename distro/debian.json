@@ -1,32 +1,61 @@
 {
     "name": "Debian",
-    "currentVersion": "12.0.0",
+    "currentVersion": "12.5.0",
     "homePage": "https://www.debian.org/",
     "versions": [
+        {
+            "version": "12.5.0",
+            "codeName": "Bookworm",
+            "releaseDate": "April 13, 2024",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.5.0-amd64-DVD-1.iso",
+                    "size": "4.0 GB",
+                    "sha256": "62f4fc3c261a3c042da88d000596a6e1d2d6a3a6d23fc043a3ca26b31e6c5e67"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.5.0-amd64-netinst.iso",
+                    "size": "635 MB",
+                    "sha256": "64d727dd5785ae5fcfd3ae8ffbede5f40cca96f1580aaa2820e8b99dae989d94"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-dvd/debian-12.5.0-arm64-DVD-1.iso",
+                    "size": "3.9 GB",
+                    "sha256": "e26a7a17ee35d7d7e1f5361a9136c3cd23c95b1ac9cfe61ada7d933ccd328a30"
+                },
+                "NET": {
+                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.5.0-arm64-netinst.iso",
+                    "size": "588 MB",
+                    "sha256": "3b9acd7e424f6ef649b5de0f9c3fa6bdd8e7b9a8de35bd5e03be754b75be75be"
+                }
+            }
+        },
         {
             "version": "12.0.0",
             "codeName": "Bookworm",
             "releaseDate": "June 10, 2023",
             "x86": {
                 "FULL": {
-                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.0.0-amd64-DVD-1.iso",
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/12.0.0/amd64/iso-dvd/debian-12.0.0-amd64-DVD-1.iso",
                     "size": "3.9 GB",
                     "sha256": "e482910626b30f9a7de9b0cc142c3d4a079fbfa96110f53ce7d6cd6e5c0fb802"
                 },
                 "NET": {
-                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.0.0-amd64-netinst.iso",
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/12.0.0/amd64/iso-cd/debian-12.0.0-amd64-netinst.iso",
                     "size": "625 MB",
                     "sha256": "ec5a758cc719f9b9b4211522801e2e28394827ba853d6c7cfa076bbcf6438d7f"
                 }
             },
             "ARM": {
                 "FULL": {
-                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-dvd/debian-12.0.0-arm64-DVD-1.iso",
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/12.0.0/arm64/iso-dvd/debian-12.0.0-arm64-DVD-1.iso",
                     "size": "3.7 GB",
                     "sha256": "15d10f39e7ecb0c5174f8c0d9fcaffb8a3d44c3b3d0e6b5daecd93f916cc3248"
                 },
                 "NET": {
-                    "downloadLink": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.0.0-arm64-netinst.iso",
+                    "downloadLink": "https://cdimage.debian.org/cdimage/archive/12.0.0/arm64/iso-cd/debian-12.0.0-arm64-netinst.iso",
                     "size": "585 MB",
                     "sha256": "271271e9a7e48fcbad5d010c84e24be2a88daabe61146af377a50fe57e4ccd6c"
                 }

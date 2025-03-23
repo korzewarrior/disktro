@@ -1,0 +1,31 @@
+{
+    "name": "Zorin OS",
+    "version": "19",
+    "codeName": "Xenon",
+    "releaseDate": "March 15, 2025",
+    "homePage": "https://zorin.com/os/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://mirrors.edge.kernel.org/zorinos/19/Zorin-OS-19-Core-64-bit.iso",
+            "size": "3.2 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://mirrors.edge.kernel.org/zorinos/19/Zorin-OS-19-Lite-64-bit.iso",
+            "size": "2.4 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://mirrors.edge.kernel.org/zorinos/19/Zorin-OS-19-Core-arm64.iso",
+            "size": "2.8 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://mirrors.edge.kernel.org/zorinos/19/Zorin-OS-19-Lite-arm64.iso",
+            "size": "2.1 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 

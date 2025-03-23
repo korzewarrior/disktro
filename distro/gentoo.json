@@ -1,31 +1,31 @@
 {
     "name": "Gentoo Linux",
-    "version": "20230723T180034Z",
+    "version": "20240221T220644Z",
     "codeName": "",
-    "releaseDate": "July 23, 2023",
+    "releaseDate": "February 21, 2024",
     "homePage": "https://www.gentoo.org/",
     "x86": {
         "FULL": {
-            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230723T180034Z/livegui-amd64-20230723T180034Z.iso",
-            "size": "4.7 GB",
-            "sha256": "cb9a34c2f2dfb1b6aeac2f3fa0b8a9a32b641a29c83c30f77e16d75da1439b1f"
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20240221T220644Z/livegui-amd64-20240221T220644Z.iso",
+            "size": "5.3 GB",
+            "sha256": "f2d2e93e9a0ea9dc15d67afc3c4a7e5bd0bf38e10cf9262dd8c6447cbc5fc91c"
         },
         "NET": {
-            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230723T180034Z/install-amd64-minimal-20230723T180034Z.iso",
-            "size": "415 MB",
-            "sha256": "a30dae67d1a64f602f0e27b825e0e96a4f4eb82a676a7e7bfcc154a7f87eb95d"
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20240221T220644Z/install-amd64-minimal-20240221T220644Z.iso",
+            "size": "501 MB",
+            "sha256": "be8e63fb0a43eed7b453e14798d3aaa19c2b74b30d527cb8c9d2cdde2e20e7e9"
         }
     },
     "ARM": {
         "FULL": {
-            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/arm64/autobuilds/20230723T180034Z/stage3-arm64-systemd-20230723T180034Z.tar.xz",
-            "size": "274 MB",
-            "sha256": "39cec75eb70c344fc95fe6f83c4a50e73be0ca2e6e17a4c58b10a2ec7a0744c9"
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/arm64/autobuilds/20240220T055953Z/stage3-arm64-systemd-20240220T055953Z.tar.xz",
+            "size": "299 MB",
+            "sha256": "6edd1a8e5d92f88fd29752adfa8c3d7c7a3de6ef0b63d16b2deb94e275b03f67"
         },
         "NET": {
-            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/arm64/autobuilds/20230723T180034Z/stage3-arm64-systemd-20230723T180034Z.tar.xz",
-            "size": "274 MB",
-            "sha256": "39cec75eb70c344fc95fe6f83c4a50e73be0ca2e6e17a4c58b10a2ec7a0744c9"
+            "downloadLink": "https://bouncer.gentoo.org/fetch/root/all/releases/arm64/autobuilds/20240220T055953Z/stage3-arm64-systemd-20240220T055953Z.tar.xz",
+            "size": "299 MB",
+            "sha256": "6edd1a8e5d92f88fd29752adfa8c3d7c7a3de6ef0b63d16b2deb94e275b03f67"
         }
     }
 } 

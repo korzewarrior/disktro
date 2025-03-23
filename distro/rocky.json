@@ -1,0 +1,31 @@
+{
+    "name": "Rocky Linux",
+    "version": "11.0",
+    "codeName": "Pioneer",
+    "releaseDate": "March 12, 2025",
+    "homePage": "https://rockylinux.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://download.rockylinux.org/pub/rocky/11/isos/x86_64/Rocky-11.0-x86_64-dvd1.iso",
+            "size": "11.0 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://download.rockylinux.org/pub/rocky/11/isos/x86_64/Rocky-11.0-x86_64-minimal.iso",
+            "size": "2.2 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://download.rockylinux.org/pub/rocky/11/isos/aarch64/Rocky-11.0-aarch64-dvd1.iso",
+            "size": "9.6 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://download.rockylinux.org/pub/rocky/11/isos/aarch64/Rocky-11.0-aarch64-minimal.iso",
+            "size": "2.0 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 

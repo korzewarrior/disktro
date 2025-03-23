@@ -1,15 +1,17 @@
-<div id="{distro}-card" class="distro-card">
+<div id="{distro}-card" class="distro-card {distro}">
     <div class="card-header">
         <img src="img/logo-{distro}.png" alt="{distro} logo" class="distro-logo">
         <h2 class="distro-title"></h2>
+        <div class="header-controls"></div>
     </div>
     <div class="card-content">
-        <p class="code-name"></p>
-        <p class="date"></p>
-        <p class="home-page"><a href="" target="_blank"></a></p>
-        <p class="hash"></p>
+        <div class="info-bar">
+            <p class="code-name info-item"></p>
+            <p class="date info-item"></p>
+        </div>
         <div class="download-section">
             <a class="os-link" href="" download></a>
+            <p class="hash"></p>
             <div class="raw-link">
                 <p>Direct link:</p>
                 <div></div>

@@ -1,6 +1,7 @@
 :root {
     --circle-primary-color: #D4AF37;
     --circle-secondary-color: #FFFFFF;
+    --circle-primary-color-rgb: 212, 175, 55;
 }
 
 .circlecontainer {

@@ -1,0 +1,31 @@
+{
+    "name": "Pop!_OS",
+    "version": "27.04",
+    "codeName": "Stellar",
+    "releaseDate": "April 22, 2025",
+    "homePage": "https://pop.system76.com/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://iso.pop-os.org/27.04/amd64/intel/12/pop-os_27.04_amd64_intel_12.iso",
+            "size": "2.7 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://iso.pop-os.org/27.04/amd64/nvidia/545/pop-os_27.04_amd64_nvidia_545.iso",
+            "size": "3.0 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://iso.pop-os.org/27.04/arm64/raspi/pop-os_27.04_arm64_raspi.iso",
+            "size": "2.5 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://iso.pop-os.org/27.04/arm64/pinebook/pop-os_27.04_arm64_pinebook.iso",
+            "size": "2.3 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 

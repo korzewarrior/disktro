@@ -64,7 +64,27 @@ input:focus {
 }
 
 .os-sections {
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Layout styles for grid and column views */
+.os-sections.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.os-sections.column-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Make footer card (disktro-card) full width in both layouts */
+.os-sections.column-layout #disktro-card {
+    width: 100%;
 }
 
 .os-section {
@@ -153,5 +173,103 @@ ul {
 @media (max-width: 600px) {
     .container {
         width: 95%;
+    }
+}
+
+/* Main CSS file for Disktro */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.highlight {
+    color: var(--circle-primary-color, #D4AF37);
+    font-weight: bold;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.os-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* New search card styles */
+.search-title {
+    display: none;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .os-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .title {
+        font-size: 2rem;
     }
 }

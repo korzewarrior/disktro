@@ -1,0 +1,31 @@
+{
+    "name": "Manjaro",
+    "version": "25.0.0",
+    "codeName": "Vulcan",
+    "releaseDate": "February 15, 2025",
+    "homePage": "https://manjaro.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://download.manjaro.org/kde/25.0.0/manjaro-kde-25.0.0-250215-linux66.iso",
+            "size": "3.9 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://download.manjaro.org/kde/25.0.0/manjaro-kde-25.0.0-minimal-250215-linux66.iso",
+            "size": "2.2 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://github.com/manjaro-arm/kde-plasma-images/releases/download/25.02/Manjaro-ARM-kde-plasma-pinebook-pro-25.02.img.xz",
+            "size": "1.7 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://github.com/manjaro-arm/minimal-images/releases/download/25.02/Manjaro-ARM-minimal-pinebook-pro-25.02.img.xz",
+            "size": "600 MB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 

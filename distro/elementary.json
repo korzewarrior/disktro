@@ -1,0 +1,31 @@
+{
+    "name": "elementary OS",
+    "version": "8.0",
+    "codeName": "Opal",
+    "releaseDate": "January 10, 2025",
+    "homePage": "https://elementary.io/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://sgp1.dl.elementary.io/download/MTcxNTM1MDIwMQ==/elementaryos-8.0-stable.20250110.iso",
+            "size": "2.4 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://sgp1.dl.elementary.io/download/MTcxNTM1MDIwMQ==/elementaryos-8.0-minimal.20250110.iso",
+            "size": "1.8 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://sgp1.dl.elementary.io/download/MTcxNTM1MDIwMQ==/elementaryos-8.0-arm64.20250110.iso",
+            "size": "2.1 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://sgp1.dl.elementary.io/download/MTcxNTM1MDIwMQ==/elementaryos-8.0-arm64-minimal.20250110.iso",
+            "size": "1.6 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 

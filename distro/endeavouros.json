@@ -1,0 +1,31 @@
+{
+    "name": "EndeavourOS",
+    "version": "Gemini",
+    "codeName": "Gemini",
+    "releaseDate": "January 7, 2024",
+    "homePage": "https://endeavouros.com/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://mirror.alpix.eu/endeavouros/iso/EndeavourOS_Gemini_24_1.iso",
+            "size": "2.3 GB",
+            "sha256": "57c866b73b51f894a40a2a68a45aeddea35fdb382654eca58c94e06abac59f15"
+        },
+        "NET": {
+            "downloadLink": "https://mirror.alpix.eu/endeavouros/iso/EndeavourOS_Gemini_24_1.iso",
+            "size": "2.3 GB",
+            "sha256": "57c866b73b51f894a40a2a68a45aeddea35fdb382654eca58c94e06abac59f15"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://github.com/endeavouros-arm/EndeavourOS-ARM-images/releases/download/1.0/EndeavourOS-ARM-Gemini-24.01-latest.img.xz",
+            "size": "1.2 GB",
+            "sha256": "d71aa44dd1fce5d92d1d3e57f79def70d13ac1b41c89ac9c5a2b4a69dd4af74b"
+        },
+        "NET": {
+            "downloadLink": "https://github.com/endeavouros-arm/EndeavourOS-ARM-images/releases/download/1.0/EndeavourOS-ARM-Gemini-24.01-latest.img.xz",
+            "size": "1.2 GB",
+            "sha256": "d71aa44dd1fce5d92d1d3e57f79def70d13ac1b41c89ac9c5a2b4a69dd4af74b"
+        }
+    }
+} 

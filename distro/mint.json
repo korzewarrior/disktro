@@ -11,20 +11,20 @@
             "sha256": "56ac6e2a0f70d489ebdeaf7c10ca456ece380d8aaf39eee87463b5ae5f5c3739"
         },
         "NET": {
-            "downloadLink": "https://mirrors.edge.kernel.org/linuxmint/stable/21.3/linuxmint-21.3-cinnamon-64bit.iso",
-            "size": "2.6 GB",
-            "sha256": "56ac6e2a0f70d489ebdeaf7c10ca456ece380d8aaf39eee87463b5ae5f5c3739"
+            "downloadLink": "https://mirrors.edge.kernel.org/linuxmint/stable/21.3/linuxmint-21.3-mate-64bit.iso",
+            "size": "2.5 GB",
+            "sha256": "f3779c5b9a6f8a0092e3f139caee5b85d2b225d8c789a0d82a4417a6c6d0dec7"
         }
     },
     "ARM": {
         "FULL": {
-            "downloadLink": "https://github.com/linuxmint/linuxmint-arm/releases/download/edge",
-            "size": "1.0 GB",
+            "downloadLink": "https://github.com/linuxmint/linuxmint-arm/releases/download/testing-raspi-5",
+            "size": "1.2 GB",
             "sha256": ""
         },
         "NET": {
-            "downloadLink": "https://github.com/linuxmint/linuxmint-arm/releases/download/edge",
-            "size": "1.0 GB",
+            "downloadLink": "https://github.com/linuxmint/linuxmint-arm/releases/download/testing-raspi-5",
+            "size": "1.2 GB",
             "sha256": ""
         }
     }

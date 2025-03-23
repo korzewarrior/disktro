@@ -1,30 +1,30 @@
 {
     "name": "Arch Linux",
-    "version": "2023.12.01",
+    "version": "2024.03.01",
     "codeName": "",
-    "releaseDate": "December 1, 2023",
+    "releaseDate": "March 1, 2024",
     "homePage": "https://archlinux.org/",
     "x86": {
         "FULL": {
-            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2023.12.01/archlinux-2023.12.01-x86_64.iso",
-            "size": "785 MB",
-            "sha256": "86d2f07d0bc436cf5ff44157d17f201010f4d63af1c0b35f243151f2160d3fbd"
+            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2024.03.01/archlinux-2024.03.01-x86_64.iso",
+            "size": "793 MB",
+            "sha256": "b3442a9ce32dfcc6dffe868f8a04275e774aeb22608c13e5fbdc1701718bf308"
         },
         "NET": {
-            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2023.12.01/archlinux-bootstrap-2023.12.01-x86_64.tar.gz",
-            "size": "177 MB",
-            "sha256": "0f4582c2c7c5dc24825c0e839a9a5f3ecb62a77e3d33d8acf1b0ea3a383c207a"
+            "downloadLink": "https://geo.mirror.pkgbuild.com/iso/2024.03.01/archlinux-bootstrap-2024.03.01-x86_64.tar.gz",
+            "size": "179 MB",
+            "sha256": "c9a9b1fc9efc5731d51d69ea6bf8c4c1fcc40283b40186feb8c5f96a44487d92"
         }
     },
     "ARM": {
         "FULL": {
             "downloadLink": "https://archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz",
-            "size": "308 MB",
+            "size": "313 MB",
             "sha256": ""
         },
         "NET": {
             "downloadLink": "https://archlinuxarm.org/os/ArchLinuxARM-rpi-armv7-latest.tar.gz",
-            "size": "235 MB",
+            "size": "240 MB",
             "sha256": ""
         }
     }

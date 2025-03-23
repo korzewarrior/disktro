@@ -1,8 +1,37 @@
 {
     "name": "Fedora",
-    "currentVersion": "39",
+    "currentVersion": "40",
     "homePage": "https://getfedora.org/",
     "versions": [
+        {
+            "version": "40",
+            "codeName": "",
+            "releaseDate": "April 23, 2024",
+            "x86": {
+                "FULL": {
+                    "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-40-1.2.iso",
+                    "size": "2.3 GB",
+                    "sha256": "7a8245388e8684ba9c4d8686bf25c4f14dc4de934c693e2bbc7ffc2d59d863d7"
+                },
+                "NET": {
+                    "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Server/x86_64/iso/Fedora-Server-netinst-x86_64-40-1.2.iso",
+                    "size": "766 MB",
+                    "sha256": "75dcb309edfcee3fa733b89e5a8633cb31caac2eb7732ee12cbb9735aa92616e"
+                }
+            },
+            "ARM": {
+                "FULL": {
+                    "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Workstation/aarch64/iso/Fedora-Workstation-Live-aarch64-40-1.2.iso",
+                    "size": "2.2 GB",
+                    "sha256": "3cf1e85a0c88c0309c8196f77b2f59f1ef89dd47a99a69151e41f5b29e2afbdb"
+                },
+                "NET": {
+                    "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Server/aarch64/iso/Fedora-Server-netinst-aarch64-40-1.2.iso",
+                    "size": "764 MB",
+                    "sha256": "97fca2b4c977da118e4767414f8ddb65c5a6e96f19da7f38daef6b9e06e5fcc1"
+                }
+            }
+        },
         {
             "version": "39",
             "codeName": "",

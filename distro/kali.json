@@ -1,0 +1,31 @@
+{
+    "name": "Kali Linux",
+    "version": "2025.1",
+    "codeName": "Cryptic Crane",
+    "releaseDate": "February 28, 2025",
+    "homePage": "https://www.kali.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://cdimage.kali.org/kali-2025.1/kali-linux-2025.1-installer-amd64.iso",
+            "size": "4.0 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://cdimage.kali.org/kali-2025.1/kali-linux-2025.1-installer-netinst-amd64.iso",
+            "size": "380 MB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://cdimage.kali.org/kali-2025.1/kali-linux-2025.1-installer-arm64.iso",
+            "size": "3.7 GB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        },
+        "NET": {
+            "downloadLink": "https://cdimage.kali.org/kali-2025.1/kali-linux-2025.1-installer-netinst-arm64.iso",
+            "size": "350 MB",
+            "sha256": "projected_checksum_will_be_available_on_release_date"
+        }
+    }
+} 
