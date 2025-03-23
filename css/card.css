@@ -360,6 +360,10 @@ h2 {
 }
 
 /* Footer/Info Card Styling */
+.distro-card.info {
+    margin-top: 30px;
+}
+
 .distro-card.info::before {
     background-image: url('../img/disktro-logo.png');
     background-size: 30%;
