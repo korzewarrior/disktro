@@ -218,7 +218,7 @@ function applyUIRippleEffect(sourceX, sourceY) {
     const showWaveFront = false;
     
     // Wave expansion radius - to account for the visual size of the explosion
-    const waveRadius = 40; // Matches roughly the visual explosion radius at start
+    const waveRadius = 25; // Reduced from 40 to match the smaller explosion size
     
     // Collect all elements
     const elements = [];
