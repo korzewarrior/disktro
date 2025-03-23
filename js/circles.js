@@ -183,7 +183,30 @@ function checkBombDetonation(sourceX, sourceY, maxDistance) {
         const circleCenterX = rect.left + rect.width / 2;
         const circleCenterY = rect.top + rect.height / 2;
         
-        const distance = getDistance(sourceX, sourceY, circleCenterX, circleCenterY);
+        // Calculate closest point on circle (for small circles this is essentially the center)
+        // But this keeps our calculations consistent with the UI elements
+        let closestX, closestY;
+        
+        // Find closest X coordinate
+        if (sourceX < rect.left) {
+            closestX = rect.left;
+        } else if (sourceX > rect.right) {
+            closestX = rect.right;
+        } else {
+            closestX = sourceX;
+        }
+        
+        // Find closest Y coordinate
+        if (sourceY < rect.top) {
+            closestY = rect.top;
+        } else if (sourceY > rect.bottom) {
+            closestY = rect.bottom;
+        } else {
+            closestY = sourceY;
+        }
+        
+        // Calculate distance from explosion center to closest point on bomb
+        const distance = getDistance(sourceX, sourceY, closestX, closestY);
         
         // If the explosion wave reaches this bomb, add it to trigger list
         if (distance <= maxDistance) {
@@ -354,7 +377,8 @@ function applyUIRippleEffect(sourceX, sourceY) {
     const waveSpeed = 1.8; // Increased from 1.5 to make wave travel faster
     
     // Visual indicator of wave front (for debugging, set to true to see wave)
-    const showWaveFront = false;
+    const showWaveFront = false; // Disabled for production
+    const showClosestPoints = false; // Disabled for production
     
     // Wave expansion radius - to account for the visual size of the explosion
     const waveRadius = 25; // Reduced from 40 to match the smaller explosion size
@@ -393,23 +417,72 @@ function applyUIRippleEffect(sourceX, sourceY) {
     elements.forEach(element => {
         // Get element position relative to viewport
         const rect = element.getBoundingClientRect();
+        
+        // Calculate the closest point on the element to the explosion source
+        // This is crucial for wide elements where the center might be far away
+        let closestX, closestY;
+        
+        // Find closest X coordinate (clamp sourceX to element's horizontal bounds)
+        if (sourceX < rect.left) {
+            closestX = rect.left;
+        } else if (sourceX > rect.right) {
+            closestX = rect.right;
+        } else {
+            // Source is horizontally within the element
+            closestX = sourceX;
+        }
+        
+        // Find closest Y coordinate (clamp sourceY to element's vertical bounds)
+        if (sourceY < rect.top) {
+            closestY = rect.top;
+        } else if (sourceY > rect.bottom) {
+            closestY = rect.bottom;
+        } else {
+            // Source is vertically within the element
+            closestY = sourceY;
+        }
+        
+        // Visualize the closest point if debugging is enabled
+        if (showClosestPoints) {
+            const debugMarker = document.createElement('div');
+            debugMarker.style.position = 'fixed';
+            debugMarker.style.left = closestX + 'px';
+            debugMarker.style.top = closestY + 'px';
+            debugMarker.style.width = '8px';
+            debugMarker.style.height = '8px';
+            debugMarker.style.borderRadius = '50%';
+            debugMarker.style.backgroundColor = 'blue';
+            debugMarker.style.transform = 'translate(-50%, -50%)';
+            debugMarker.style.zIndex = '10000';
+            debugMarker.style.pointerEvents = 'none';
+            document.body.appendChild(debugMarker);
+            
+            // Remove after the animation completes
+            setTimeout(() => {
+                document.body.removeChild(debugMarker);
+            }, 1000);
+        }
+        
+        // Calculate the center point as well (needed for direction)
         const elementCenterX = rect.left + rect.width / 2;
         const elementCenterY = rect.top + rect.height / 2;
         
-        // Calculate direction (vector from source to element)
+        // Calculate distance from explosion center to closest point on element
+        const distanceToEdge = getDistance(sourceX, sourceY, closestX, closestY);
+        
+        // Skip elements too far away from explosion
+        if (distanceToEdge > maxDistance) return;
+        
+        // Calculate direction (vector from source to element center - for movement direction)
         const dirX = elementCenterX - sourceX;
         const dirY = elementCenterY - sourceY;
         
-        // Calculate distance from explosion center to element center
-        const distance = Math.sqrt(dirX * dirX + dirY * dirY);
+        // Get the element's effective radius (larger of width or height for more accurate effect)
+        const elementRadius = Math.max(rect.width, rect.height) / 4;  // Using 1/4 of the largest dimension
         
-        // Skip elements too far away from explosion - using wider radius now
-        if (distance > maxDistance) return;
-        
-        // Calculate adjusted distance accounting for element size
-        // This makes the wave "hit" the closer edge of the element first
-        const elementRadius = Math.min(rect.width, rect.height) / 2;
-        const adjustedDistance = Math.max(0, distance - elementRadius - waveRadius);
+        // Calculate adjusted distance (wave travel time)
+        // This is how far the wave needs to travel to first hit the element
+        const adjustedDistance = Math.max(0, distanceToEdge - waveRadius);
         
         // Calculate time for wave to reach this element (accounting for initial explosion size)
         const waveArrivalTime = adjustedDistance / waveSpeed;
@@ -427,11 +500,12 @@ function applyUIRippleEffect(sourceX, sourceY) {
         
         // Schedule the animation to start when the wave reaches this element
         setTimeout(() => {
-            // Calculate intensity based on distance with a moderated falloff
-            // Using squared falloff (less aggressive than cubic) to increase impact radius
-            const normalizedDistance = distance / maxDistance;
+            // Calculate intensity based on edge distance with a moderated falloff
+            const normalizedDistance = distanceToEdge / maxDistance;
             const falloff = Math.max(0, 1 - (normalizedDistance * normalizedDistance));
-            const intensity = Math.max(0.15, falloff * PERFORMANCE.UI_RIPPLE_INTENSITY * 2.2); // Increased from 1.8 to 2.2
+            // Higher base intensity for elements that are directly hit
+            const baseIntensity = distanceToEdge < elementRadius ? 0.2 : 0.15;
+            const intensity = Math.max(baseIntensity, falloff * PERFORMANCE.UI_RIPPLE_INTENSITY * 2.2);
             
             // Skip very low intensity effects but with a lower threshold
             if (intensity < 0.1) return; // Lowered from 0.12 to 0.1 to include more distant elements
