@@ -98,9 +98,10 @@
 
 .resource-card:hover,
 .resource-card.card-hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 16px var(--card-hover-shadow) !important;
     border-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.3);
+    background-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.01) !important;
 }
 
 .resource-logo {

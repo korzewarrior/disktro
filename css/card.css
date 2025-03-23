@@ -12,7 +12,7 @@
     --card-transition: all 0.3s ease-in-out;
     
     /* Interaction colors */
-    --card-hover-shadow: rgba(0, 0, 0, 0.4);
+    --card-hover-shadow: rgba(0, 0, 0, 0.5);
     --highlight-color: var(--circle-primary-color, #D4AF37);
 }
 
@@ -40,8 +40,8 @@
 
 /* Base transform and shadow effect for all cards when hovered */
 [class*="-card"]:not(.navbar-card):not(.header-card):not(.footer-card):hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 4px 8px var(--card-hover-shadow) !important;
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 16px var(--card-hover-shadow) !important;
     z-index: 3;
 }
 
@@ -50,7 +50,7 @@
 [class*="-card"]:not(.header-card):not(.footer-card):not(.navbar-card):not(.distro-card):hover,
 .distro-card:not(.debian):not(.ubuntu):not(.fedora):not(.arch):not(.mint):not(.gentoo):not(.slackware):not(.pureos):not(.opensuse):not(.manjaro):not(.popos):not(.elementary):not(.zorin):not(.kali):not(.rocky):not(.endeavouros):not(.footer-card):hover {
     border-color: var(--highlight-color) !important;
-    background-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.03) !important;
+    background-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.01) !important;
 }
 
 /* Header, navbar and footer hover effects - maintain original styling */
@@ -69,8 +69,8 @@
 .search-toggle-container:hover {
     border-color: var(--card-border) !important;
     background-color: var(--card-bg) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 4px 8px var(--card-hover-shadow) !important;
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 16px var(--card-hover-shadow) !important;
     z-index: 10 !important; /* Higher z-index to stay on top */
 }
 
