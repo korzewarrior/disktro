@@ -58,7 +58,9 @@
 .navbar-card:hover,
 .footer-card:hover,
 .distro-card.footer-card:hover,
-#disktro-card.footer-card:hover {
+#disktro-card.footer-card:hover,
+.guides-section:hover, 
+.resource-section:hover {
     border-color: var(--card-border) !important;
     background-color: var(--card-bg) !important;
     transform: none !important;
