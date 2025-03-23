@@ -9,18 +9,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressText = document.querySelector('.progress-text');
     const resultsContainer = document.getElementById('results-container');
     const resultsList = document.getElementById('results-list');
-    const resetButton = document.querySelector('.reset-button');
+    const resetButton = document.getElementById('reset-finder');
+    const questionContainer = document.getElementById('question-container');
     
     // State variables
     let currentQuestionIndex = 0;
     const userResponses = {
-        experience: null,
-        useCase: null,
-        hardware: null,
-        stability: null,
-        interface: null,
-        philosophy: null,
-        customization: null
+        1: null, // experience
+        2: null, // useCase
+        3: null, // hardware
+        4: null, // stability
+        5: null, // interface
+        6: null, // philosophy
+        7: null  // customization
+    };
+    
+    // Mapping of question numbers to category keys for matching
+    const questionCategories = {
+        1: 'experience',
+        2: 'useCase',
+        3: 'hardware',
+        4: 'stability',
+        5: 'interface',
+        6: 'philosophy',
+        7: 'customization'
     };
     
     // Distribution data with tags for matching
@@ -31,15 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["beginner", "intermediate"],
-                useCase: ["desktop", "development", "server"],
-                hardware: ["modern", "moderate"],
+                useCase: ["general", "development", "server", "gaming"],
+                hardware: ["modern", "mid"],
                 stability: ["balanced", "stable"],
-                interface: ["gnome"],
-                philosophy: ["mixed"],
-                customization: ["medium"]
+                interface: ["modern", "gnome"],
+                philosophy: ["pragmatic", "balanced"],
+                customization: ["works", "some"]
             },
             logo: "img/ubuntu-logo.png",
-            link: "distro/ubuntu.html"
+            link: "index.html#debian"
         },
         {
             name: "Fedora",
@@ -47,15 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["intermediate", "advanced"],
-                useCase: ["desktop", "development", "workstation"],
-                hardware: ["modern"],
-                stability: ["latest"],
-                interface: ["gnome"],
-                philosophy: ["free", "mixed"],
-                customization: ["medium"]
+                useCase: ["general", "development", "server"],
+                hardware: ["modern", "mid"],
+                stability: ["latest", "balanced"],
+                interface: ["modern", "gnome"],
+                philosophy: ["free", "balanced"],
+                customization: ["some", "full"]
             },
             logo: "img/fedora-logo.png",
-            link: "distro/fedora.html"
+            link: "index.html#fedora"
         },
         {
             name: "Linux Mint",
@@ -63,15 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["beginner", "intermediate"],
-                useCase: ["desktop"],
-                hardware: ["moderate", "older"],
-                stability: ["stable"],
-                interface: ["cinnamon", "mate", "xfce"],
-                philosophy: ["mixed"],
-                customization: ["medium", "high"]
+                useCase: ["general", "gaming"],
+                hardware: ["mid", "old"],
+                stability: ["stable", "balanced"],
+                interface: ["traditional", "minimal"],
+                philosophy: ["pragmatic", "balanced"],
+                customization: ["works", "some"]
             },
             logo: "img/mint-logo.png",
-            link: "distro/mint.html"
+            link: "index.html#mint"
         },
         {
             name: "Debian",
@@ -79,15 +91,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["intermediate", "advanced"],
-                useCase: ["desktop", "server"],
-                hardware: ["moderate", "older"],
+                useCase: ["general", "server", "development"],
+                hardware: ["mid", "old"],
                 stability: ["stable"],
-                interface: ["gnome", "kde", "xfce", "mate"],
+                interface: ["any", "minimal", "traditional", "modern"],
                 philosophy: ["free"],
-                customization: ["high"]
+                customization: ["some", "full"]
             },
             logo: "img/debian-logo.png",
-            link: "distro/debian.html"
+            link: "index.html#debian"
         },
         {
             name: "Arch Linux",
@@ -95,15 +107,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["advanced"],
-                useCase: ["desktop", "development"],
-                hardware: ["modern", "moderate"],
+                useCase: ["general", "development", "gaming"],
+                hardware: ["modern", "mid"],
                 stability: ["latest"],
-                interface: ["any"],
-                philosophy: ["control"],
-                customization: ["very-high"]
+                interface: ["any", "minimal"],
+                philosophy: ["free", "balanced"],
+                customization: ["full"]
             },
             logo: "img/arch-logo.png",
-            link: "distro/arch.html"
+            link: "index.html#arch"
         },
         {
             name: "Manjaro",
@@ -111,15 +123,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["beginner", "intermediate"],
-                useCase: ["desktop", "gaming"],
-                hardware: ["modern", "moderate"],
+                useCase: ["general", "gaming", "development"],
+                hardware: ["modern", "mid"],
                 stability: ["latest", "balanced"],
-                interface: ["kde", "gnome", "xfce"],
-                philosophy: ["mixed", "control"],
-                customization: ["high"]
+                interface: ["traditional", "modern", "minimal"],
+                philosophy: ["pragmatic", "balanced"],
+                customization: ["some", "full"]
             },
             logo: "img/manjaro-logo.png",
-            link: "distro/manjaro.html"
+            link: "index.html#manjaro"
         },
         {
             name: "Pop!_OS",
@@ -127,31 +139,31 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["beginner", "intermediate"],
-                useCase: ["desktop", "development", "gaming"],
-                hardware: ["modern"],
-                stability: ["balanced"],
-                interface: ["gnome"],
-                philosophy: ["mixed"],
-                customization: ["medium"]
+                useCase: ["general", "development", "gaming"],
+                hardware: ["modern", "mid"],
+                stability: ["balanced", "latest"],
+                interface: ["modern", "gnome"],
+                philosophy: ["pragmatic", "balanced"],
+                customization: ["works", "some"]
             },
-            logo: "img/pop-logo.png",
-            link: "distro/pop.html"
+            logo: "img/popos-logo.png",
+            link: "index.html#popos"
         },
         {
             name: "openSUSE",
             description: "A stable, easy to use and complete multi-purpose distribution.",
             matchPoints: 0,
             tags: {
-                experience: ["intermediate"],
-                useCase: ["desktop", "server"],
-                hardware: ["modern", "moderate"],
+                experience: ["intermediate", "beginner"],
+                useCase: ["general", "server", "development"],
+                hardware: ["modern", "mid"],
                 stability: ["stable", "balanced"],
-                interface: ["kde", "gnome"],
-                philosophy: ["mixed"],
-                customization: ["high"]
+                interface: ["traditional", "modern"],
+                philosophy: ["balanced", "free"],
+                customization: ["some", "works"]
             },
             logo: "img/opensuse-logo.png",
-            link: "distro/opensuse.html"
+            link: "index.html#opensuse"
         },
         {
             name: "Zorin OS",
@@ -159,15 +171,15 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["beginner"],
-                useCase: ["desktop"],
-                hardware: ["moderate", "older"],
+                useCase: ["general"],
+                hardware: ["mid", "old"],
                 stability: ["stable"],
-                interface: ["zorin"],
-                philosophy: ["mixed"],
-                customization: ["low", "medium"]
+                interface: ["traditional", "mac"],
+                philosophy: ["pragmatic"],
+                customization: ["works", "some"]
             },
             logo: "img/zorin-logo.png",
-            link: "distro/zorin.html"
+            link: "index.html#zorin"
         },
         {
             name: "Elementary OS",
@@ -175,47 +187,47 @@ document.addEventListener('DOMContentLoaded', function() {
             matchPoints: 0,
             tags: {
                 experience: ["beginner"],
-                useCase: ["desktop"],
-                hardware: ["modern", "moderate"],
+                useCase: ["general"],
+                hardware: ["modern", "mid"],
                 stability: ["stable"],
-                interface: ["pantheon"],
-                philosophy: ["mixed"],
-                customization: ["low"]
+                interface: ["mac"],
+                philosophy: ["balanced"],
+                customization: ["works"]
             },
             logo: "img/elementary-logo.png",
-            link: "distro/elementary.html"
+            link: "index.html#elementary"
         },
         {
-            name: "Solus",
-            description: "A Linux distribution built from scratch with a focus on providing a cohesive desktop experience.",
+            name: "Gentoo",
+            description: "A highly flexible, source-based Linux distribution that emphasizes choice and performance.",
             matchPoints: 0,
             tags: {
-                experience: ["beginner", "intermediate"],
-                useCase: ["desktop"],
-                hardware: ["modern", "moderate"],
-                stability: ["balanced"],
-                interface: ["budgie", "mate", "gnome"],
-                philosophy: ["mixed"],
-                customization: ["medium"]
-            },
-            logo: "img/solus-logo.png",
-            link: "distro/solus.html"
-        },
-        {
-            name: "Tails",
-            description: "A portable operating system that protects your privacy and anonymity.",
-            matchPoints: 0,
-            tags: {
-                experience: ["intermediate"],
-                useCase: ["security", "privacy"],
-                hardware: ["moderate", "older"],
-                stability: ["stable"],
-                interface: ["gnome"],
+                experience: ["advanced"],
+                useCase: ["development", "server"],
+                hardware: ["modern", "mid"],
+                stability: ["latest"],
+                interface: ["any", "minimal"],
                 philosophy: ["free"],
-                customization: ["low"]
+                customization: ["full"]
             },
-            logo: "img/tails-logo.png",
-            link: "distro/tails.html"
+            logo: "img/gentoo-logo.png",
+            link: "index.html#gentoo"
+        },
+        {
+            name: "Kali Linux",
+            description: "A specialized Debian-based distribution designed for penetration testing and digital forensics.",
+            matchPoints: 0,
+            tags: {
+                experience: ["intermediate", "advanced"],
+                useCase: ["development", "server"],
+                hardware: ["mid", "modern"],
+                stability: ["stable"],
+                interface: ["modern", "minimal"],
+                philosophy: ["free"],
+                customization: ["some", "full"]
+            },
+            logo: "img/kali-logo.png",
+            link: "index.html#kali"
         }
     ];
     
@@ -239,27 +251,27 @@ document.addEventListener('DOMContentLoaded', function() {
         if (index === questions.length - 1) {
             nextButton.textContent = "See Results";
         } else {
-            nextButton.textContent = "Next";
+            nextButton.textContent = "Next Question";
         }
         
         // Check if the current question has a selection to enable/disable the next button
-        const currentQuestionId = questions[index].id;
-        const responseKey = currentQuestionId.replace('question-', '');
+        const currentQuestionId = questions[index].id.split('-')[1];
+        nextButton.disabled = userResponses[currentQuestionId] === null;
         
-        nextButton.disabled = userResponses[responseKey] === null;
+        // Update current question indicator
+        document.getElementById('current-question').textContent = index + 1;
     }
     
     // Update the progress bar
     function updateProgress() {
         const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
         progressFill.style.width = `${progress}%`;
-        progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
     }
     
     // Handle option selection
     function selectOption(questionId, optionValue) {
-        const responseKey = questionId.replace('question-', '');
-        userResponses[responseKey] = optionValue;
+        const questionNumber = questionId.split('-')[1];
+        userResponses[questionNumber] = optionValue;
         
         // Update UI to highlight the selected option
         const questionElement = document.getElementById(questionId);
@@ -300,6 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Reset the quiz
     function resetQuiz() {
+        console.log("Resetting quiz");
         // Reset all responses
         Object.keys(userResponses).forEach(key => {
             userResponses[key] = null;
@@ -316,6 +329,11 @@ document.addEventListener('DOMContentLoaded', function() {
         showQuestion(0);
         updateProgress();
         
+        // Show the question container again
+        questionContainer.style.display = 'block';
+        document.querySelector('.finder-progress').style.display = 'block';
+        document.querySelector('.navigation-buttons').style.display = 'flex';
+        
         // Hide results
         resultsContainer.style.display = 'none';
         resultsList.innerHTML = '';
@@ -326,31 +344,73 @@ document.addEventListener('DOMContentLoaded', function() {
         // Reset all match points
         distributions.forEach(distro => {
             distro.matchPoints = 0;
+            distro.bonusPoints = 0;
         });
         
         // Calculate match points for each distribution
-        Object.entries(userResponses).forEach(([category, userValue]) => {
+        Object.entries(userResponses).forEach(([questionNumber, userValue]) => {
             if (userValue) {
+                const category = questionCategories[questionNumber];
                 distributions.forEach(distro => {
+                    // Perfect match
                     if (distro.tags[category] && distro.tags[category].includes(userValue)) {
                         distro.matchPoints += 1;
-                    } else if (distro.tags[category] && distro.tags[category].includes('any')) {
-                        // 'any' is a wildcard that matches any value
-                        distro.matchPoints += 0.5;
+                    } 
+                    // 'any' is a wildcard that matches any value
+                    else if (distro.tags[category] && distro.tags[category].includes('any')) {
+                        distro.matchPoints += 0.75;
+                    }
+                    // Give some points for being in the general ballpark
+                    // E.g., if user selects "beginner" and distro has "intermediate"
+                    else if (category === 'experience') {
+                        if (userValue === 'beginner' && distro.tags[category].includes('intermediate')) {
+                            distro.bonusPoints += 0.5;
+                        } else if (userValue === 'intermediate' && 
+                                  (distro.tags[category].includes('beginner') || 
+                                   distro.tags[category].includes('advanced'))) {
+                            distro.bonusPoints += 0.5;
+                        }
+                    }
+                    // Hardware compatibility is often more flexible downward
+                    else if (category === 'hardware') {
+                        if (userValue === 'old' && 
+                           (distro.tags[category].includes('mid') || 
+                            distro.tags[category].includes('modern'))) {
+                            distro.bonusPoints += 0.5;
+                        } else if (userValue === 'mid' && distro.tags[category].includes('modern')) {
+                            distro.bonusPoints += 0.5;
+                        }
+                    }
+                    // Interface flexibility
+                    else if (category === 'interface') {
+                        distro.bonusPoints += 0.3; // All distros can use different DEs with some work
                     }
                 });
             }
         });
         
+        // Add bonus points to match points
+        distributions.forEach(distro => {
+            distro.totalPoints = distro.matchPoints + distro.bonusPoints;
+        });
+        
         // Sort distributions by match points in descending order
-        return [...distributions].sort((a, b) => b.matchPoints - a.matchPoints);
+        return [...distributions].sort((a, b) => b.totalPoints - a.totalPoints);
     }
     
     // Show the results page
     function showResults() {
         // Calculate matches
         const matches = calculateMatches();
-        const topMatches = matches.filter(distro => distro.matchPoints > 0).slice(0, 5);
+        
+        // Always show at least top 3 distributions, even if they have 0 match points
+        let topMatches = matches.filter(distro => distro.totalPoints > 0);
+        if (topMatches.length < 3) {
+            topMatches = matches.slice(0, 3);
+        } else {
+            // Show up to 5 matches if they have points
+            topMatches = topMatches.slice(0, 5);
+        }
         
         // Hide questions, show results
         questions.forEach(question => {
@@ -359,35 +419,35 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.querySelector('.finder-progress').style.display = 'none';
         document.querySelector('.navigation-buttons').style.display = 'none';
+        questionContainer.style.display = 'none';
         
         // Display results
         resultsContainer.style.display = 'block';
         resultsList.innerHTML = '';
         
-        if (topMatches.length === 0) {
-            resultsList.innerHTML = '<div class="no-matches-message">No distributions matched your criteria. Please try again with different selections.</div>';
-        } else {
-            topMatches.forEach(distro => {
-                const matchPercentage = Math.round((distro.matchPoints / Object.keys(userResponses).length) * 100);
-                
-                const resultCard = document.createElement('div');
-                resultCard.className = 'result-card';
-                resultCard.innerHTML = `
-                    <img src="${distro.logo}" alt="${distro.name} Logo" class="result-logo">
-                    <div class="result-details">
-                        <h4>${distro.name}</h4>
-                        <p>${distro.description}</p>
-                        <div class="result-actions">
-                            <a href="${distro.link}" class="result-button primary">Learn More</a>
-                            <a href="compare.html?distros=${distro.name.toLowerCase()}" class="result-button">Compare</a>
-                        </div>
+        // Always show results even if no perfect matches
+        topMatches.forEach(distro => {
+            // Calculate match percentage with a minimum of 30% to avoid discouraging the user
+            const rawPercentage = Math.round((distro.totalPoints / Object.keys(userResponses).length) * 100);
+            const matchPercentage = Math.max(30, rawPercentage);
+            
+            const resultCard = document.createElement('div');
+            resultCard.className = 'result-card';
+            resultCard.innerHTML = `
+                <img src="${distro.logo}" alt="${distro.name} Logo" class="result-logo">
+                <div class="result-details">
+                    <h4>${distro.name}</h4>
+                    <p>${distro.description}</p>
+                    <div class="result-actions">
+                        <a href="${distro.link}" class="result-button primary">Learn More</a>
+                        <a href="compare.html?distro1=${distro.name.toLowerCase()}" class="result-button">Compare</a>
                     </div>
-                    <div class="result-match">${matchPercentage}% Match</div>
-                `;
-                
-                resultsList.appendChild(resultCard);
-            });
-        }
+                </div>
+                <div class="result-match">${matchPercentage}% Match</div>
+            `;
+            
+            resultsList.appendChild(resultCard);
+        });
     }
     
     // Bind event listeners
