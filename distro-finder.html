@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find the perfect Linux distribution for your needs with our interactive Distro Finder tool">
+    <title>Distro Finder | Disktro</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/card-header.css">
+    <link rel="stylesheet" type="text/css" href="css/card-os.css">
+    <link rel="stylesheet" type="text/css" href="css/card-layout.css">
+    <link rel="stylesheet" type="text/css" href="css/card-search.css">
+    <link rel="stylesheet" type="text/css" href="css/card-responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/circles.css">
+    <link rel="stylesheet" type="text/css" href="css/card-footer.css">
+    <link rel="stylesheet" type="text/css" href="css/card-nav.css">
+    <link rel="stylesheet" type="text/css" href="css/distro-finder-styles.css">
+    
+    <!-- Scripts -->
+    <script defer src="js/footer.js"></script>
+    <script defer src="js/header.js"></script>
+    <script defer src="js/navbar.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/circles.js"></script>
+    <script defer src="js/distro-colors.js"></script>
+    <script defer src="js/card-navigation.js"></script>
+    <script defer src="js/distro-data.js"></script>
+    <script defer src="js/distro-finder.js"></script>
+</head>
+<body>
+    <div class="circlecontainer"></div>
+    
+    <div class="container">
+        <div id="header"></div>
+        <div id="navbar"></div>
+        
+        <div class="content-page">
+            <!-- Intro Card -->
+            <div class="distro-card content-section">
+                <div class="card-header">
+                    <h2 class="distro-title">Distro Finder</h2>
+                </div>
+                <div class="version-subtitle">Find your perfect Linux distribution match</div>
+                <div class="card-content">
+                    <p>With hundreds of Linux distributions available, choosing the right one can be overwhelming. Our Distro Finder asks you a series of simple questions about your needs, preferences, and experience level to recommend the distributions that best fit your requirements.</p>
+                    
+                    <p>Answer the questions below to get personalized recommendations:</p>
+                    
+                    <div class="finder-container">
+                        <!-- Question container - questions will appear here -->
+                        <div id="question-container">
+                            <div class="finder-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">7</span></div>
+                            </div>
+                            
+                            <div class="question" id="question-1">
+                                <h3>What is your experience level with Linux?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="beginner">
+                                        <div class="option-icon">🔰</div>
+                                        <h4>Beginner</h4>
+                                        <p>I'm new to Linux and want something easy to use.</p>
+                                    </div>
+                                    <div class="option-card" data-value="intermediate">
+                                        <div class="option-icon">🧩</div>
+                                        <h4>Intermediate</h4>
+                                        <p>I have some experience with Linux and am comfortable with the terminal.</p>
+                                    </div>
+                                    <div class="option-card" data-value="advanced">
+                                        <div class="option-icon">🚀</div>
+                                        <h4>Advanced</h4>
+                                        <p>I'm very experienced with Linux and enjoy customizing my system.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question" id="question-2" style="display: none;">
+                                <h3>What is your primary use case?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="general">
+                                        <div class="option-icon">🖥️</div>
+                                        <h4>General Desktop Use</h4>
+                                        <p>Web browsing, email, office work, media consumption</p>
+                                    </div>
+                                    <div class="option-card" data-value="development">
+                                        <div class="option-icon">👨‍💻</div>
+                                        <h4>Software Development</h4>
+                                        <p>Programming, coding, development environments</p>
+                                    </div>
+                                    <div class="option-card" data-value="server">
+                                        <div class="option-icon">🖧</div>
+                                        <h4>Server / Home Lab</h4>
+                                        <p>Hosting services, file sharing, virtual machines</p>
+                                    </div>
+                                    <div class="option-card" data-value="gaming">
+                                        <div class="option-icon">🎮</div>
+                                        <h4>Gaming</h4>
+                                        <p>Playing games, Steam, emulation</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question" id="question-3" style="display: none;">
+                                <h3>What type of hardware are you using?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="old">
+                                        <div class="option-icon">🕰️</div>
+                                        <h4>Older Hardware</h4>
+                                        <p>Limited resources (4GB RAM or less, older CPU)</p>
+                                    </div>
+                                    <div class="option-card" data-value="mid">
+                                        <div class="option-icon">💻</div>
+                                        <h4>Mid-Range Hardware</h4>
+                                        <p>Moderate specs (4-8GB RAM, standard CPU)</p>
+                                    </div>
+                                    <div class="option-card" data-value="modern">
+                                        <div class="option-icon">⚡</div>
+                                        <h4>Modern Hardware</h4>
+                                        <p>Powerful specs (8GB+ RAM, modern CPU)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question" id="question-4" style="display: none;">
+                                <h3>How important is stability versus having the latest software?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="stable">
+                                        <div class="option-icon">🛡️</div>
+                                        <h4>Prioritize Stability</h4>
+                                        <p>I prefer a reliable system even if software is slightly older</p>
+                                    </div>
+                                    <div class="option-card" data-value="balanced">
+                                        <div class="option-icon">⚖️</div>
+                                        <h4>Balanced Approach</h4>
+                                        <p>I want a good balance between stability and recent software</p>
+                                    </div>
+                                    <div class="option-card" data-value="latest">
+                                        <div class="option-icon">🔄</div>
+                                        <h4>Latest Software</h4>
+                                        <p>I want the newest versions of software even if it's less stable</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question" id="question-5" style="display: none;">
+                                <h3>What desktop interface do you prefer?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="traditional">
+                                        <div class="option-icon">🪟</div>
+                                        <h4>Traditional</h4>
+                                        <p>Windows-like with start menu and taskbar</p>
+                                    </div>
+                                    <div class="option-card" data-value="modern">
+                                        <div class="option-icon">🔳</div>
+                                        <h4>Modern / Unique</h4>
+                                        <p>Something different from Windows/macOS</p>
+                                    </div>
+                                    <div class="option-card" data-value="mac">
+                                        <div class="option-icon">🍎</div>
+                                        <h4>macOS-like</h4>
+                                        <p>Similar to Apple's desktop interface</p>
+                                    </div>
+                                    <div class="option-card" data-value="minimal">
+                                        <div class="option-icon">⬜</div>
+                                        <h4>Minimal</h4>
+                                        <p>Clean, simple, and lightweight</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question" id="question-6" style="display: none;">
+                                <h3>How important is free software philosophy to you?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="pragmatic">
+                                        <div class="option-icon">🔌</div>
+                                        <h4>Pragmatic</h4>
+                                        <p>I want things to work, including proprietary drivers and codecs</p>
+                                    </div>
+                                    <div class="option-card" data-value="balanced">
+                                        <div class="option-icon">🔄</div>
+                                        <h4>Balanced</h4>
+                                        <p>I prefer open-source but will use proprietary software when needed</p>
+                                    </div>
+                                    <div class="option-card" data-value="free">
+                                        <div class="option-icon">🔓</div>
+                                        <h4>Free Software Only</h4>
+                                        <p>I strongly prefer to use only free/open-source software</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question" id="question-7" style="display: none;">
+                                <h3>How much do you want to customize your system?</h3>
+                                <div class="options">
+                                    <div class="option-card" data-value="works">
+                                        <div class="option-icon">✅</div>
+                                        <h4>Works Out of the Box</h4>
+                                        <p>I want everything set up and ready to use</p>
+                                    </div>
+                                    <div class="option-card" data-value="some">
+                                        <div class="option-icon">🔧</div>
+                                        <h4>Some Customization</h4>
+                                        <p>I enjoy tweaking settings and appearance</p>
+                                    </div>
+                                    <div class="option-card" data-value="full">
+                                        <div class="option-icon">🛠️</div>
+                                        <h4>Full Control</h4>
+                                        <p>I want to build my system exactly how I want it</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <button id="prev-button" class="nav-button" disabled>Previous</button>
+                                <button id="next-button" class="nav-button">Next Question</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Results container - will be populated with JavaScript -->
+                        <div id="results-container" style="display: none;">
+                            <h3>Your Recommended Distributions</h3>
+                            <p>Based on your preferences, here are the Linux distributions that best match your needs:</p>
+                            
+                            <div id="results-list">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="reset-container">
+                                <button id="reset-finder" class="reset-button">Start Over</button>
+                                <a href="compare.html" class="compare-link">Compare These Distributions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+</body>
+</html> 

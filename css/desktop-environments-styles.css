@@ -1,0 +1,163 @@
+/* Desktop Environments Page Specific Styles */
+
+/* Root variables for desktop environments page */
+:root {
+    --de-spacing-sm: 10px;
+    --de-spacing-md: 15px;
+    --de-spacing-lg: 20px;
+    --de-spacing-xl: 30px;
+    --de-radius-sm: 4px;
+    --de-radius-md: 6px;
+    --de-radius-lg: 8px;
+    --section-border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content page spacing and layout */
+.content-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    pointer-events: none; /* Allow clicks to pass through to circles */
+}
+
+/* Ensure content inside cards remains clickable */
+.content-page .distro-card {
+    pointer-events: auto;
+}
+
+/* Desktop environment screenshot container */
+.de-image-container {
+    margin-bottom: var(--de-spacing-lg);
+    border-radius: var(--de-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--section-border-color);
+}
+
+.de-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Desktop environment details */
+.de-details {
+    padding: var(--de-spacing-md) 0;
+}
+
+.de-details h3 {
+    color: var(--circle-primary-color, #D4AF37);
+    margin-top: 0;
+    margin-bottom: var(--de-spacing-md);
+    font-size: 1.4em;
+}
+
+.de-details h4 {
+    color: var(--circle-primary-color, #D4AF37);
+    margin-top: 0;
+    margin-bottom: var(--de-spacing-sm);
+    font-size: 1.1em;
+}
+
+/* Features layout */
+.de-features {
+    display: flex;
+    gap: var(--de-spacing-xl);
+    margin-bottom: var(--de-spacing-lg);
+}
+
+.de-feature-column {
+    flex: 1;
+}
+
+.de-feature-column ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.de-feature-column li {
+    margin-bottom: 5px;
+}
+
+/* Specifications */
+.de-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--de-spacing-md);
+    margin-top: var(--de-spacing-lg);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--de-radius-md);
+    padding: var(--de-spacing-md);
+}
+
+.de-spec {
+    flex: 1;
+    min-width: 200px;
+}
+
+.de-spec-label {
+    font-weight: bold;
+    color: var(--circle-primary-color, #D4AF37);
+    margin-right: var(--de-spacing-sm);
+}
+
+.de-spec-value {
+    color: #e0e0e0;
+}
+
+/* Call to action section */
+.de-cta {
+    margin-top: var(--de-spacing-xl);
+    text-align: center;
+    background-color: rgba(var(--circle-primary-color-rgb, 212, 175, 55), 0.05);
+    border-radius: var(--de-radius-md);
+    padding: var(--de-spacing-lg);
+}
+
+.de-button {
+    display: inline-block;
+    margin: var(--de-spacing-md);
+    padding: 12px 24px;
+    background-color: var(--circle-primary-color, #D4AF37);
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: var(--de-radius-md);
+    transition: all 0.3s ease;
+}
+
+.de-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .de-features {
+        flex-direction: column;
+        gap: var(--de-spacing-md);
+    }
+    
+    .de-feature-column {
+        width: 100%;
+    }
+    
+    .de-specs {
+        flex-direction: column;
+    }
+    
+    .de-spec {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .de-button {
+        display: block;
+        width: 100%;
+        margin: var(--de-spacing-md) 0;
+    }
+} 
