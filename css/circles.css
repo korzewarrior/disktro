@@ -29,7 +29,7 @@
     height: var(--circle-size);
     border-radius: 50%;
     border: 1px solid rgba(170, 170, 170, 0.1);
-    transition: border-color 0.2s ease-out, background-color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    transition: border-color 0.2s ease-out, background-color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.3s ease-out;
     pointer-events: auto; /* Make circles clickable */
     will-change: transform, opacity, background-color, border-color, box-shadow; /* Optimize for animations */
     contain: layout paint style; /* Containment for performance */

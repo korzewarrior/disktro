@@ -529,7 +529,9 @@ function propagateRipple(clickedCircle) {
             animationBatch.push({
                 circle,
                 delay: delay * 1000,
-                intensity: falloff
+                intensity: falloff,
+                // Add random respawn time between 2-4 seconds
+                respawnTime: Math.random() * 2000 + 2000 
             });
         }
     });
@@ -543,7 +545,8 @@ function propagateRipple(clickedCircle) {
             }
             
             animation.circle.classList.add('clicked');
-            animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${animation.intensity * 0.6})`; // Increased opacity for more visible effect
+            animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${animation.intensity * 0.6})`;
+            animation.circle.style.opacity = '0'; // Make the circle fully disappear
             
             const circleTimeout = setTimeout(() => {
                 animation.circle.classList.remove('clicked');
@@ -551,7 +554,8 @@ function propagateRipple(clickedCircle) {
                 if (!animation.circle.classList.contains('bomb')) {
                     animation.circle.style.backgroundColor = 'transparent';
                 }
-            }, 500);
+                animation.circle.style.opacity = '1'; // Fade back in
+            }, animation.respawnTime);
             
             animation.circle.dataset.timeoutId = circleTimeout;
         }, animation.delay);
@@ -560,14 +564,17 @@ function propagateRipple(clickedCircle) {
     // Add the clicked animation to the source circle
     clickedCircle.classList.add('clicked');
     clickedCircle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.6)`;
+    clickedCircle.style.opacity = '0'; // Make the clicked circle fully disappear
     
+    // The directly clicked circle should stay gone a bit longer (3-6 seconds)
     const circleTimeout = setTimeout(() => {
         clickedCircle.classList.remove('clicked');
         // Only reset background if it's not a bomb
         if (!clickedCircle.classList.contains('bomb')) {
             clickedCircle.style.backgroundColor = 'transparent';
         }
-    }, 500);
+        clickedCircle.style.opacity = '1'; // Fade back in
+    }, Math.random() * 3000 + 3000);
     
     clickedCircle.dataset.timeoutId = circleTimeout;
 }
