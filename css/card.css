@@ -17,7 +17,7 @@
 }
 
 /* Base card component - all cards should have these styles */
-[class*="-card"] {
+[class*="-card"], .footer-card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@
 }
 
 /* Hover effect for all cards */
-[class*="-card"]:hover {
+[class*="-card"]:hover, .footer-card:hover {
     transform: translateY(-5px) !important;
     box-shadow: 0 6px 12px var(--card-hover-shadow) !important;
     border-color: var(--highlight-color);
@@ -85,13 +85,13 @@
 
 /* Responsive adjustments for all cards */
 @media (max-width: 768px) {
-    [class*="-card"] {
+    [class*="-card"], .footer-card {
         padding: 12px;
     }
 }
 
 @media (max-width: 576px) {
-    [class*="-card"] {
+    [class*="-card"], .footer-card {
         padding: 10px;
     }
     
