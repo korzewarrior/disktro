@@ -44,7 +44,7 @@ function updateInfo(distro) {
     const arch = archToggle.textContent === 'ARM' ? 'ARM' : 'x86';
     const type = typeToggle.textContent === 'Full' ? 'FULL' : 'NET';
 
-    fetch(`/distro/${distro}.json`)
+    fetch(`distro/${distro}.json`)
         .then(response => response.json())
         .then(data => {
             const distroData = data[arch][type];

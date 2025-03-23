@@ -1,0 +1,31 @@
+{
+    "name": "Fedora",
+    "version": "39",
+    "codeName": "",
+    "releaseDate": "November 7, 2023",
+    "homePage": "https://getfedora.org/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/39/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-39-1.5.iso",
+            "size": "2.1 GB",
+            "sha256": "c88d5c35f13cf196705c14e95a7a1f8a998fc63918b239ff916e5b4fb0144792"
+        },
+        "NET": {
+            "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/iso/Fedora-Server-netinst-x86_64-39-1.5.iso",
+            "size": "731 MB",
+            "sha256": "46f0d4fbfa1795ed631f344b74482f9c9b5b2a49d7a541d03c3e1adb05545efe"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/39/Workstation/aarch64/iso/Fedora-Workstation-Live-aarch64-39-1.5.iso",
+            "size": "2.0 GB",
+            "sha256": "cedc55a04cfa38f32a54d01c67fb9d76f5f2ad7aaa83a7c2900af7c7d6edcfef"
+        },
+        "NET": {
+            "downloadLink": "https://download.fedoraproject.org/pub/fedora/linux/releases/39/Server/aarch64/iso/Fedora-Server-netinst-aarch64-39-1.5.iso",
+            "size": "726 MB",
+            "sha256": "fbcd2b0e4fbe57c6a8cd27e65c2310196c07341a4f3a7bc05ae8db9e24e9b0e1"
+        }
+    }
+} 

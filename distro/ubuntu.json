@@ -1,0 +1,31 @@
+{
+    "name": "Ubuntu",
+    "version": "23.10",
+    "codeName": "Mantic Minotaur",
+    "releaseDate": "October 12, 2023",
+    "homePage": "https://ubuntu.com/",
+    "x86": {
+        "FULL": {
+            "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-desktop-amd64.iso",
+            "size": "4.8 GB",
+            "sha256": "0828fd0cc0a5a3e551ad9452cee131915f13384b59f60db059242f86fe746a3e"
+        },
+        "NET": {
+            "downloadLink": "https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso",
+            "size": "1.5 GB",
+            "sha256": "82b33dfa3eee30b20e3ce7c2c96700a0d6743df781bd0ec6f65a14e8b7f6a02c"
+        }
+    },
+    "ARM": {
+        "FULL": {
+            "downloadLink": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-desktop-arm64+raspi.img.xz",
+            "size": "4.6 GB",
+            "sha256": "eec68a2106b7d60e7ccb33d43076433ce24008eb28bb8041ad8c3b1c59d3da78"
+        },
+        "NET": {
+            "downloadLink": "https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz",
+            "size": "1.1 GB",
+            "sha256": "c4e97e0b900d31bf53352c5be71ba7c1b842c8cdcefa30e45c1e51a1a2bac8bb"
+        }
+    }
+} 
