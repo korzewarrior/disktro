@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     refreshAllCards();
     
     console.log("Initial refreshAllCards will verify card availability");
-
+    
     // Define the filterCards function inside the DOMContentLoaded scope
     // to ensure it has access to all necessary variables
     window.filterCards = function(searchText, showLatest) {
@@ -258,16 +258,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show "no matches" message if all cards are hidden and search text isn't empty
         if (visibleCount === 0 && searchText.trim()) {
             // Always create a new message element
-            const message = document.createElement('div');
-            message.id = 'no-matches-message';
-            message.className = 'no-matches-message';
-            message.textContent = 'No matching distros found';
+                const message = document.createElement('div');
+                message.id = 'no-matches-message';
+                message.className = 'no-matches-message';
+                message.textContent = 'No matching distros found';
             
             // Force a solid opaque background with inline styles - use !important
             message.setAttribute('style', 'background-color: #0e0e0e !important; opacity: 1 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: #0e0e0e !important; display: block !important');
             
             // Add to DOM
-            document.querySelector('.os-sections').appendChild(message);
+                document.querySelector('.os-sections').appendChild(message);
         }
         
         // Always ensure the disktro-card is the last element
@@ -499,19 +499,19 @@ function refreshAllCards() {
                 // Re-sort all cards to ensure proper order
                 sortCardsInDOM();
             }
-            
-            // Re-add the disktro-card if it existed
-            if (disktroCard) {
-                osSection.appendChild(disktroCard);
-            }
-            
-            // Add search event listener after cards are loaded
-            const searchBar = document.getElementById('search-bar');
-            if (searchBar) {
-                searchBar.addEventListener('input', function() {
-                    filterCards(searchBar.value, showOnlyLatest);
-                });
-            }
+        
+        // Re-add the disktro-card if it existed
+        if (disktroCard) {
+            osSection.appendChild(disktroCard);
+        }
+        
+        // Add search event listener after cards are loaded
+        const searchBar = document.getElementById('search-bar');
+        if (searchBar) {
+            searchBar.addEventListener('input', function() {
+                filterCards(searchBar.value, showOnlyLatest);
+            });
+        }
             
             // Make sure all cards are visible
             showAllCards();
@@ -585,7 +585,7 @@ function createVersionCard(distro, data, version, versionIndex, mainCard) {
     const cardInDOM = document.getElementById(versionCardId);
     if (cardInDOM) {
         console.log(`Successfully added card ${versionCardId} to the DOM`);
-    } else {
+        } else {
         console.error(`Failed to find card ${versionCardId} in the DOM after adding it!`);
     }
     
@@ -632,7 +632,7 @@ function createMultipleVersionCards(distro, data) {
     // The first version is already displayed in the main card
     let cardsCreated = 0;
     
-    for (let i = 1; i < data.versions.length; i++) {
+        for (let i = 1; i < data.versions.length; i++) {
         createVersionCard(distro, data, data.versions[i], i, mainCard);
         cardsCreated++;
     }
@@ -751,17 +751,17 @@ function updateCardContent(card, data, selectedVersion) {
     card.querySelector('.distro-title').textContent = data.name;
     
     // Add version and date as a subtitle, positioned between card header and card content
-    let versionSubtitle = card.querySelector('.version-subtitle');
-    if (!versionSubtitle) {
-        versionSubtitle = document.createElement('div');
-        versionSubtitle.className = 'version-subtitle';
+        let versionSubtitle = card.querySelector('.version-subtitle');
+        if (!versionSubtitle) {
+            versionSubtitle = document.createElement('div');
+            versionSubtitle.className = 'version-subtitle';
+            
+            // Insert after the card header and before the card content
+            const cardHeader = card.querySelector('.card-header');
+            const cardContent = card.querySelector('.card-content');
+            card.insertBefore(versionSubtitle, cardContent);
+        }
         
-        // Insert after the card header and before the card content
-        const cardHeader = card.querySelector('.card-header');
-        const cardContent = card.querySelector('.card-content');
-        card.insertBefore(versionSubtitle, cardContent);
-    }
-    
     // Create subtitle text with version, codeName, and date (if available)
     let subtitleText = selectedVersion.version || "Latest";
     
@@ -771,12 +771,12 @@ function updateCardContent(card, data, selectedVersion) {
     }
     
     // Add release date to subtitle if available
-    if (selectedVersion.releaseDate) {
-        subtitleText += ` • ${selectedVersion.releaseDate}`;
-    }
+            if (selectedVersion.releaseDate) {
+                subtitleText += ` • ${selectedVersion.releaseDate}`;
+            }
     
-    versionSubtitle.textContent = subtitleText;
-    versionSubtitle.style.display = 'block';
+            versionSubtitle.textContent = subtitleText;
+            versionSubtitle.style.display = 'block';
     
     // Set data attribute for version (used in filtering)
     if (selectedVersion.version) {
@@ -956,7 +956,7 @@ function showAllCards() {
     cards.forEach(card => {
         // Skip the footer card
         if (card.id === 'disktro-card') {
-            card.style.display = 'flex';
+        card.style.display = 'flex';
             return;
         }
         

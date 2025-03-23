@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="css/toggle.css">
         <link rel="stylesheet" type="text/css" href="css/card.css">
         <link rel="stylesheet" type="text/css" href="css/circles.css">
+        <link rel="stylesheet" type="text/css" href="css/footer.css">
         <script defer src="js/footer.js"></script>
         <script defer src="js/main.js"></script>
         <script defer src="js/circles.js"></script>
@@ -58,6 +59,93 @@
             </div>
         </div>
         <div id="footer"></div>
+
+        <style>
+            /* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
+            .content-page,
+            div.content-page,
+            body .container .content-page,
+            .os-sections,
+            .os-sections.grid-layout,
+            .os-sections.column-layout {
+                background-color: transparent !important;
+                background: transparent !important;
+                background-image: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                opacity: 1 !important;
+                position: relative !important; 
+                z-index: 1 !important;
+            }
+            
+            /* Force distro-cards to have solid backgrounds */
+            .distro-card, .comparison-section, .comparison-results, .content-section {
+                background-color: #0e0e0e !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+                border: 1px solid rgba(255, 255, 255, 0.192) !important;
+                opacity: 1 !important;
+                position: relative !important;
+                z-index: 2 !important;
+            }
+            
+            /* SUPER CRITICAL - FORCE FOOTER TO BE VISIBLE */
+            #disktro-card.footer-card {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                background-color: #0e0e0e !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                padding: 0 !important;
+                margin-top: 40px !important;
+                margin-bottom: 60px !important;
+                border: 1px solid rgba(255, 255, 255, 0.192) !important;
+            }
+            
+            #disktro-card.footer-card .card-header,
+            #disktro-card.footer-card .card-content,
+            #disktro-card.footer-card .version-subtitle,
+            #disktro-card.footer-card .footer-info,
+            #disktro-card.footer-card .footer-nav,
+            #disktro-card.footer-card .footer-copyright,
+            #disktro-card.footer-card .footer-column,
+            #disktro-card.footer-card .footer-column p {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            #disktro-card.footer-card .card-content {
+                padding: 20px !important;
+            }
+            
+            #disktro-card.footer-card .footer-nav {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 20px !important;
+                border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+                padding-top: 15px !important;
+                margin: 15px 0 !important;
+            }
+            
+            #disktro-card.footer-card .footer-info {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 30px !important;
+                justify-content: space-between !important;
+            }
+            
+            /* Remove any overflow or transform properties that might interfere */
+            html, body, .container {
+                overflow-x: visible !important;
+            }
+        </style>
     </body>
 
 <!-- Mirrored from www.disktro.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Nov 2023 09:29:32 GMT -->

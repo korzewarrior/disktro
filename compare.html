@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disktro | Compare Linux Distributions</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/toggle.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/circles.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <script defer src="js/footer.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/circles.js"></script>
+    <script defer src="js/distro-colors.js"></script>
+</head>
+<body>
+    <div class="circlecontainer"></div>
+    <header>
+        <div class="header-brand">
+            <img src="img/disktro-logo.png" alt="Disktro Logo" class="header-logo">
+            <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
+        </div>
+        <p class="tagline">Compare — Find Your Perfect Linux Match</p>
+    </header>
+    <div class="container">
+        <div class="compare-interface">
+            <div class="compare-controls">
+                <h2>Select distributions to compare:</h2>
+                <div class="selector-container">
+                    <div class="selector">
+                        <label for="distro1">First Distribution:</label>
+                        <select id="distro1" class="distro-selector">
+                            <option value="">Select Distribution</option>
+                            <option value="ubuntu">Ubuntu</option>
+                            <option value="fedora">Fedora</option>
+                            <option value="debian">Debian</option>
+                            <option value="arch">Arch Linux</option>
+                            <option value="mint">Linux Mint</option>
+                            <option value="manjaro">Manjaro</option>
+                            <option value="popos">Pop!_OS</option>
+                            <option value="opensuse">openSUSE</option>
+                            <option value="elementary">Elementary OS</option>
+                            <option value="zorin">Zorin OS</option>
+                        </select>
+                    </div>
+                    <div class="selector">
+                        <label for="distro2">Second Distribution:</label>
+                        <select id="distro2" class="distro-selector">
+                            <option value="">Select Distribution</option>
+                            <option value="ubuntu">Ubuntu</option>
+                            <option value="fedora">Fedora</option>
+                            <option value="debian">Debian</option>
+                            <option value="arch">Arch Linux</option>
+                            <option value="mint">Linux Mint</option>
+                            <option value="manjaro">Manjaro</option>
+                            <option value="popos">Pop!_OS</option>
+                            <option value="opensuse">openSUSE</option>
+                            <option value="elementary">Elementary OS</option>
+                            <option value="zorin">Zorin OS</option>
+                        </select>
+                    </div>
+                    <div class="compare-button-container">
+                        <button id="compareButton" class="compare-button">Compare</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="comparison-results" class="comparison-results">
+                <!-- Results will be displayed here -->
+                <div class="empty-state">
+                    <img src="img/disktro-logo.png" alt="Disktro Logo" class="empty-logo">
+                    <p>Select two distributions above and click "Compare" to see a detailed comparison.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Preset Comparisons -->
+        <div class="preset-comparisons">
+            <h2>Popular Comparisons</h2>
+            <div class="preset-buttons">
+                <button class="preset-button" data-distro1="ubuntu" data-distro2="mint">Ubuntu vs Linux Mint</button>
+                <button class="preset-button" data-distro1="fedora" data-distro2="opensuse">Fedora vs openSUSE</button>
+                <button class="preset-button" data-distro1="arch" data-distro2="manjaro">Arch vs Manjaro</button>
+                <button class="preset-button" data-distro1="debian" data-distro2="ubuntu">Debian vs Ubuntu</button>
+                <button class="preset-button" data-distro1="popos" data-distro2="zorin">Pop!_OS vs Zorin OS</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const distro1Select = document.getElementById('distro1');
+            const distro2Select = document.getElementById('distro2');
+            const compareButton = document.getElementById('compareButton');
+            const comparisonResults = document.getElementById('comparison-results');
+            const presetButtons = document.querySelectorAll('.preset-button');
+            
+            // Distro data for comparisons
+            const distroData = {
+                ubuntu: {
+                    name: "Ubuntu",
+                    logo: "img/logo-ubuntu.png",
+                    basedon: "Debian",
+                    packageManager: "APT (deb)",
+                    releaseModel: "Fixed (6-month cycle with LTS)",
+                    defaultDesktop: "GNOME",
+                    difficulty: "Beginner-friendly",
+                    stabilityVsNewness: "Balanced (regular releases) or Stable (LTS)",
+                    systemRequirements: "4GB RAM, 25GB disk space",
+                    strengths: ["Excellent hardware support", "Large community", "Corporate backing (Canonical)", "Extensive documentation"],
+                    weaknesses: ["Some proprietary elements", "GNOME can be resource-intensive"],
+                    bestFor: ["New Linux users", "General-purpose computing", "Software development", "Server deployments"]
+                },
+                fedora: {
+                    name: "Fedora",
+                    logo: "img/logo-fedora.png",
+                    basedon: "Independent (Red Hat sponsored)",
+                    packageManager: "DNF (rpm)",
+                    releaseModel: "Fixed (6-month cycle)",
+                    defaultDesktop: "GNOME",
+                    difficulty: "Intermediate",
+                    stabilityVsNewness: "Bleeding edge, newest packages",
+                    systemRequirements: "4GB RAM, 20GB disk space",
+                    strengths: ["Latest software/features", "Pure open source philosophy", "Strong security (SELinux)", "Red Hat innovations"],
+                    weaknesses: ["Less stable than LTS distros", "May require more technical knowledge"],
+                    bestFor: ["Software developers", "System administrators", "Open source enthusiasts", "Testing new technologies"]
+                },
+                debian: {
+                    name: "Debian",
+                    logo: "img/logo-debian.png",
+                    basedon: "Independent",
+                    packageManager: "APT (deb)",
+                    releaseModel: "Fixed (approximately 2-year cycle)",
+                    defaultDesktop: "GNOME (multiple options)",
+                    difficulty: "Intermediate",
+                    stabilityVsNewness: "Very stable, conservative",
+                    systemRequirements: "2GB RAM, 10GB disk space",
+                    strengths: ["Extremely stable", "Massive repository", "Strong commitment to free software", "Solid security track record"],
+                    weaknesses: ["Older software versions", "Conservative update policy", "Can be less user-friendly"],
+                    bestFor: ["Servers", "Production environments", "Stability-focused users", "Older hardware"]
+                },
+                arch: {
+                    name: "Arch Linux",
+                    logo: "img/logo-arch.png",
+                    basedon: "Independent",
+                    packageManager: "Pacman",
+                    releaseModel: "Rolling release",
+                    defaultDesktop: "None (DIY)",
+                    difficulty: "Advanced",
+                    stabilityVsNewness: "Bleeding edge, newest packages",
+                    systemRequirements: "512MB RAM, 2GB disk space (minimal)",
+                    strengths: ["Latest software/features", "Highly customizable", "Excellent documentation (Arch Wiki)", "Simple and elegant design"],
+                    weaknesses: ["Steep learning curve", "Requires technical knowledge", "Manual installation process", "Higher maintenance"],
+                    bestFor: ["Advanced users", "Those who want complete control", "Learning Linux internals", "Custom configurations"]
+                },
+                mint: {
+                    name: "Linux Mint",
+                    logo: "img/logo-mint.png",
+                    basedon: "Ubuntu/Debian",
+                    packageManager: "APT (deb)",
+                    releaseModel: "Fixed (follows Ubuntu LTS)",
+                    defaultDesktop: "Cinnamon (also MATE, Xfce)",
+                    difficulty: "Beginner-friendly",
+                    stabilityVsNewness: "Stable (based on LTS)",
+                    systemRequirements: "2GB RAM, 20GB disk space",
+                    strengths: ["Very user-friendly", "Windows-like interface", "Pre-installed multimedia codecs", "Strong stability"],
+                    weaknesses: ["Less cutting-edge than some distros", "Smaller community than Ubuntu", "Some added complexity over Ubuntu"],
+                    bestFor: ["Windows converts", "Beginners", "Desktop/laptop users", "Media consumption"]
+                },
+                manjaro: {
+                    name: "Manjaro",
+                    logo: "img/logo-manjaro.png",
+                    basedon: "Arch Linux",
+                    packageManager: "Pacman",
+                    releaseModel: "Rolling release (with stabilization)",
+                    defaultDesktop: "Xfce, KDE, GNOME (multiple editions)",
+                    difficulty: "Intermediate",
+                    stabilityVsNewness: "Semi-rolling, slightly delayed for stability",
+                    systemRequirements: "2GB RAM, 30GB disk space",
+                    strengths: ["Arch benefits with easier installation", "User-friendly Arch experience", "Multiple desktop environments", "Hardware detection"],
+                    weaknesses: ["Less stable than fixed releases", "Not pure Arch", "Package delays compared to Arch"],
+                    bestFor: ["Users wanting Arch without the difficulty", "Desktop users", "Tinkerers", "Gaming"]
+                },
+                popos: {
+                    name: "Pop!_OS",
+                    logo: "img/logo-popos.png",
+                    basedon: "Ubuntu",
+                    packageManager: "APT (deb)",
+                    releaseModel: "Fixed (follows Ubuntu)",
+                    defaultDesktop: "GNOME (customized)",
+                    difficulty: "Beginner-friendly",
+                    stabilityVsNewness: "Balanced, follows Ubuntu",
+                    systemRequirements: "4GB RAM, 20GB disk space",
+                    strengths: ["Excellent hardware support", "NVIDIA driver integration", "Optimized for developers", "Polished user experience"],
+                    weaknesses: ["Less customizable out of box", "Higher system requirements", "Smaller community than Ubuntu"],
+                    bestFor: ["Developers", "Creative professionals", "NVIDIA GPU users", "System76 hardware owners"]
+                },
+                opensuse: {
+                    name: "openSUSE",
+                    logo: "img/logo-opensuse.png",
+                    basedon: "Independent",
+                    packageManager: "Zypper (rpm)",
+                    releaseModel: "Two versions: Leap (fixed) and Tumbleweed (rolling)",
+                    defaultDesktop: "KDE (GNOME also well-supported)",
+                    difficulty: "Intermediate",
+                    stabilityVsNewness: "Tumbleweed: Bleeding edge / Leap: Stable",
+                    systemRequirements: "2GB RAM, 40GB disk space",
+                    strengths: ["YaST control center", "Enterprise-grade tools", "Excellent KDE implementation", "Choice of release models"],
+                    weaknesses: ["Smaller community than Ubuntu/Fedora", "Some enterprise focus makes it less desktop-oriented", "More complex package management"],
+                    bestFor: ["System administrators", "Enterprise desktop users", "KDE fans", "Those wanting both fixed and rolling options"]
+                },
+                elementary: {
+                    name: "Elementary OS",
+                    logo: "img/logo-elementary.png",
+                    basedon: "Ubuntu",
+                    packageManager: "APT (deb)",
+                    releaseModel: "Fixed (follows Ubuntu LTS)",
+                    defaultDesktop: "Pantheon",
+                    difficulty: "Beginner-friendly",
+                    stabilityVsNewness: "Stable (based on LTS)",
+                    systemRequirements: "4GB RAM, 15GB disk space",
+                    strengths: ["Beautiful design", "macOS-like interface", "Focus on human interface guidelines", "Curated app store"],
+                    weaknesses: ["Limited customization", "Smaller application ecosystem", "Higher system requirements than some alternatives"],
+                    bestFor: ["macOS users", "Design-focused users", "Those who value simplicity", "Basic computing needs"]
+                },
+                zorin: {
+                    name: "Zorin OS",
+                    logo: "img/logo-zorin.png",
+                    basedon: "Ubuntu",
+                    packageManager: "APT (deb)",
+                    releaseModel: "Fixed (follows Ubuntu)",
+                    defaultDesktop: "Zorin Desktop (GNOME-based)",
+                    difficulty: "Beginner-friendly",
+                    stabilityVsNewness: "Stable (based on LTS)",
+                    systemRequirements: "2GB RAM, 10GB disk space",
+                    strengths: ["Windows-like interface", "Easy transition for Windows users", "Multiple layout options", "Pre-configured for new users"],
+                    weaknesses: ["Pro version costs money", "Less unique than some alternatives", "Some features only in Pro version"],
+                    bestFor: ["Windows converts", "Beginners", "Business deployments", "Education"]
+                }
+            };
+            
+            // Compare button action
+            compareButton.addEventListener('click', function() {
+                performComparison();
+            });
+            
+            // Preset comparison buttons
+            presetButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const distro1 = this.getAttribute('data-distro1');
+                    const distro2 = this.getAttribute('data-distro2');
+                    
+                    distro1Select.value = distro1;
+                    distro2Select.value = distro2;
+                    
+                    performComparison();
+                });
+            });
+            
+            function performComparison() {
+                const distro1 = distro1Select.value;
+                const distro2 = distro2Select.value;
+                
+                if (distro1 === "" || distro2 === "") {
+                    comparisonResults.innerHTML = `
+                        <div class="error-message">
+                            <p>Please select two distributions to compare.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                if (distro1 === distro2) {
+                    comparisonResults.innerHTML = `
+                        <div class="error-message">
+                            <p>Please select two different distributions to compare.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const data1 = distroData[distro1];
+                const data2 = distroData[distro2];
+                
+                if (!data1 || !data2) {
+                    comparisonResults.innerHTML = `
+                        <div class="error-message">
+                            <p>Data for one or both selected distributions is not available.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Generate comparison HTML with a more readable vertical layout
+                comparisonResults.innerHTML = `
+                    <div class="comparison-header">
+                        <h2 class="comparison-title">${data1.name} vs ${data2.name}</h2>
+                        <div class="distro-logos">
+                            <div class="distro-logo-container">
+                                <img src="${data1.logo}" alt="${data1.name} logo" class="comparison-logo">
+                                <h3>${data1.name}</h3>
+                            </div>
+                            <div class="versus-divider">VS</div>
+                            <div class="distro-logo-container">
+                                <img src="${data2.logo}" alt="${data2.name} logo" class="comparison-logo">
+                                <h3>${data2.name}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Specifications -->
+                    <div class="comparison-section">
+                        <h2 class="section-title">Technical Specifications</h2>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Feature</th>
+                                <th>${data1.name}</th>
+                                <th>${data2.name}</th>
+                            </tr>
+                            <tr>
+                                <td>Based On</td>
+                                <td>${data1.basedon}</td>
+                                <td>${data2.basedon}</td>
+                            </tr>
+                            <tr>
+                                <td>Package Manager</td>
+                                <td>${data1.packageManager}</td>
+                                <td>${data2.packageManager}</td>
+                            </tr>
+                            <tr>
+                                <td>Release Model</td>
+                                <td>${data1.releaseModel}</td>
+                                <td>${data2.releaseModel}</td>
+                            </tr>
+                            <tr>
+                                <td>Default Desktop</td>
+                                <td>${data1.defaultDesktop}</td>
+                                <td>${data2.defaultDesktop}</td>
+                            </tr>
+                            <tr>
+                                <td>Difficulty Level</td>
+                                <td>${data1.difficulty}</td>
+                                <td>${data2.difficulty}</td>
+                            </tr>
+                            <tr>
+                                <td>Stability vs. Cutting Edge</td>
+                                <td>${data1.stabilityVsNewness}</td>
+                                <td>${data2.stabilityVsNewness}</td>
+                            </tr>
+                            <tr>
+                                <td>System Requirements</td>
+                                <td>${data1.systemRequirements}</td>
+                                <td>${data2.systemRequirements}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Strengths Section -->
+                    <div class="comparison-section">
+                        <h2 class="section-title">Key Strengths</h2>
+                        
+                        <div class="distro-details">
+                            <h3 class="distro-name">${data1.name} Strengths</h3>
+                            <ul class="distro-list">
+                                ${data1.strengths.map(strength => `<li>${strength}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="distro-details">
+                            <h3 class="distro-name">${data2.name} Strengths</h3>
+                            <ul class="distro-list">
+                                ${data2.strengths.map(strength => `<li>${strength}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Weaknesses Section -->
+                    <div class="comparison-section">
+                        <h2 class="section-title">Potential Weaknesses</h2>
+                        
+                        <div class="distro-details">
+                            <h3 class="distro-name">${data1.name} Weaknesses</h3>
+                            <ul class="distro-list">
+                                ${data1.weaknesses.map(weakness => `<li>${weakness}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="distro-details">
+                            <h3 class="distro-name">${data2.name} Weaknesses</h3>
+                            <ul class="distro-list">
+                                ${data2.weaknesses.map(weakness => `<li>${weakness}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Best For Section -->
+                    <div class="comparison-section">
+                        <h2 class="section-title">Best For</h2>
+                        
+                        <div class="distro-details">
+                            <h3 class="distro-name">${data1.name} is Best For</h3>
+                            <ul class="distro-list">
+                                ${data1.bestFor.map(use => `<li>${use}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="distro-details">
+                            <h3 class="distro-name">${data2.name} is Best For</h3>
+                            <ul class="distro-list">
+                                ${data2.bestFor.map(use => `<li>${use}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-conclusion">
+                        <p>Ready to try one of these distributions? Head to the <a href="index.html">main page</a> to download, or check out our <a href="getting-started.html">Getting Started guide</a> for installation help.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+    <style>
+        /* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
+        .content-page,
+        div.content-page,
+        body .container .content-page {
+            background-color: transparent !important;
+            background: transparent !important;
+            background-image: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            opacity: 1 !important;
+            position: relative !important; 
+            z-index: 1 !important;
+        }
+        
+        /* Force distro-cards to have solid backgrounds */
+        .distro-card, .comparison-section, .comparison-results {
+            background-color: #0e0e0e !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.192) !important;
+            opacity: 1 !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+        
+        /* Remove any overflow or transform properties that might interfere */
+        html, body, .container {
+            overflow-x: visible !important;
+        }
+        
+        /* Styles for the comparison page */
+        .compare-interface {
+            margin: 20px 0;
+        }
+        
+        .compare-controls {
+            background-color: #0e0e0e !important;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.192);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        
+        .compare-controls h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .selector-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+            background-color: #0e0e0e !important;
+        }
+        
+        .selector {
+            flex: 1;
+            min-width: 200px;
+            background-color: #0e0e0e !important;
+        }
+        
+        .selector label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+            background-color: #0e0e0e !important;
+        }
+        
+        .distro-selector {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #1a1a1a !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            font-size: 16px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        
+        .compare-button-container {
+            flex: 1;
+            min-width: 150px;
+            display: flex;
+            align-items: flex-end;
+            background-color: #0e0e0e !important;
+        }
+        
+        .compare-button {
+            padding: 10px 20px;
+            background-color: var(--circle-primary-color, #D4AF37) !important;
+            color: #0e0e0e;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        
+        .compare-button:hover {
+            background-color: #e5c158 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+        }
+        
+        .comparison-results {
+            background-color: #0e0e0e !important;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.192);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 260px;
+            text-align: center;
+            color: #aaa;
+            background-color: #0e0e0e !important;
+        }
+        
+        .empty-logo {
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+        
+        .error-message {
+            padding: 20px;
+            text-align: center;
+            color: #ff6b6b;
+            font-style: italic;
+            background-color: #0e0e0e !important;
+        }
+        
+        /* New vertical layout styles */
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #0e0e0e !important;
+        }
+        
+        .comparison-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--circle-primary-color, #D4AF37);
+            background-color: #0e0e0e !important;
+        }
+        
+        .distro-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            background-color: #0e0e0e !important;
+        }
+        
+        .distro-logo-container {
+            text-align: center;
+            background-color: #0e0e0e !important;
+        }
+        
+        .comparison-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .versus-divider {
+            font-size: 18px;
+            font-weight: bold;
+            color: #aaa;
+            background-color: #0e0e0e !important;
+        }
+        
+        .comparison-section {
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #0e0e0e !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            background-color: #0a0a0a !important;
+            padding: 15px 20px;
+            margin: 0;
+            color: var(--circle-primary-color, #D4AF37);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #0e0e0e !important;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #0e0e0e !important;
+        }
+        
+        .comparison-table th {
+            background-color: #0a0a0a !important;
+            color: var(--circle-primary-color, #D4AF37);
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #0c0c0c !important;
+        }
+        
+        .distro-details {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #0e0e0e !important;
+        }
+        
+        .distro-details:last-child {
+            border-bottom: none;
+        }
+        
+        .distro-name {
+            font-size: 1.3rem;
+            margin: 0 0 15px 0;
+            color: var(--circle-primary-color, #D4AF37);
+            background-color: #0e0e0e !important;
+        }
+        
+        .distro-list {
+            padding-left: 20px;
+            margin: 0;
+            background-color: #0e0e0e !important;
+        }
+        
+        .distro-list li {
+            margin-bottom: 8px;
+            background-color: #0e0e0e !important;
+        }
+        
+        .comparison-conclusion {
+            background-color: #0a0a0a !important;
+            padding: 20px;
+            border-radius: 5px;
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        
+        .comparison-conclusion a {
+            color: var(--circle-primary-color, #D4AF37);
+            text-decoration: none;
+        }
+        
+        .comparison-conclusion a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Preset Comparisons Section */
+        .preset-comparisons {
+            margin: 30px 0;
+            background-color: #0e0e0e !important;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.192);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        
+        .preset-comparisons h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            background-color: #0e0e0e !important;
+        }
+        
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background-color: #0e0e0e !important;
+        }
+        
+        .preset-button {
+            padding: 8px 16px;
+            background-color: #1a1a1a !important;
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .preset-button:hover {
+            background-color: #2a2a2a !important;
+            border-color: var(--circle-primary-color, #D4AF37);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .selector-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .selector, .compare-button-container {
+                width: 100%;
+                min-width: unset;
+            }
+            
+            .distro-logos {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .versus-divider {
+                transform: rotate(90deg);
+            }
+        }
+        
+        /* SUPER CRITICAL - FORCE FOOTER TO BE VISIBLE */
+        #disktro-card.footer-card {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            background-color: #0e0e0e !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            padding: 0 !important;
+            margin-top: 40px !important;
+            margin-bottom: 60px !important;
+            border: 1px solid rgba(255, 255, 255, 0.192) !important;
+        }
+        
+        #disktro-card.footer-card .card-header,
+        #disktro-card.footer-card .card-content,
+        #disktro-card.footer-card .version-subtitle,
+        #disktro-card.footer-card .footer-info,
+        #disktro-card.footer-card .footer-nav,
+        #disktro-card.footer-card .footer-copyright,
+        #disktro-card.footer-card .footer-column,
+        #disktro-card.footer-card .footer-column p {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        #disktro-card.footer-card .card-content {
+            padding: 20px !important;
+        }
+        
+        #disktro-card.footer-card .footer-nav {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding-top: 15px !important;
+            margin: 15px 0 !important;
+        }
+        
+        #disktro-card.footer-card .footer-info {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 30px !important;
+            justify-content: space-between !important;
+        }
+    </style>
+</body>
+</html> 

@@ -13,6 +13,9 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Raleway Medium';
+    width: 100% !important;
+    min-width: 100% !important;
+    overflow-x: hidden !important;
 }
 
 body {
@@ -340,7 +343,7 @@ header {
     padding: 10px 35px 10px 15px !important;
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.192) !important;
     border-radius: 4px !important;
     font-size: 14px !important;
     flex-grow: unset !important;
@@ -377,7 +380,7 @@ header {
     height: 36px !important;
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.192) !important;
     border-radius: 4px !important;
     cursor: pointer !important;
     font-size: 14px !important;
@@ -418,7 +421,7 @@ header {
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
     font-size: 18px !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.192) !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
     display: flex !important;
@@ -471,4 +474,170 @@ header {
         width: 100%;
         border-radius: 4px;
     }
+}
+
+/* UNCOMMENT FOR DEBUGGING SPECIFIC ISSUES
+body, .container, header, .header-brand, .tagline, .content-page, .os-sections {
+    background-color: #0e0e0e !important;
+}
+
+.container,
+.content-page,
+.distro-card,
+div[class*="card"],
+div[class*="section"],
+div[class*="content"],
+div[class*="container"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: #0e0e0e !important;
+    opacity: 1 !important;
+}
+
+html, body {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: #0e0e0e !important;
+}
+*/
+
+/* HEADER FIX - Ensure header is always visible */
+header, .header-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+}
+
+.header-logo {
+    height: 70px !important;
+    width: 70px !important;
+    margin-right: 15px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.title, .tagline {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* FIX CONTAINER BACKGROUNDS */
+.container, .os-sections {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Keep ONLY cards opaque with backgrounds */
+.distro-card, .content-section {
+    background-color: #0e0e0e !important;
+    opacity: 1 !important;
+}
+
+/* STANDARDIZE CONTAINER WIDTHS ACROSS ALL PAGES */
+.container {
+    max-width: 1200px !important;
+    width: 80% !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+}
+
+/* Ensure content pages on all sections have consistent width */
+.content-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+}
+
+/* Ensure footer has same width as main content */
+#disktro-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Ensure consistent widths for specific pages */
+body[class*="faq"] .container,
+body[class*="getting-started"] .container,
+body[class*="compare"] .container {
+    max-width: 1200px !important;
+    width: 80% !important;
+}
+
+/* Force grid layout containers to be the same size */
+.os-sections.grid-layout {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* MORE AGGRESSIVE WIDTH FIXES */
+body > .container,
+body > .footer-container {
+    width: 80% !important;
+    max-width: 1200px !important;
+    min-width: 300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+.content-page,
+.compare-interface {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
+.content-page,
+div.content-page,
+body .container .content-page,
+.os-sections,
+.os-sections.grid-layout,
+.os-sections.column-layout,
+.container,
+.content-container,
+.page-container {
+    background-color: transparent !important;
+    background: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    opacity: 1 !important;
+    position: relative !important; 
+    z-index: 1 !important;
+}
+
+/* Force cards to have solid backgrounds */
+.distro-card, 
+.content-section, 
+.section-content, 
+.comparison-section, 
+.comparison-results, 
+.code-block {
+    background-color: #0e0e0e !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.192) !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Remove any overflow or transform properties that might interfere */
+html, body, .container {
+    overflow-x: visible !important;
 }

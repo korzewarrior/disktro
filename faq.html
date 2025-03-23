@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disktro | FAQ</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/toggle.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/circles.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <script defer src="js/footer.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/circles.js"></script>
+    <script defer src="js/distro-colors.js"></script>
+</head>
+<body>
+    <div class="circlecontainer"></div>
+    <header>
+        <div class="header-brand">
+            <img src="img/disktro-logo.png" alt="Disktro Logo" class="header-logo">
+            <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
+        </div>
+        <p class="tagline">Frequently Asked Questions</p>
+    </header>
+    <div class="container">
+        <div class="content-page">
+            <div class="content-section">
+                <h2 class="section-title">What is Linux?</h2>
+                <div class="section-content">
+                    <p>Linux is a free and open-source operating system kernel first released by Linus Torvalds in 1991. When people refer to "Linux," they often mean a complete operating system built around this kernel, which includes system utilities, applications, and a graphical user interface. These complete systems are known as Linux distributions or "distros."</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">What is a Linux Distribution?</h2>
+                <div class="section-content">
+                    <p>A Linux distribution (distro) is a complete operating system package built around the Linux kernel. It includes:</p>
+                    <ul>
+                        <li>The Linux kernel</li>
+                        <li>System libraries and utilities</li>
+                        <li>Package management system</li>
+                        <li>Desktop environment</li>
+                        <li>Pre-installed applications</li>
+                    </ul>
+                    <p>Each distribution has its own philosophy, release cycle, package management system, and default software selection.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Why are there so many different Linux distributions?</h2>
+                <div class="section-content">
+                    <p>Linux's open-source nature allows anyone to modify and redistribute it, leading to hundreds of distributions, each with specific goals:</p>
+                    <ul>
+                        <li><strong>User Focus:</strong> Some target beginners (Ubuntu, Mint), others experienced users (Arch, Gentoo)</li>
+                        <li><strong>Purpose-Built:</strong> Some are optimized for specific uses like security (Kali), privacy (Tails), or minimal resource usage (Puppy Linux)</li>
+                        <li><strong>Philosophy:</strong> Some strictly adhere to free software principles (PureOS), while others include proprietary drivers and software for convenience</li>
+                        <li><strong>Technology Choices:</strong> Distributions differ in package managers, release models, init systems, and desktop environments</li>
+                    </ul>
+                    <p>This diversity gives users the freedom to choose a system that perfectly matches their needs and values.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">What does "ISO" mean?</h2>
+                <div class="section-content">
+                    <p>ISO refers to an ISO image file (.iso), which is an archive file that contains an exact copy of data found on an optical disc, like a CD or DVD. The name comes from the ISO 9660 file system used with CD-ROM media.</p>
+                    <p>When you download a Linux distribution from Disktro, you're downloading an ISO file that contains all the data needed to install the operating system. This file can be:</p>
+                    <ul>
+                        <li>Burned to a DVD</li>
+                        <li>Written to a USB drive</li>
+                        <li>Used directly in a virtual machine</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">What's the difference between Full ISO and Net Install ISO?</h2>
+                <div class="section-content">
+                    <p><strong>Full ISO:</strong></p>
+                    <ul>
+                        <li>Contains all packages needed for a complete installation</li>
+                        <li>Large download size (typically 2-4GB)</li>
+                        <li>Can install without an internet connection</li>
+                        <li>Includes a full desktop environment and common applications</li>
+                    </ul>
+                    
+                    <p><strong>Net Install ISO:</strong></p>
+                    <ul>
+                        <li>Contains only the core system</li>
+                        <li>Small download size (typically 300-700MB)</li>
+                        <li>Requires internet during installation to download packages</li>
+                        <li>Allows for a more customized installation</li>
+                        <li>Results in a more up-to-date system as it downloads the latest package versions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">How do I verify my ISO download?</h2>
+                <div class="section-content">
+                    <p>It's important to verify your downloaded ISO to ensure it hasn't been corrupted or tampered with. On Disktro, you can find the SHA256 checksum next to each download. To verify:</p>
+                    
+                    <p><strong>On Windows:</strong></p>
+                    <div class="code-block">
+                        <code>certutil -hashfile path\to\downloaded.iso SHA256</code>
+                    </div>
+                    
+                    <p><strong>On macOS:</strong></p>
+                    <div class="code-block">
+                        <code>shasum -a 256 path/to/downloaded.iso</code>
+                    </div>
+                    
+                    <p><strong>On Linux:</strong></p>
+                    <div class="code-block">
+                        <code>sha256sum path/to/downloaded.iso</code>
+                    </div>
+                    
+                    <p>Compare the result with the checksum provided on the Disktro website. They should match exactly.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Which Linux distribution is best for beginners?</h2>
+                <div class="section-content">
+                    <p>For beginners, we recommend distributions that are:</p>
+                    <ul>
+                        <li>Easy to install</li>
+                        <li>User-friendly</li>
+                        <li>Well-documented</li>
+                        <li>Have good hardware support</li>
+                    </ul>
+                    
+                    <p>Some excellent choices for beginners include:</p>
+                    <ul>
+                        <li><strong>Ubuntu:</strong> The most popular Linux distro with excellent community support</li>
+                        <li><strong>Linux Mint:</strong> Based on Ubuntu with a familiar Windows-like interface</li>
+                        <li><strong>Pop!_OS:</strong> User-friendly with excellent hardware and gaming support</li>
+                        <li><strong>Zorin OS:</strong> Designed specifically to make Windows users feel at home</li>
+                        <li><strong>elementary OS:</strong> macOS-inspired design focused on elegance and ease of use</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Can I try Linux without installing it?</h2>
+                <div class="section-content">
+                    <p>Yes! There are several ways to try Linux without modifying your existing operating system:</p>
+                    
+                    <p><strong>Live USB/DVD:</strong></p>
+                    <p>Most Linux distributions can run directly from a USB drive or DVD in "live mode." This allows you to test the full operating system without installing anything on your hard drive.</p>
+                    
+                    <p><strong>Virtual Machine:</strong></p>
+                    <p>You can run Linux inside a virtual machine on your current operating system using software like:</p>
+                    <ul>
+                        <li>VirtualBox (free, works on Windows, macOS, Linux)</li>
+                        <li>VMware Workstation Player (free for non-commercial use, Windows and Linux)</li>
+                        <li>Parallels (paid, macOS)</li>
+                    </ul>
+                    
+                    <p><strong>Windows Subsystem for Linux (WSL):</strong></p>
+                    <p>Windows 10 and 11 users can install the Windows Subsystem for Linux, which provides a Linux environment directly within Windows. It's primarily command-line based, although graphical applications are possible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+
+<style>
+    /* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
+    .content-page,
+    div.content-page,
+    body .container .content-page {
+        background-color: transparent !important;
+        background: transparent !important;
+        background-image: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        opacity: 1 !important;
+        position: relative !important; 
+        z-index: 1 !important;
+    }
+    
+    /* Force content sections to have solid backgrounds */
+    .content-section {
+        background-color: #0e0e0e !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.192) !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 2 !important;
+        overflow: hidden;
+        width: 100%;
+    }
+    
+    /* SUPER CRITICAL - FORCE FOOTER TO BE VISIBLE */
+    #disktro-card.footer-card {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background-color: #0e0e0e !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        padding: 0 !important;
+        margin-top: 40px !important;
+        margin-bottom: 60px !important;
+        border: 1px solid rgba(255, 255, 255, 0.192) !important;
+    }
+    
+    #disktro-card.footer-card .card-header,
+    #disktro-card.footer-card .card-content,
+    #disktro-card.footer-card .version-subtitle,
+    #disktro-card.footer-card .footer-info,
+    #disktro-card.footer-card .footer-nav,
+    #disktro-card.footer-card .footer-copyright,
+    #disktro-card.footer-card .footer-column,
+    #disktro-card.footer-card .footer-column p {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    #disktro-card.footer-card .card-content {
+        padding: 20px !important;
+    }
+    
+    #disktro-card.footer-card .footer-nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding-top: 15px !important;
+        margin: 15px 0 !important;
+    }
+    
+    #disktro-card.footer-card .footer-info {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 30px !important;
+        justify-content: space-between !important;
+    }
+    
+    /* Remove any overflow or transform properties that might interfere */
+    html, body, .container {
+        overflow-x: visible !important;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        color: #e0e0e0;
+        background-color: #0a0a0a !important;
+        margin: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-content {
+        padding: 20px;
+        background-color: #0e0e0e !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    .code-block {
+        background-color: #1a1a1a !important;
+        border-radius: 4px;
+        padding: 10px 15px;
+        margin: 10px 0;
+        overflow-x: auto;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    .code-block code {
+        font-family: monospace;
+        color: #e0e0e0;
+        background-color: #1a1a1a !important;
+    }
+    
+    .section-content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin: 5px 0;
+        background-color: transparent !important;
+        border-radius: 0;
+    }
+    
+    .section-content ul li {
+        margin-bottom: 5px;
+        background-color: #0e0e0e !important;
+    }
+    
+    .section-content ul li a {
+        color: var(--circle-primary-color, #D4AF37);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .section-content ul li a:hover {
+        text-decoration: underline;
+    }
+    
+    .section-content p {
+        margin-bottom: 10px;
+        background-color: #0e0e0e !important;
+    }
+
+    strong {
+        background-color: #0e0e0e !important;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disktro | Getting Started with Linux</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/toggle.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/circles.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <script defer src="js/footer.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/circles.js"></script>
+    <script defer src="js/distro-colors.js"></script>
+</head>
+<body>
+    <div class="circlecontainer"></div>
+    <header>
+        <div class="header-brand">
+            <img src="img/disktro-logo.png" alt="Disktro Logo" class="header-logo">
+            <h1 class="title">Dis<span class="highlight">[k]</span>tro</h1>
+        </div>
+        <p class="tagline">Getting Started — Your Linux Journey Begins</p>
+    </header>
+    <div class="container">
+        <!-- Getting Started Content Section - Card-based layout matching compare page -->
+        <div class="content-page">
+            <!-- Intro Section Card -->
+            <div class="distro-card" id="intro">
+                <div class="card-header">
+                    <h2 class="distro-title">Welcome to Linux</h2>
+                </div>
+                <div class="version-subtitle">Getting Started with Linux</div>
+                <div class="card-content">
+                    <p>Linux is a powerful, flexible operating system used everywhere from smartphones to supercomputers. Unlike Windows or macOS, Linux comes in many different "distributions" (or "distros"), each designed for different users and purposes.</p>
+                    <p>This guide will walk you through the process of choosing, installing, and getting comfortable with your first Linux distribution.</p>
+                </div>
+            </div>
+
+            <!-- Step 1 Card -->
+            <div class="distro-card" id="step1">
+                <div class="card-header">
+                    <h2 class="distro-title">Step 1: Choose Your Distribution</h2>
+                </div>
+                <div class="version-subtitle">Finding the Right Linux for You</div>
+                <div class="card-content">
+                    <p>For beginners, we recommend starting with one of these user-friendly distributions:</p>
+                    <div class="distro-recommendation">
+                        <h3>Ubuntu</h3>
+                        <p>The most popular beginner distribution with excellent support and documentation.</p>
+                        <p><strong>Perfect for:</strong> First-time Linux users who want something that "just works"</p>
+                    </div>
+                    <div class="distro-recommendation">
+                        <h3>Linux Mint</h3>
+                        <p>Based on Ubuntu with a more traditional desktop that Windows users will find familiar.</p>
+                        <p><strong>Perfect for:</strong> Users transitioning from Windows who prefer a familiar interface</p>
+                    </div>
+                    <div class="distro-recommendation">
+                        <h3>Pop!_OS</h3>
+                        <p>Modern, polished distribution with excellent hardware support and gaming features.</p>
+                        <p><strong>Perfect for:</strong> Users with newer hardware or those interested in gaming</p>
+                    </div>
+                    <p>Browse the <a href="index.html">Disktro homepage</a> to explore all available distributions.</p>
+                </div>
+            </div>
+            
+            <!-- Step 2 Card -->
+            <div class="distro-card" id="step2">
+                <div class="card-header">
+                    <h2 class="distro-title">Step 2: Download Your ISO</h2>
+                </div>
+                <div class="version-subtitle">Getting the Installation Media</div>
+                <div class="card-content">
+                    <p>Once you've chosen a distribution, you need to download the ISO file. On Disktro, this is simple:</p>
+                    <ol>
+                        <li>Find your chosen distribution on the <a href="index.html">homepage</a></li>
+                        <li>Click the download button to get the latest version</li>
+                        <li>Choose between:
+                            <ul>
+                                <li><strong>FULL ISO</strong> (recommended for beginners) - Contains everything needed for offline installation</li>
+                                <li><strong>NET ISO</strong> - Smaller download that requires internet during installation</li>
+                            </ul>
+                        </li>
+                        <li>Make sure to select the right architecture:
+                            <ul>
+                                <li><strong>x86_64/AMD64</strong> - For most desktop/laptop computers</li>
+                                <li><strong>ARM</strong> - For Raspberry Pi, some Chromebooks, and Apple M-series Macs</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Remember to verify your download using the SHA256 checksum provided on each card.</p>
+                </div>
+            </div>
+            
+            <!-- Step 3 Card -->
+            <div class="distro-card" id="step3">
+                <div class="card-header">
+                    <h2 class="distro-title">Step 3: Create a Bootable USB Drive</h2>
+                </div>
+                <div class="version-subtitle">Preparing for Installation</div>
+                <div class="card-content">
+                    <p>To install Linux, you'll need to create a bootable USB drive. You'll need:</p>
+                    <ul>
+                        <li>A USB drive (8GB or larger)</li>
+                        <li>A USB creation tool</li>
+                    </ul>
+                    
+                    <h3>Recommended USB Creation Tools:</h3>
+                    <div class="tool-recommendation">
+                        <h4>Balena Etcher (All Platforms)</h4>
+                        <ol>
+                            <li>Download <a href="https://www.balena.io/etcher/" target="_blank">Balena Etcher</a></li>
+                            <li>Install and open the application</li>
+                            <li>Click "Flash from file" and select your ISO</li>
+                            <li>Select your USB drive</li>
+                            <li>Click "Flash!" and wait for the process to complete</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tool-recommendation">
+                        <h4>Rufus (Windows Only)</h4>
+                        <ol>
+                            <li>Download <a href="https://rufus.ie/" target="_blank">Rufus</a></li>
+                            <li>Insert your USB drive</li>
+                            <li>Open Rufus and select your USB drive</li>
+                            <li>Click "SELECT" and choose your ISO file</li>
+                            <li>Click "START" and accept the default settings</li>
+                        </ol>
+                    </div>
+                    
+                    <p><strong>Important:</strong> Creating a bootable USB will erase all data on the drive. Back up any important files first!</p>
+                </div>
+            </div>
+            
+            <!-- Step 4 Card -->
+            <div class="distro-card" id="step4">
+                <div class="card-header">
+                    <h2 class="distro-title">Step 4: Prepare Your Computer</h2>
+                </div>
+                <div class="version-subtitle">Getting Ready for Linux</div>
+                <div class="card-content">
+                    <p>Before installing Linux, take these important preparatory steps:</p>
+                    
+                    <h3>Backup Your Data</h3>
+                    <p>Always back up your important files before installing a new operating system. You can use an external drive or cloud storage.</p>
+                    
+                    <h3>Installation Options</h3>
+                    <p>You have several options for installing Linux:</p>
+                    <ul>
+                        <li><strong>Dual-Boot:</strong> Install Linux alongside your existing OS (Windows/macOS)</li>
+                        <li><strong>Replace Existing OS:</strong> Completely replace your current operating system</li>
+                        <li><strong>Virtual Machine:</strong> Run Linux inside your current OS (good for testing)</li>
+                    </ul>
+                    
+                    <h3>For Dual-Boot Systems</h3>
+                    <p>If you plan to dual-boot:</p>
+                    <ul>
+                        <li>Create free space by shrinking your existing partition (Windows Disk Management or macOS Disk Utility)</li>
+                        <li>Disable Fast Startup in Windows</li>
+                        <li>Disable BitLocker or other disk encryption if enabled</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Step 5 Card -->
+            <div class="distro-card" id="step5">
+                <div class="card-header">
+                    <h2 class="distro-title">Step 5: Boot and Install</h2>
+                </div>
+                <div class="version-subtitle">Installing Your Linux Distribution</div>
+                <div class="card-content">
+                    <h3>Booting from USB</h3>
+                    <ol>
+                        <li>Insert your bootable USB drive</li>
+                        <li>Restart your computer</li>
+                        <li>Access the boot menu by pressing a key during startup:
+                            <ul>
+                                <li>Common keys: F12, F10, F2, Esc, or Del (varies by computer)</li>
+                                <li>Mac: Hold Option (⌥) key when you hear the startup chime</li>
+                            </ul>
+                        </li>
+                        <li>Select your USB drive from the boot menu</li>
+                    </ol>
+                    
+                    <h3>Installation Process</h3>
+                    <p>While each distribution has a slightly different installer, most follow this general process:</p>
+                    <ol>
+                        <li>Select your language, timezone, and keyboard layout</li>
+                        <li>Choose whether to download updates during installation (recommended if you have internet)</li>
+                        <li>Select your installation type:
+                            <ul>
+                                <li>"Install alongside" for dual-boot</li>
+                                <li>"Erase disk and install" to replace your current OS</li>
+                                <li>"Something else" for manual partitioning (advanced)</li>
+                            </ul>
+                        </li>
+                        <li>Create your user account and password</li>
+                        <li>Wait for installation to complete</li>
+                        <li>Restart when prompted</li>
+                    </ol>
+                    <p><strong>Note:</strong> For specific installation guidance, check your chosen distribution's official documentation.</p>
+                </div>
+            </div>
+            
+            <!-- Step 6 Card -->
+            <div class="distro-card" id="step6">
+                <div class="card-header">
+                    <h2 class="distro-title">Step 6: Post-Installation Setup</h2>
+                </div>
+                <div class="version-subtitle">Configuring Your New System</div>
+                <div class="card-content">
+                    <p>After installing Linux, here are the first things you should do:</p>
+                    
+                    <h3>1. Update Your System</h3>
+                    <p>Open the terminal and run:</p>
+                    <div class="code-block">
+                        <code># For Ubuntu/Mint/Pop!_OS:</code><br>
+                        <code>sudo apt update && sudo apt upgrade</code><br><br>
+                        <code># For Fedora:</code><br>
+                        <code>sudo dnf upgrade</code>
+                    </div>
+                    
+                    <h3>2. Install Additional Drivers</h3>
+                    <p>Some distributions provide a "Driver Manager" or "Software & Updates" tool where you can install proprietary drivers for graphics cards and other hardware.</p>
+                    
+                    <h3>3. Install Essential Software</h3>
+                    <p>Most distributions come with an app store (like "Software Center" or "Discover") where you can install:</p>
+                    <ul>
+                        <li>Web browsers (Firefox, Chrome, Brave)</li>
+                        <li>Office applications (LibreOffice)</li>
+                        <li>Media players (VLC)</li>
+                        <li>Cloud storage clients (Dropbox, OneDrive)</li>
+                    </ul>
+                    
+                    <h3>4. Customize Your Desktop</h3>
+                    <p>Explore the system settings to customize your desktop environment, including:</p>
+                    <ul>
+                        <li>Themes and colors</li>
+                        <li>Desktop background</li>
+                        <li>Fonts</li>
+                        <li>Keyboard shortcuts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Commands Card -->
+            <div class="distro-card" id="commands">
+                <div class="card-header">
+                    <h2 class="distro-title">Common Linux Commands</h2>
+                </div>
+                <div class="version-subtitle">Essential Terminal Commands</div>
+                <div class="card-content">
+                    <p>Learning some basic terminal commands will help you get more out of Linux:</p>
+                    
+                    <div class="code-block">
+                        <code>ls</code> - List files in current directory<br>
+                        <code>cd [directory]</code> - Change to specified directory<br>
+                        <code>mkdir [name]</code> - Create a new directory<br>
+                        <code>rm [file]</code> - Delete a file<br>
+                        <code>rm -r [directory]</code> - Delete a directory and its contents<br>
+                        <code>cp [source] [destination]</code> - Copy files<br>
+                        <code>mv [source] [destination]</code> - Move or rename files<br>
+                        <code>sudo [command]</code> - Run command with administrative privileges<br>
+                        <code>apt update</code> or <code>dnf check-update</code> - Check for updates<br>
+                        <code>apt upgrade</code> or <code>dnf upgrade</code> - Install available updates
+                    </div>
+                    
+                    <p>When you need help with a command, use:</p>
+                    <div class="code-block">
+                        <code>man [command]</code> - Show the manual for a command<br>
+                        <code>[command] --help</code> - Display quick help
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Troubleshooting Card -->
+            <div class="distro-card" id="troubleshooting">
+                <div class="card-header">
+                    <h2 class="distro-title">Troubleshooting Common Issues</h2>
+                </div>
+                <div class="version-subtitle">Solutions to Common Problems</div>
+                <div class="card-content">
+                    <div class="troubleshoot-item">
+                        <h3>Wi-Fi Not Working</h3>
+                        <p><strong>Cause:</strong> Missing drivers for wireless card</p>
+                        <p><strong>Solution:</strong> Connect via ethernet cable temporarily and install drivers through "Additional Drivers" tool or use the terminal to install firmware packages.</p>
+                    </div>
+                    
+                    <div class="troubleshoot-item">
+                        <h3>Graphics Issues (Poor Performance, Screen Tearing)</h3>
+                        <p><strong>Cause:</strong> Incorrect or missing graphics drivers</p>
+                        <p><strong>Solution:</strong> Install proprietary drivers for NVIDIA or AMD graphics through your distribution's driver manager.</p>
+                    </div>
+                    
+                    <div class="troubleshoot-item">
+                        <h3>Black Screen on Boot</h3>
+                        <p><strong>Cause:</strong> Graphics driver incompatibility</p>
+                        <p><strong>Solution:</strong> Boot with "nomodeset" parameter. At GRUB boot menu, press 'e', add "nomodeset" after "quiet splash", then press F10 to boot.</p>
+                    </div>
+                    
+                    <div class="troubleshoot-item">
+                        <h3>Unable to Boot to Windows (Dual-Boot)</h3>
+                        <p><strong>Cause:</strong> GRUB bootloader issue</p>
+                        <p><strong>Solution:</strong> Run <code>sudo update-grub</code> in Linux to refresh the bootloader entries.</p>
+                    </div>
+                    
+                    <div class="troubleshoot-item">
+                        <h3>Package Manager Errors</h3>
+                        <p><strong>Cause:</strong> Interrupted update or repository issues</p>
+                        <p><strong>Solution:</strong> Run <code>sudo apt --fix-broken install</code> (Ubuntu/Mint) or <code>sudo dnf clean all</code> (Fedora) to fix package database.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+
+    <style>
+        /* SUPER AGGRESSIVE FIX FOR CONTENT-PAGE TRANSPARENCY */
+        .content-page,
+        div.content-page,
+        body .container .content-page {
+            background-color: transparent !important;
+            background: transparent !important;
+            background-image: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            opacity: 1 !important;
+            position: relative !important; 
+            z-index: 1 !important;
+        }
+        
+        /* Force distro-cards to have solid backgrounds */
+        .distro-card {
+            background-color: #0e0e0e !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.192) !important;
+            opacity: 1 !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+        
+        /* SUPER CRITICAL - FORCE FOOTER TO BE VISIBLE */
+        #disktro-card.footer-card {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            background-color: #0e0e0e !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            padding: 0 !important;
+            margin-top: 40px !important;
+            margin-bottom: 60px !important;
+            border: 1px solid rgba(255, 255, 255, 0.192) !important;
+        }
+        
+        #disktro-card.footer-card .card-header,
+        #disktro-card.footer-card .card-content,
+        #disktro-card.footer-card .version-subtitle,
+        #disktro-card.footer-card .footer-info,
+        #disktro-card.footer-card .footer-nav,
+        #disktro-card.footer-card .footer-copyright,
+        #disktro-card.footer-card .footer-column,
+        #disktro-card.footer-card .footer-column p {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        #disktro-card.footer-card .card-content {
+            padding: 20px !important;
+        }
+        
+        #disktro-card.footer-card .footer-nav {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding-top: 15px !important;
+            margin: 15px 0 !important;
+        }
+        
+        #disktro-card.footer-card .footer-info {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 30px !important;
+            justify-content: space-between !important;
+        }
+        
+        /* Remove any overflow or transform properties that might interfere */
+        html, body, .container {
+            overflow-x: visible !important;
+        }
+        
+        /* Adjust card headers after icon removal */
+        .content-page .distro-card .card-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .content-page .distro-card .distro-title {
+            margin: 0;
+            text-align: center;
+        }
+        
+        .content-page .distro-card .version-subtitle {
+            text-align: center;
+            padding: 8px 0;
+        }
+    </style>
+</body>
+</html> 
