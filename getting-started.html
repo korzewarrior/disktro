@@ -47,6 +47,98 @@
                 </div>
             </div>
 
+            <!-- Linux Basics Card (Moved from FAQ) -->
+            <div class="distro-card content-section" id="basics">
+                <div class="card-header">
+                    <h2 class="distro-title">Linux Fundamentals</h2>
+                </div>
+                <div class="version-subtitle">Understanding the Basics</div>
+                <div class="card-content">
+                    <h3>What is Linux?</h3>
+                    <p>Linux is a free and open-source operating system kernel first released by Linus Torvalds in 1991. When people refer to "Linux," they often mean a complete operating system built around this kernel, which includes system utilities, applications, and a graphical user interface. These complete systems are known as Linux distributions or "distros."</p>
+                    
+                    <h3>What is a Linux Distribution?</h3>
+                    <p>A Linux distribution (distro) is a complete operating system package built around the Linux kernel. It includes:</p>
+                    <ul>
+                        <li>The Linux kernel</li>
+                        <li>System libraries and utilities</li>
+                        <li>Package management system</li>
+                        <li>Desktop environment</li>
+                        <li>Pre-installed applications</li>
+                    </ul>
+                    <p>Each distribution has its own philosophy, release cycle, package management system, and default software selection.</p>
+                    
+                    <h3>Why are there so many different Linux distributions?</h3>
+                    <p>Linux's open-source nature allows anyone to modify and redistribute it, leading to hundreds of distributions, each with specific goals:</p>
+                    <ul>
+                        <li><strong>User Focus:</strong> Some target beginners (Ubuntu, Mint), others experienced users (Arch, Gentoo)</li>
+                        <li><strong>Purpose-Built:</strong> Some are optimized for specific uses like security (Kali), privacy (Tails), or minimal resource usage (Puppy Linux)</li>
+                        <li><strong>Philosophy:</strong> Some strictly adhere to free software principles (PureOS), while others include proprietary drivers and software for convenience</li>
+                        <li><strong>Technology Choices:</strong> Distributions differ in package managers, release models, init systems, and desktop environments</li>
+                    </ul>
+                    <p>This diversity gives users the freedom to choose a system that perfectly matches their needs and values.</p>
+                    
+                    <h3>What are Desktop Environments?</h3>
+                    <p>A Desktop Environment (DE) is a collection of software that provides a complete graphical user interface for your Linux system. Common desktop environments include:</p>
+                    <ul>
+                        <li><strong>GNOME:</strong> Modern, clean interface with minimal customization options; used by Ubuntu and Fedora</li>
+                        <li><strong>KDE Plasma:</strong> Highly customizable with a Windows-like interface; used by Kubuntu and openSUSE</li>
+                        <li><strong>Xfce:</strong> Lightweight and traditional interface; used by Xubuntu and Linux Lite</li>
+                        <li><strong>MATE:</strong> Traditional desktop based on GNOME 2; used by Ubuntu MATE</li>
+                        <li><strong>Cinnamon:</strong> Modern but traditional interface; default in Linux Mint</li>
+                        <li><strong>LXDE/LXQt:</strong> Extremely lightweight for older hardware; used by Lubuntu</li>
+                    </ul>
+                    <p>Many Linux distributions offer versions with different desktop environments, allowing you to choose the one that best suits your preferences and hardware capabilities.</p>
+                    
+                    <h3>What's the difference between rolling release and point release distributions?</h3>
+                    <p><strong>Point Release Model:</strong></p>
+                    <ul>
+                        <li>Releases occur at scheduled intervals (e.g., every 6 months or 2 years)</li>
+                        <li>Each version has a defined support period</li>
+                        <li>Major upgrades require a significant update process</li>
+                        <li>Examples: Ubuntu, Fedora, Debian</li>
+                        <li>Generally more stable and predictable</li>
+                    </ul>
+                    
+                    <p><strong>Rolling Release Model:</strong></p>
+                    <ul>
+                        <li>Continuous updates instead of version releases</li>
+                        <li>Software is updated as soon as new versions are available</li>
+                        <li>No need for major version upgrades</li>
+                        <li>Always running the latest software</li>
+                        <li>Examples: Arch Linux, openSUSE Tumbleweed, Manjaro</li>
+                        <li>Requires more frequent maintenance</li>
+                    </ul>
+                    
+                    <h3>What are package managers?</h3>
+                    <p>Package managers are software tools that automate the process of installing, upgrading, configuring, and removing software packages. Different Linux distributions use different package management systems:</p>
+                    
+                    <ul>
+                        <li><strong>APT (Advanced Package Tool):</strong> Used by Debian, Ubuntu, and their derivatives
+                            <div class="code-block">
+                                <code>sudo apt update<br>sudo apt install package-name</code>
+                            </div>
+                        </li>
+                        <li><strong>DNF/YUM:</strong> Used by Fedora, RHEL, and CentOS
+                            <div class="code-block">
+                                <code>sudo dnf install package-name</code>
+                            </div>
+                        </li>
+                        <li><strong>Pacman:</strong> Used by Arch Linux and its derivatives
+                            <div class="code-block">
+                                <code>sudo pacman -S package-name</code>
+                            </div>
+                        </li>
+                        <li><strong>Zypper:</strong> Used by openSUSE
+                            <div class="code-block">
+                                <code>sudo zypper install package-name</code>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>Package managers handle dependencies automatically, making software installation much simpler than on other operating systems.</p>
+                </div>
+            </div>
+
             <!-- Step 1 Card -->
             <div class="distro-card content-section" id="step1">
                 <div class="card-header">
