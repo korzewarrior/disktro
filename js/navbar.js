@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const navbarHTML = `
         <div class="navbar-card">
             <div class="navbar">
-                <a href="index.html" class="navbar-link" data-page="index">Library</a>
-                <a href="getting-started.html" class="navbar-link" data-page="getting-started">Getting Started</a>
+                <a href="index.html" class="navbar-link" data-page="index">Disks</a>
+                <a href="getting-started.html" class="navbar-link" data-page="getting-started">Start</a>
                 <a href="compare.html" class="navbar-link" data-page="compare">Compare</a>
-                <a href="desktop-environments.html" class="navbar-link" data-page="desktop-environments">Desktop Environments</a>
-                <a href="distro-finder.html" class="navbar-link" data-page="distro-finder">Distro Finder</a>
+                <a href="desktop-environments.html" class="navbar-link" data-page="desktop-environments">DEs</a>
+                <a href="distro-finder.html" class="navbar-link" data-page="distro-finder">Quiz</a>
                 <a href="guides.html" class="navbar-link" data-page="guides">Guides</a>
                 <a href="resources.html" class="navbar-link" data-page="resources">Resources</a>
                 <a href="faq.html" class="navbar-link" data-page="faq">FAQ</a>
