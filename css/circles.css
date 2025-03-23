@@ -2,26 +2,32 @@
     --circle-primary-color: #D4AF37;
     --circle-secondary-color: #FFFFFF;
     --circle-primary-color-rgb: 212, 175, 55;
+    --circle-size: 50px;
+    --circle-gap: 8px;
 }
 
 .circlecontainer {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100vw;
-    height: 100vh;
-    justify-content: space-around;
-    align-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, var(--circle-size));
+    grid-auto-rows: var(--circle-size);
+    gap: var(--circle-gap);
+    width: calc(100vw + 100px);
+    height: calc(100vh + 100px);
     position: fixed;        
     z-index: 1;
     pointer-events: none; /* Allow clicks to pass through to elements below */
-    overflow: hidden; /* Prevent scrollbars due to circles */
+    overflow: visible; /* Allow circles to visibly extend outside container */
+    justify-content: center;
+    align-content: center;
+    top: -50px;
+    left: -50px;
+    padding: 0;
 }
 
 .circle {
-    width: 50px;
-    height: 50px;
+    width: var(--circle-size);
+    height: var(--circle-size);
     border-radius: 50%;
-    margin: 5px;
     border: 1px solid rgba(170, 170, 170, 0.1);
     transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
     pointer-events: auto; /* Make circles clickable */
@@ -35,29 +41,28 @@
         opacity: 1;
     }
     100% {
-        transform: scale(4);
+        transform: scale(5);
         opacity: 0;
     }
 }
 
 .circle.clicked {
-    animation: ripple 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 2;
 }
 
 /* Performance optimizations for mobile devices */
 @media (max-width: 768px) {
-    .circle {
-        width: 40px;
-        height: 40px;
-        margin: 4px;
+    :root {
+        --circle-size: 40px;
+        --circle-gap: 6px;
     }
 }
 
 /* Further reduce size on very small screens */
 @media (max-width: 480px) {
-    .circle {
-        width: 30px;
-        height: 30px;
-        margin: 3px;
+    :root {
+        --circle-size: 30px;
+        --circle-gap: 5px;
     }
 }

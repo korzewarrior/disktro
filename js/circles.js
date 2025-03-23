@@ -1,13 +1,13 @@
 // Performance configuration
 const PERFORMANCE = {
     // Adjust max circles dynamically based on device performance
-    MAX_CIRCLES: 300,
+    MAX_CIRCLES: 900, // Increased max circles for better coverage
     // Throttle the mousemove event to improve performance
     THROTTLE_DELAY: 16, // ~60fps
     // Maximum distance for mouse interaction
     MAX_DISTANCE: 100,
     // Maximum distance for click ripple effect
-    MAX_RIPPLE_DISTANCE: 150
+    MAX_RIPPLE_DISTANCE: 300 // Increased from 150 to 300 for more dramatic explosions
 };
 
 // Store the circles in an array for faster access
@@ -38,18 +38,35 @@ function detectPerformance() {
     return PERFORMANCE.MAX_CIRCLES;
 }
 
-// Initialize the circles
+// Get circle size and gap from CSS variables
+function getCircleSizeAndGap() {
+    const style = getComputedStyle(document.documentElement);
+    const size = parseInt(style.getPropertyValue('--circle-size').trim(), 10) || 50;
+    const gap = parseInt(style.getPropertyValue('--circle-gap').trim(), 10) || 10;
+    return { size, gap };
+}
+
+// Initialize the circles with a simple grid approach
 function initializeCircles() {
+    // Clear any existing circles
+    container.innerHTML = '';
+    circlesArray = [];
+    
     const maxCircles = detectPerformance();
+    const { size, gap } = getCircleSizeAndGap();
+    const totalSize = size + gap;
     
-    const circleDiameter = 50 + 10;
-    // Calculate the number of circles that would fit the screen
-    const circlesHorizontal = Math.ceil(window.innerWidth / circleDiameter);
-    const circlesVertical = Math.ceil(window.innerHeight / circleDiameter);
+    // Calculate number of circles needed to fill the viewport with more overflow
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
     
-    // Limit the total number of circles based on performance
-    const densityFactor = isLowPerformanceDevice ? 2 : 1;
-    const totalCircles = Math.min(maxCircles, Math.floor((circlesHorizontal * circlesVertical) / densityFactor));
+    // Create extra circles to ensure coverage (add more padding)
+    const circlesHorizontal = Math.ceil(viewportWidth / totalSize) + 6; // Increased from +4 to +6
+    const circlesVertical = Math.ceil(viewportHeight / totalSize) + 6;  // Increased from +4 to +6
+    
+    // Calculate total circles
+    const totalCirclesNeeded = circlesHorizontal * circlesVertical;
+    const totalCircles = Math.min(maxCircles, totalCirclesNeeded);
     
     // Create a document fragment for better performance
     const fragment = document.createDocumentFragment();
@@ -63,7 +80,7 @@ function initializeCircles() {
     
     container.appendChild(fragment);
     
-    console.log(`Initialized ${totalCircles} circles. Low performance mode: ${isLowPerformanceDevice}`);
+    console.log(`Initialized ${totalCircles} circles of ${totalCirclesNeeded} needed (viewport: ${viewportWidth}x${viewportHeight}). Low performance mode: ${isLowPerformanceDevice}`);
 }
 
 // Helper function to convert hex to RGB
@@ -201,12 +218,16 @@ function propagateRipple(clickedCircle) {
         );
         
         if (distance < PERFORMANCE.MAX_RIPPLE_DISTANCE) {
-            const delay = distance / 500;
+            // Calculate delay based on distance - faster propagation
+            const delay = distance / 600; // Speed up from 500 to 600
+            // Calculate intensity based on distance - stronger effect
+            const intensity = Math.max(0.1, 1 - (distance / PERFORMANCE.MAX_RIPPLE_DISTANCE));
             
             // Store all animations to apply together
             animationBatch.push({
                 circle,
-                delay: delay * 1000
+                delay: delay * 1000,
+                intensity
             });
         }
     });
@@ -220,7 +241,7 @@ function propagateRipple(clickedCircle) {
             }
             
             animation.circle.classList.add('clicked');
-            animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.3)`;
+            animation.circle.style.backgroundColor = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${animation.intensity * 0.4})`; // Increased opacity for more visible effect
             
             const circleTimeout = setTimeout(() => {
                 animation.circle.classList.remove('clicked');
@@ -253,14 +274,24 @@ document.addEventListener('DOMContentLoaded', initializeCircles);
 
 // Reinitialize on window resize, with debounce
 let resizeTimeout;
+let prevWidth = window.innerWidth;
+let prevHeight = window.innerHeight;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        // Clear the current circles
-        container.innerHTML = '';
-        circlesArray = [];
-        
-        // Reinitialize with new dimensions
+    
+    // Force an immediate update for better user experience on resize
+    if (Math.abs(window.innerWidth - prevWidth) > 50 || 
+        Math.abs(window.innerHeight - prevHeight) > 50) {
+        clearTimeout(resizeTimeout);
         initializeCircles();
-    }, 250); // Debounce for 250ms
+        prevWidth = window.innerWidth;
+        prevHeight = window.innerHeight;
+    }
+    
+    // Still use debounce for fine-tuning
+    resizeTimeout = setTimeout(() => {
+        initializeCircles();
+        prevWidth = window.innerWidth;
+        prevHeight = window.innerHeight;
+    }, 150); // Shorter debounce time
 });
