@@ -5,7 +5,7 @@ const PERFORMANCE = {
     // Throttle the mousemove event to improve performance
     THROTTLE_DELAY: 16, // ~60fps
     // Maximum distance for mouse interaction
-    MAX_DISTANCE: 100,
+    MAX_DISTANCE: 150, // Increased from 100 to 150 for wider hover effect
     // Maximum distance for click ripple effect
     MAX_RIPPLE_DISTANCE: 300, // Increased from 150 to 300 for more dramatic explosions
     // UI elements ripple effect
@@ -13,7 +13,7 @@ const PERFORMANCE = {
     UI_RIPPLE_DURATION: 600, // Duration in ms
     // Bomb feature configuration
     MAX_BOMBS: 5, // Maximum number of bombs that can be placed
-    BOMB_KEY: 'b', // Key to press to place a bomb
+    BOMB_KEY: 'k', // Key to press to place a bomb
     BOMB_HIGHLIGHT_COLOR: 'rgba(255, 50, 50, 0.3)' // Color to highlight bomb circles
 };
 
@@ -290,6 +290,7 @@ const handleMouseMove = throttle((e) => {
                 circle.style.backgroundColor = 'transparent';
                 circle.style.boxShadow = 'none';
                 circle.style.transform = 'scale(1)';
+                circle.style.zIndex = '1'; // Reset z-index when far away
                 return;
             }
             
