@@ -358,3 +358,20 @@ h2 {
     font-weight: bold;
     transform: translateY(-50%);
 }
+
+/* Footer/Info Card Styling */
+.distro-card.info::before {
+    background-image: url('../img/disktro-logo.png');
+    background-size: 30%;
+}
+
+.distro-card.info .footer-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.distro-card.info .os-link {
+    display: inline-block;
+    margin: 0;
+}
